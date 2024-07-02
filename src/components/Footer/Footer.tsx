@@ -22,7 +22,7 @@ function Footer() {
             <a href="/derniere-ajout">Derniers ajouts</a>
             <a href="/categories">Catégories</a>
           </div>
-
+<h1 className="w-48"> Julien</h1>
           <div className="flex flex-col align-baseline leading-9 tablet: w-1/2 ">
             <a href="/conditions-generales">Conditions générales</a>
             <a href="/mentions-légales">Mentions légales</a>
