@@ -1,35 +1,15 @@
-import { useState } from 'react';
-import HomePage from '../HomePage/HomePage';
-import Header from '../../assets/images/Header';
+import React, { useState } from 'react';
+import Header from '../Header/Header'; // Assurez-vous que le chemin est correct
 import Footer from '../Footer/Footer';
+import AppContent from '../AppContent/AppContent'; // Assurez-vous que ce fichier existe
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> julien
 function App() {
   const [isModal, setModal] = useState(false);
 
-  const openModal = () =>{
-    setModal(true);
-    console.log('modal visible');
-  }
-
-  const closeModal = () =>{
-    setModal(false);
-    console.log('modal visible');
-  }
-
   return (
     <div>
-<<<<<<< HEAD
       <Header />
-
-=======
-      <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />
->>>>>>> julien
-      <HomePage />
+      <AppContent />
       <Footer />
     </div>
   );
