@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html, body {
+  overflow-x: hidden; /* Assurez-vous qu'il n'y a pas de défilement horizontal */
+  overflow-y: auto; /* Assurez-vous que le défilement vertical est autorisé */
+  height: 100%; /* Assurez-vous que le corps occupe 100% de la hauteur */
+  margin: 0; /* Retirer les marges par défaut du corps */
+  box-sizing: border-box; /* Inclure les bordures et les marges dans les dimensions */
+  position: relative;
+}
+
+
+
+/* @media (min-width: 430px) {
+  
+}
+
+@media (min-width: 768px) {
+  
+} */
