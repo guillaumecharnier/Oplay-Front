@@ -13,6 +13,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="w-1/3 flex justify-center">
           <a href="/connexion" className="text-lg pt-8 text-white">
             Se connecter
+            {/* Ajouter route Connexion */}
           </a>
         </div>
         <div className="w-1/3 flex flex-col items-center justify-center space-y-2">
@@ -48,19 +49,19 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
           />
         </div>
       </div>
-      <div className="flex justify-center pb-2 px-8">
+      <div className="flex justify-center pb-8 px-8">
   <form action="" className="relative w-full max-w-md">
     <input
       type="text"
       name="gameSearch"
       placeholder="Recherche ton jeu"
-      className="w-full py-2 pl-10 pr-4 rounded-full border border-gray-300 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      className="w-full py-2 pl-6 pr-4 rounded-full border border-gray-300 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
     />
     <button
       type="submit"
-      className="absolute inset-y-0 left-0 flex items-center pl-3"
+      className="absolute inset-y-0  right-[-1rem] flex items-center pl-3"
     >
-      <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1 rounded-full">
+      <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-5 rounded-full">
         <img
           src="src/assets/images/loupe.svg"
           alt="Bouton de recherche"
@@ -71,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
   </form>
 </div>
 
-      {isModal && <ModalProfil closeModal={closeModal} />}
+      {isModal && <ModalProfil closeModal={closeModal} />} 
     </header>
   );
 };
