@@ -1,26 +1,31 @@
-import logo from '../../assets/logo.svg';
+import { useState } from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+// import Imodal from '../../types/modal';
 
-import './App.scss';
+interface User {
+  isModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+}
 
 function App() {
+  const [isModal, setModal] = useState<boolean>(false);
+
+  const openModal = () => {
+    setModal(true);
+    console.log('clicked');
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <p>
-          Edit <code>src/components/App/App.tsx</code> and save to reload.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://react.dev/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header isModal={isModal} closeModal={closeModal} openModal={openModal} />
+      {/* <HomePage /> */}
+      <Footer />
     </div>
   );
 }
