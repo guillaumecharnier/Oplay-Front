@@ -1,4 +1,5 @@
-import ModalProfil from '../ModalProfil/ModalProfil';
+import { useState } from 'react';
+import ModalProfil from '../../components/ModalProfil/ModalProfil';
 
 interface HeaderProps {
   isModal: boolean;
@@ -18,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="w-1/3 flex justify-center flex-col items-center">
           <a href="/">
             <img
-              src="public\Logo_Page_Principale\gamepad.svg"
+              src="src/assets/images/gamepad.svg"
               alt="Logo page accueil"
               className="w-8"
             />
@@ -33,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
           <a href="/panier" className="px-4">
             <img
-              src="public\Logo_Page_Principale\shop.svg"
+              src="src/assets/images/shop.svg"
               alt="panier"
               className="w-10"
             />
@@ -41,11 +42,8 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
           {/* Add click to this profil picture that open the modal */}
           <img
-            onClick={
-              openModal
-              // <ModalProfil />
-            }
-            src="public\Logo_Page_Principale\profile-user.svg"
+            onClick={openModal}
+            src="src/assets/images/profile-user.svg"
             alt="Profil"
             className="w-10"
           />
