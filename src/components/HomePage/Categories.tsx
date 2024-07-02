@@ -7,7 +7,6 @@ function Categories() {
       <a href="#">
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 mb-12 flex items-center justify-center space-x-2">
           <span>Catégories</span>
-          <img src="src/assets/images/arrow-right.svg" alt="arrow-right" className="w-5 h-5" />
         </h2>
       </a>
       

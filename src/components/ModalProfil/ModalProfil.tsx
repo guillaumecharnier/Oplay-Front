@@ -5,13 +5,13 @@ function ModalProfil({ closeModal }) {
       <span className="absolute text-4xl top-5 right-10 " onClick={closeModal}>
         x
       </span>
-      <div className="absolute top-0">
+      <div className="absolute top-0 left-auto">
         <img
           src="src/assets/images/gamepad.svg"
           alt="Logo page accueil"
           className="w-8"
         />
-        <h1 className="text-xl ml-2">O'Play</h1>
+        <h1 className="text-xl">O'Play</h1>
       </div>
       <img src="src/assets/images/profile-user.svg" alt="image de profil" className="w-24"/>
       <a href="">

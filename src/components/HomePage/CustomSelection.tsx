@@ -8,7 +8,7 @@ function CustomSelection() {
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2">
           <span>Sélection personnalisée</span>
           <img
-            src="src/assets/images/arrow-right.svg"
+            src="src\assets\images\arrow-right.svg"
             alt="arrow-right"
             className="w-6 h-6"
           />
