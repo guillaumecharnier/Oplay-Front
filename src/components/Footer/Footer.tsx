@@ -3,7 +3,7 @@ function Footer() {
     <footer className="bg-red-200 ">
       <div className="flex flex-col items-center py-8 tablet:flex-row">
 
-        <div className="pb-4 flex justify-center flex-col items-center tablet: w-1/3">
+        <div className="flex justify-center flex-col items-center tablet: w-1/3">
           <a href="/">
             <img
               src="src/assets/images/gamepad.svg"
@@ -17,7 +17,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-col items-center tablet:items-start tablet:flex-row w-2/3 ">
-          <div className="flex flex-col leading-9 tablet: w-1/2 ">
+          <div className="flex flex-col leading-9 tablet: w-1/2 tablet:px-10 ">
             <a href="/jeux-personnalise">Sélection personnalisée</a>
             <a href="/derniere-sortie">Dernieres sorties</a>
             <a href="/derniere-ajout">Derniers ajouts</a>
