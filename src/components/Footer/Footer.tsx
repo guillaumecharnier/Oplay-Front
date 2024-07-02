@@ -1,13 +1,9 @@
 function Footer() {
   return (
-    <footer className="bg-black-custom-900 ">
+    <footer className="bg-red-200 ">
       <div className="flex flex-col items-center py-8 tablet:flex-row">
 
-<<<<<<< HEAD
         <div className="pb-4 flex justify-center flex-col items-center tablet: w-1/3">
-=======
-        <div className="flex justify-center flex-col items-center tablet: w-1/3">
->>>>>>> julien
           <a href="/">
             <img
               src="src/assets/images/gamepad.svg"
@@ -16,17 +12,12 @@ function Footer() {
             />
           </a>
           <a href="/">
-            <h1 className="text-xl ml-2 text-white">O'Play</h1>
+            <h1 className="text-xl ml-2">O'Play</h1>
           </a>
         </div>
 
-<<<<<<< HEAD
-        <div className="text-white flex flex-col items-center tablet:items-start tablet:flex-row w-2/3 ">
-          <div className="flex flex-col leading-9 tablet: w-1/2">
-=======
         <div className="flex flex-col items-center tablet:items-start tablet:flex-row w-2/3 ">
-          <div className="flex flex-col leading-9 tablet: w-1/2 tablet:px-10 ">
->>>>>>> julien
+          <div className="flex flex-col leading-9 tablet: w-1/2 ">
             <a href="/jeux-personnalise">Sélection personnalisée</a>
             <a href="/derniere-sortie">Dernieres sorties</a>
             <a href="/derniere-ajout">Derniers ajouts</a>
