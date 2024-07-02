@@ -16,6 +16,18 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             {/* Ajouter route Connexion */}
           </a>
         </div>
+
+      <div className="w-1/3 flex justify-center">
+        <a 
+          href="/connexion" 
+          className="text-lg pt-8 text-white font-bold font-sans hover:text-gray-300 transition duration-300"
+        >
+          Se connecter
+        </a>
+        <h1 className='text-white'>Victor</h1>
+      </div>
+
+
         <div className="w-1/3 flex flex-col items-center justify-center space-y-2">
           <a href="/">
             <img
