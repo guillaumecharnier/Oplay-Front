@@ -5,9 +5,13 @@ import LastAdditions from './LastAdditions';
 import Categories from './Categories';
 import NextRelease from './NextRelease';
 
+
 function HomePage() {
   return (
     <div className="bg-blue-950 min-h-screen flex flex-col items-center justify-center p-4 overflow-x-hidden">
+      
+    
+      {/* Image de couverture */}
       <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mb-6 flex justify-center">
         <img
           src="/images/Last-Of-Us.jpeg"
@@ -21,33 +25,29 @@ function HomePage() {
         </div>
       </div>
 
+      {/* Section CustomSelection */}
+      <div className="mb-16 md:mb-24">
+        <CustomSelection />
+      </div>
 
-{/* <div className="mb-24">
-<Header />
-</div> */}
+      {/* Section LastAdditions */}
+      <div className="mb-16 md:mb-24">
+        <LastAdditions />
+      </div>
 
-<div className="mb-24">
-<CustomSelection />
-</div>
+      {/* Section NextRelease */}
+      <div className="mb-16 md:mb-24">
+        <NextRelease />
+      </div>
 
-<div className="mb-24">
-<LastAdditions />
-</div>
-
-<div className="mb-24">
-<NextRelease />
-</div>
-<div className="mb-24">
-<Categories />
-</div>
-
-{/* <div className="mb-24">
-<Footer />
-</div> */}
-
+      {/* Section Categories */}
+      <div className="mb-16 md:mb-24">
+        <Categories />
+      </div>
     </div>
   );
 }
 
 export default HomePage;
+
 
