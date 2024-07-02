@@ -6,7 +6,11 @@ import NextRelease from './NextRelease';
 
 function HomePage() {
   return (
+<<<<<<< HEAD
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+=======
+    <div className="bg-blue-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+>>>>>>> julien
       
       {/* Image de couverture */}
       <div className="relative w-full mb-36 flex justify-center">
