@@ -5,13 +5,8 @@ function NextRelease() {
     <div className="mt-6 w-full max-w-7xl px-4 mb-16 mx-auto">
       {/* Titre avec l'icône */}
       <a href="#" className="block mb-16">
-        <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2">
-          <span>Sorties 2024</span>
-          <img
-            src="src/assets/images/arrow-right.svg"
-            alt="arrow-right"
-            className="w-6 h-6"
-          />
+        <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 transition-transform transform hover:scale-105 hover:text-blue-300">
+          <span className="font-semibold hover:text-blue-300">Sorties 2024</span>
         </h2>
       </a>
 
