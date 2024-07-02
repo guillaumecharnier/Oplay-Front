@@ -17,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         >
           Se connecter
         </a>
+        <h1 className='text-white'>Victor</h1>
       </div>
 
         <div className="w-1/3 flex flex-col items-center justify-center space-y-2">
