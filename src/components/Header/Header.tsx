@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ModalProfil from '../ModalProfil/ModalProfil';
 
 interface HeaderProps {
