@@ -10,11 +10,15 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
   return (
     <header className="bg-blue-custom-200 relative">
       <div className="flex items-center justify-center py-5 ">
-        <div className="w-1/3 flex justify-center">
-          <a href="/connexion" className="text-lg pt-8 text-white">
-            Se connecter
-          </a>
-        </div>
+      <div className="w-1/3 flex justify-center">
+        <a 
+          href="/connexion" 
+          className="text-lg pt-8 text-white font-bold font-sans hover:text-gray-300 transition duration-300"
+        >
+          Se connecter
+        </a>
+      </div>
+
         <div className="w-1/3 flex flex-col items-center justify-center space-y-2">
           <a href="/">
             <img
