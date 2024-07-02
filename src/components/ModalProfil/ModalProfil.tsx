@@ -1,7 +1,7 @@
 function ModalProfil({ closeModal }) {
   //TODO typer closeModal
   return (
-    <div className="fixed vh-100 bg-slate-500 w-full h-full max-w-screen-lg">
+    <div className="absolute top-0 h-screen bg-slate-500 z-10">
       <span className="absolute right-3" onClick={closeModal}>
         x
       </span>
