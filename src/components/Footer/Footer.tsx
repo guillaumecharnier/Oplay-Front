@@ -3,18 +3,17 @@ function Footer() {
     <footer className="bg-black-custom-800 ">
       <div className="flex flex-col items-center py-8 tablet:flex-row">
 
-        <div className="pb-4 flex justify-center flex-col items-center tablet: w-1/3">
-          <a href="/">
-            <img
-              src="src\assets\images\gamepad.svg"
-              alt="Logo page accueil"
-              className="w-8"
-            />
-          </a>
-          <a href="/">
-            <h1 className="text-xl ml-2 text-white">O'Play</h1>
-          </a>
-        </div>
+      <div className="pb-4 flex flex-col items-center w-full tablet:w-1/3">
+        <a href="/" className="flex flex-col items-center">
+          <img
+            src="src/assets/images/gamepad.svg"
+            alt="Logo page accueil"
+            className="w-12 mb-2"
+           />
+          <h1 className="text-xl text-white">O'Play</h1>
+        </a>
+      </div>
+
 
         <div className="flex flex-col items-center tablet:items-start tablet:flex-row w-2/3  text-white">
           <div className="flex flex-col leading-9 tablet: w-1/2">
