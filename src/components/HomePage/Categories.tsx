@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Categories() {
+  // http://localhost:8080/api/category/browse
+  // http://guillaume-charnier.vpnuser.lan
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-12 mx-auto">
       {/* Titre avec l'icône */}
