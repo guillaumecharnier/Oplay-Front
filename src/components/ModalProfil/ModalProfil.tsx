@@ -13,7 +13,7 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
           className="absolute top-4 right-4 text-3xl hover:text-gray-300 focus:outline-none"
           onClick={closeModal}
         >
-          &times;
+          x
         </button>
 
         {/* Contenu du Modal */}
@@ -27,18 +27,21 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
             <Link
               to="/profil"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
             >
               Profil
             </Link>
             <Link
               to="/parametre"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
             >
               Paramètres
             </Link>
             <Link
               to="/"
               className="tablet:hidden hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
             >
               Déconnexion
             </Link>
