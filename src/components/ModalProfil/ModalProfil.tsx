@@ -25,7 +25,7 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
           />
           <div className="flex flex-col space-y-4 text-xl">
             <Link
-              to="/profil/[id]"
+              to="/profil"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
             >
               Profil

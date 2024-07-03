@@ -14,7 +14,7 @@ function Erreur() {
       <p className="text-lg mb-6">La page que vous recherchez n'existe pas.</p>
       {/* Bouton de retour à l'accueil */}
       <Link
-        to="/"
+        to="/*"
         className="bg-blue-custom-500 hover:bg-blue-custom-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
       >
         Retourner à l'accueil

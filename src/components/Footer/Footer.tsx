@@ -1,13 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
 function Footer() {
-  const location = useLocation();
-
-  // Vérifie si l'URL actuelle est '/inscription'
-  if (location.pathname === '/inscription') {
-    return null; // Ne pas afficher le Footer
-  }
-
   return (
     <footer className="bg-black-custom-800 py-8">
       <div className="flex flex-col items-center py-10 tablet:flex-row">
