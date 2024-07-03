@@ -19,7 +19,7 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
         {/* Contenu du Modal */}
         <div className="flex flex-col items-center space-y-6">
           <img
-            src="src/assets/images/profile-user.svg"
+            src="/src/assets/images/profile-user.svg"
             alt="Image de profil"
             className="w-24 h-24 border-white mb-4"
           />

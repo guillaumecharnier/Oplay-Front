@@ -16,7 +16,7 @@ function Categories() {
         {/* Premier jeu */}
         <Link to="lien-vers-le-jeu-1" className="relative group">
           <img
-            src="src\assets\images\CategoriesPictures.jpg"
+            src="/src/assets/images/CategoriesPictures.jpg"
             alt="Jeu 1"
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -28,7 +28,7 @@ function Categories() {
         {/* Deuxième jeu */}
         <Link to="lien-vers-le-jeu-2" className="relative group">
           <img
-            src="src\assets\images\CategoriesPictures.jpg"
+            src="/src/assets/images/CategoriesPictures.jpg"
             alt="Jeu 2"
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -40,7 +40,7 @@ function Categories() {
         {/* Troisième jeu */}
         <Link to="lien-vers-le-jeu-3" className="relative group">
           <img
-            src="src\assets\images\CategoriesPictures.jpg"
+            src="/src/assets/images/CategoriesPictures.jpg"
             alt="Jeu 3"
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -52,7 +52,7 @@ function Categories() {
         {/* Quatrième jeu */}
         <Link to="lien-vers-le-jeu-4" className="relative group">
           <img
-            src="src\assets\images\CategoriesPictures.jpg"
+            src="/src/assets/images/CategoriesPictures.jpg"
             alt="Jeu 4"
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -64,7 +64,7 @@ function Categories() {
         {/* Cinquième jeu */}
         <Link to="lien-vers-le-jeu-5" className="relative group">
           <img
-            src="src\assets\images\CategoriesPictures.jpg"
+            src="/src/assets/images/CategoriesPictures.jpg"
             alt="Jeu 5"
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -76,7 +76,7 @@ function Categories() {
         {/* Sixième jeu */}
         <Link to="lien-vers-le-jeu-6" className="relative group">
           <img
-            src="src\assets\images\CategoriesPictures.jpg"
+            src="/src/assets/images/CategoriesPictures.jpg"
             alt="Jeu 6"
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />

@@ -19,7 +19,7 @@ function NextRelease() {
           className="group flex flex-col items-center"
         >
           <img
-            src="src\assets\images\HomePagePicture.jpg"
+            src="/src/assets/images/HomePagePicture.jpg"
             alt="Jeu 1"
             className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -34,7 +34,7 @@ function NextRelease() {
           className="group flex flex-col items-center"
         >
           <img
-            src="src\assets\images\HomePagePicture.jpg"
+            src="/src/assets/images/HomePagePicture.jpg"
             alt="Jeu 2"
             className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -49,7 +49,7 @@ function NextRelease() {
           className="group flex flex-col items-center"
         >
           <img
-            src="src\assets\images\HomePagePicture.jpg"
+            src="/src/assets/images/HomePagePicture.jpg"
             alt="Jeu 3"
             className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -64,7 +64,7 @@ function NextRelease() {
           className="group flex flex-col items-center"
         >
           <img
-            src="src\assets\images\HomePagePicture.jpg"
+            src="/src/assets/images/HomePagePicture.jpg"
             alt="Jeu 4"
             className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -79,7 +79,7 @@ function NextRelease() {
           className="group flex flex-col items-center"
         >
           <img
-            src="src\assets\images\HomePagePicture.jpg"
+            src="/src/assets/images/HomePagePicture.jpg"
             alt="Jeu 5"
             className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
@@ -94,7 +94,7 @@ function NextRelease() {
           className="group flex flex-col items-center"
         >
           <img
-            src="src\assets\images\HomePagePicture.jpg"
+            src="/src/assets/images/HomePagePicture.jpg"
             alt="Jeu 6"
             className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
