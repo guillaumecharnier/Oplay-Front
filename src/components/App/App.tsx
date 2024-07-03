@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import Connexion from '../Connexion/Connexion';
 import Inscription from '../Inscription/Inscription';
 import Erreur from '../Erreur/Erreur';
+import Profil from '../Profil/Profil';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -27,7 +28,8 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/*" element={<Erreur />} />
-       {/* <Route path="/profil/[id]" element={<SinglePostPage />} />
+        <Route path="/profil" element={<Profil />} />
+       {/* 
         <Route path="/parametre" element={<SinglePostPage />} />
         <Route path="/panier" element={<SinglePostPage />} />
         <Route path="/paiement" element={<SinglePostPage />} />
