@@ -1,6 +1,6 @@
 function Connexion() {
     return (
-    <div>
+    <div className="bg-blue-custom-200 text-white flex flex-col items-center py-28">
         <div className="absolute top-0 left-autospace-y-2 flex items-center flex-col tablet:hidden">
         <img
           src="src/assets/images/gamepad.svg"
@@ -9,19 +9,19 @@ function Connexion() {
         />
         <h1 className="text-xl text-white font-bold">O'Play</h1>
         </div>
-         <h2>Se connecter</h2>
-        <div>
-            <img src="" alt="" />
-            <img src="" alt="" />
-            <img src="" alt="" />
+         <h2 className="font-bold">Connexion</h2>
+        <div className="flex flex-row w-56 py-10 justify-between">
+            <a href=""><img src="src/assets/images/gmail-nouveau.svg" alt="Gmail" /></a>
+            <a href=""><img src="src/assets/images/discorde.svg" alt="Discord" /></a>
+            <a href=""><img src="src/assets/images/facebook-nouveau.svg" alt="Facebook" /></a>
         </div>
-        <span>ou</span>
-        <form action="">
-            <input type="email" name="" id="" />
-            <input type="password" name="" id="" />
-            <button type="submit">Se connecter</button>
+        <span className="font-bold">ou</span>
+        <form action="" className="flex flex-col items-center py-10">
+            <input type="email" name="" id="" placeholder="Email" className="pl-4 rounded-full mb-10 w-80" />
+            <input type="password" name="" id=""placeholder="Mot de passe" className="pl-4 rounded-full mb-10 w-80"/>
+            <button type="submit" className="w-40 h-10 rounded-full font-bold bg-slate-500">Se connecter</button>
         </form>
-        <div>
+        <div className="w-80 flex justify-between">
             <a href="/inscription">S'inscrire</a>
             <a href="">Mot de passe oublié ?</a>
         </div>

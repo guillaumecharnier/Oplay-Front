@@ -18,7 +18,6 @@ function ModalProfil({ closeModal }) {
         <img src="src/assets/images/profile-user.svg" alt="image de profil" className="w-24"/>
         <a href="/profil/[id]"> Profil </a>
         <a href="/parametre"> Parametre </a>
-        <a href="/favoris"> Whishlist </a>
         <a href="/" className="tablet:hidden"> Deconnexion </a>
       </div>
       <div className="flex flex-row h-8 w-60 mt-6 justify-between">
