@@ -15,7 +15,7 @@ function App() {
     console.log('modal visible');
   }
   const closeModal = () =>{
-    setModal(false);
+    setModal(false); 
     console.log('modal visible');
   }
   const location = useLocation();
@@ -44,7 +44,6 @@ function App() {
         <Route path="/conditions-generales" element={<SinglePostPage />} />
         <Route path="/mentions-légales" element={<SinglePostPage />} />
         <Route path="/supprimer" element={<SinglePostPage />} />
-         />
         <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/backoffice" element={<SinglePostPage />} /> */}
       </Routes>
