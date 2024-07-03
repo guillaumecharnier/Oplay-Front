@@ -6,6 +6,7 @@ import Connexion from '../Connexion/Connexion';
 
 
 
+
 function App() {
   const [isModal, setModal] = useState(false);
 
@@ -13,7 +14,6 @@ function App() {
     setModal(true);
     console.log('modal visible');
   }
-
   const closeModal = () =>{
     setModal(false);
     console.log('modal visible');
