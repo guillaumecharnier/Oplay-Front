@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Inscription() {
   return (
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center">
+    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center p-4">
       {/* Logo et Titre */}
       <div className="absolute top-4 left-4 flex items-center">
         <Link to="/">
@@ -17,12 +17,12 @@ function Inscription() {
       </div>
 
       {/* Formulaire d'inscription */}
-      <form className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-7 text-center text-black-custom-800">Inscription</h2>
-        
+      <form className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center text-black-custom-800">Inscription</h2>
+
         {/* Email */}
-        <div className="mb-8">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
             
           </label>
           <input
@@ -32,11 +32,11 @@ function Inscription() {
             placeholder="Email"
           />
         </div>
-        
+
         {/* Mot de Passe */}
-        <div className="mb-8">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-             
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="password">
+            
           </label>
           <input
             type="password"
@@ -45,10 +45,10 @@ function Inscription() {
             placeholder="Mot de Passe"
           />
         </div>
-        
+
         {/* Prénom */}
-        <div className="mb-8">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prenom">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="prenom">
             
           </label>
           <input
@@ -58,10 +58,10 @@ function Inscription() {
             placeholder="Prénom"
           />
         </div>
-        
+
         {/* Nom */}
-        <div className="mb-8">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nom">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="nom">
             
           </label>
           <input
@@ -71,10 +71,10 @@ function Inscription() {
             placeholder="Nom"
           />
         </div>
-        
+
         {/* Pseudo */}
-        <div className="mb-8">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pseudo">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="pseudo">
             
           </label>
           <input
@@ -84,7 +84,7 @@ function Inscription() {
             placeholder="Pseudo"
           />
         </div>
-        
+
         {/* Bouton Envoyer */}
         <button
           type="submit"
@@ -92,6 +92,11 @@ function Inscription() {
         >
           Envoyer
         </button>
+
+        {/* Lien de redirection */}
+        <div className="mt-4 text-center text-gray-600">
+          <p>Déjà un compte ? <Link to="/connexion" className="text-black hover:text-blue-custom-200">Se connecter</Link></p>
+        </div>
       </form>
     </div>
   );
