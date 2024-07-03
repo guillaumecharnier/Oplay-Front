@@ -18,7 +18,7 @@ function App() {
     setModal(false);
     console.log('modal visible');
   }
-  let location = useLocation();
+  const location = useLocation();
   return (
     <div>
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
