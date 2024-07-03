@@ -12,7 +12,7 @@ function HomePage() {
       {/* Image de couverture */}
       <div className="relative w-full mb-36 flex justify-center">
         <img
-          src="src/assets/images/Last-Of-Us.jpeg"
+          src="/src/assets/images/Last-Of-Us.jpeg"
           alt="The Last of Us"
           className="w-full max-h-80 object-cover shadow-lg"
         />

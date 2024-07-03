@@ -8,7 +8,7 @@ function Footer() {
         <div className="pb-4 flex flex-col items-center w-full text-center mb-8">
           <Link to="/" className="flex flex-col items-center">
             <img
-              src="src/assets/images/gamepad.svg"
+              src="/src/assets/images/gamepad.svg"
               alt="Logo page accueil"
               className="w-12 mb-2"
             />
