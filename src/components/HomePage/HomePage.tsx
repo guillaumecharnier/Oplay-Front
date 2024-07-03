@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import CustomSelection from './CustomSelection';
 import LastAdditions from './LastAdditions';
 import Categories from './Categories';
 import NextRelease from './NextRelease';
 
 function HomePage() {
+
+  // const [data, setData] = useState(null);
+  const token = 'your-auth-token';
+  // http://guillaume-charnier.vpnuser.lan/api/user/browse
+  // http://guillaume-charnier.vpnuser.lan/Apo/projet-1-o-play-back/src/Controller/Api/
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Inclure le token ici
+          },
+        });
+        console.log(response);
+        // setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
   return (
 
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
