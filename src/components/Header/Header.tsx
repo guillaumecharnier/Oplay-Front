@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
   return (
     <header className="bg-blue-custom-200 relative">
-      <div className="flex flex-col md:flex-row items-center justify-between py-5 px-4">
+      <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
         {/* Section Se connecter */}
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           <Link
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="flex flex-col items-center justify-center w-full md:w-1/3 space-y-2">
           <Link to="/">
             <img
-              src="src/assets/images/gamepad.svg"
+              src="/src/assets/images/gamepad.svg"
               alt="Logo page accueil"
               className="w-12 h-12"
             />
@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="flex flex-row w-full md:w-1/3 justify-center space-x-4">
           <Link to="/panier" className="flex items-center">
             <img
-              src="src/assets/images/shop.svg"
+              src="/src/assets/images/shop.svg"
               alt="Panier"
               className="w-10 h-10 hover:scale-105 transition-transform duration-300"
             />
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
           <img
             onClick={openModal}
-            src="src/assets/images/profile-user.svg"
+            src="/src/assets/images/profile-user.svg"
             alt="Profil"
             className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
           />
@@ -77,11 +77,11 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             type="submit"
             className="absolute inset-y-0 right-[-1rem] flex items-center pl-3"
           >
-            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-2 rounded-full">
+            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-3 rounded-full">
               <img
-                src="src/assets/images/loupe.svg"
+                src="/src/assets/images/loupe.svg"
                 alt="Bouton de recherche"
-                className="w-5 h-5 text-white"
+                className="w-8 h-8 text-white"
               />
             </div>
           </button>

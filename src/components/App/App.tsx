@@ -7,6 +7,8 @@ import Connexion from '../Connexion/Connexion';
 import Inscription from '../Inscription/Inscription';
 import Erreur from '../Erreur/Erreur';
 import Profil from '../Profil/Profil';
+import Edit from '../Edit/Edit';
+import Parametre from '../Parametre/Parametre';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -29,12 +31,15 @@ function App() {
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/*" element={<Erreur />} />
         <Route path="/profil" element={<Profil />} />
+        {/* profil/:id */}
+        <Route path="/profil/edit" element={<Edit />} />
+        <Route path="/parametre" element={<Parametre />} />
+
        {/* 
-        <Route path="/parametre" element={<SinglePostPage />} />
         <Route path="/panier" element={<SinglePostPage />} />
         <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
-        <Route path="/profil/edit" element={<SinglePostPage />} />
+        
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />

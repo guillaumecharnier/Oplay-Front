@@ -6,7 +6,7 @@ function Connexion() {
        <div className="absolute top-4 left-4 flex items-center">
         <Link to="/">
           <img
-            src="src/assets/images/gamepad.svg"
+            src="/src/assets/images/gamepad.svg"
             alt="Logo"
             className="w-10 h-10"
           />
@@ -15,9 +15,9 @@ function Connexion() {
       </div>
          <h2 className="font-bold">Connexion</h2>
         <div className="flex flex-row w-56 py-10 justify-between">
-            <Link to=""><img src="src/assets/images/gmail-nouveau.svg" alt="Gmail" /></Link>
-            <Link to=""><img src="src/assets/images/discorde.svg" alt="Discord" /></Link>
-            <Link to=""><img src="src/assets/images/facebook-nouveau.svg" alt="Facebook" /></Link>
+            <Link to=""><img src="/src/assets/images/gmail-nouveau.svg" alt="Gmail" /></Link>
+            <Link to=""><img src="/src/assets/images/discorde.svg" alt="Discord" /></Link>
+            <Link to=""><img src="/src/assets/images/facebook-nouveau.svg" alt="Facebook" /></Link>
         </div>
         <span className="font-bold">ou</span>
         <form action="" className="flex flex-col items-center py-10">

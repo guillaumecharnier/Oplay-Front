@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Profil() {
+function Edit() {
   return (
     <div className="bg-blue-custom-200 text-white py-40">
         <div className="flex justify-end">
@@ -15,4 +15,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default Edit;

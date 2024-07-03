@@ -5,7 +5,7 @@ function Erreur() {
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center p-5 text-white text-center">
       {/* Image d'erreur */}
       <img
-        src="src/assets/images/icons-dark-vador.svg"
+        src="/src/assets/images/icons-dark-vador.svg"
         alt="Erreur 404"
         className="w-1/4 max-w-xs mb-6"
       />
