@@ -1,34 +1,58 @@
 import { Link } from "react-router-dom";
 
-function ModalProfil({ closeModal }) {
+interface ModalProfilProps {
+  closeModal: () => void;
+}
+
+function ModalProfil({ closeModal }: ModalProfilProps) {
   return (
-    <div className="fixed top-0 text-white h-screen w-full bg-blue-custom-200
-     p-1 z-10 flex flex-col items-center justify-center
-      laptop:w-80 laptop:h-[30rem] laptop:right-0 laptop:border-[0.1rem]">
-      <span className="absolute text-4xl top-5 right-10 " onClick={closeModal}>
-        x
-      </span>
-      <div className="absolute top-0 left-autospace-y-2 flex items-center flex-col tablet:hidden">
-        <img
-          src="src/assets/images/gamepad.svg"
-          alt="Logo page accueil"
-          className="w-12"
-        />
-        <h1 className="text-xl text-white font-bold">O'Play</h1>
-      </div>
-      <div className="leading-[5rem] text-4xl flex items-center flex-col">
-        <img src="src/assets/images/profile-user.svg" alt="image de profil" className="w-24"/>
-        <Link to="/profil/[id]"> Profil </Link>
-        <Link to="/parametre"> Parametre </Link>
-        <Link to="/" className="tablet:hidden"> Deconnexion </Link>
-      </div>
-      <div className="flex flex-row h-8 w-60 mt-6 justify-between">
-        <span className="rounded-full w-8 border-1 border-solid border-black bg-red-500"></span>
-        <span className="rounded-full w-8 border-1 border-solid border-black bg-blue-500"></span>
-        <span className="rounded-full w-8 border-1 border-solid border-black bg-orange-500"></span>
-        <span className="rounded-full w-8 border-1 border-solid border-black bg-green-500"></span>
-        <span className="rounded-full w-8 border-1 border-solid border-black bg-purple-500"></span>
-        <span className="rounded-full w-8 border-1 border-solid border-black bg-yellow-500"></span>
+    <div className="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center">
+      <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-80 laptop:h-[30rem] laptop:border-[0.1rem] border-gray-300">
+        {/* Icone de fermeture */}
+        <button
+          className="absolute top-4 right-4 text-3xl hover:text-gray-300 focus:outline-none"
+          onClick={closeModal}
+        >
+          &times;
+        </button>
+
+        {/* Contenu du Modal */}
+        <div className="flex flex-col items-center space-y-6">
+          <img
+            src="src/assets/images/profile-user.svg"
+            alt="Image de profil"
+            className="w-24 h-24 border-white mb-4"
+          />
+          <div className="flex flex-col space-y-4 text-xl">
+            <Link
+              to="/profil/[id]"
+              className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+            >
+              Profil
+            </Link>
+            <Link
+              to="/parametre"
+              className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+            >
+              Paramètres
+            </Link>
+            <Link
+              to="/"
+              className="tablet:hidden hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+            >
+              Déconnexion
+            </Link>
+          </div>
+          {/* Couleurs de bordure */}
+          <div className="flex flex-row space-x-2 mt-6">
+            <span className="w-8 h-8 rounded-full border border-black bg-red-500"></span>
+            <span className="w-8 h-8 rounded-full border border-black bg-blue-500"></span>
+            <span className="w-8 h-8 rounded-full border border-black bg-orange-500"></span>
+            <span className="w-8 h-8 rounded-full border border-black bg-green-500"></span>
+            <span className="w-8 h-8 rounded-full border border-black bg-purple-500"></span>
+            <span className="w-8 h-8 rounded-full border border-black bg-yellow-500"></span>
+          </div>
+        </div>
       </div>
     </div>
   );
