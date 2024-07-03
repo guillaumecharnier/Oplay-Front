@@ -20,9 +20,8 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
   return (
     <header className="bg-blue-custom-200 relative">
-      <div className="container mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between">
-
-        {/* Section Se connecter - visible uniquement en mobile */}
+      <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
+        {/* Section Se connecter */}
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           <Link
             to="/connexion"
