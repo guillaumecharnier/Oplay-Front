@@ -18,12 +18,12 @@ function Inscription() {
 
       {/* Formulaire d'inscription */}
       <form className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-black-custom-800">Inscription</h2>
+        <h2 className="text-2xl font-bold mb-7 text-center text-black-custom-800">Inscription</h2>
         
         {/* Email */}
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
+            
           </label>
           <input
             type="email"
@@ -34,9 +34,9 @@ function Inscription() {
         </div>
         
         {/* Mot de Passe */}
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Mot de Passe
+             
           </label>
           <input
             type="password"
@@ -47,9 +47,9 @@ function Inscription() {
         </div>
         
         {/* Prénom */}
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prenom">
-            Prénom
+            
           </label>
           <input
             type="text"
@@ -60,9 +60,9 @@ function Inscription() {
         </div>
         
         {/* Nom */}
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nom">
-            Nom
+            
           </label>
           <input
             type="text"
@@ -73,9 +73,9 @@ function Inscription() {
         </div>
         
         {/* Pseudo */}
-        <div className="mb-6">
+        <div className="mb-8">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pseudo">
-            Pseudo
+            
           </label>
           <input
             type="text"
