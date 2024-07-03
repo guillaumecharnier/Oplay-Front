@@ -1,19 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Categories() {
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-12 mx-auto">
       {/* Titre avec l'icône */}
-      <a href="#" className="block mb-16">
+      <Link to="#" className="block mb-16">
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 transition-transform transform hover:scale-105 hover:text-blue-300">
           <span className="font-semibold hover:text-blue-300">Catégories</span>
         </h2>
-      </a>
+      </Link>
       
       {/* Grille d'images */}
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 lg:gap-10 xl:gap-12">
         {/* Premier jeu */}
-        <a href="lien-vers-le-jeu-1" className="relative group">
+        <Link to="lien-vers-le-jeu-1" className="relative group">
           <img
             src="src/assets/images/Categories.jpg"
             alt="Jeu 1"
@@ -22,10 +23,10 @@ function Categories() {
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
             <h3 className="text-white text-base sm:text-sm md:text-lg lg:text-xl font-semibold">Jeu 1</h3>
           </div>
-        </a>
+        </Link>
         
         {/* Deuxième jeu */}
-        <a href="lien-vers-le-jeu-2" className="relative group">
+        <Link to="lien-vers-le-jeu-2" className="relative group">
           <img
             src="src/assets/images/Categories.jpg"
             alt="Jeu 2"
@@ -34,10 +35,10 @@ function Categories() {
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
             <h3 className="text-white text-base sm:text-sm md:text-lg lg:text-xl font-semibold">Jeu 2</h3>
           </div>
-        </a>
+        </Link>
         
         {/* Troisième jeu */}
-        <a href="lien-vers-le-jeu-3" className="relative group">
+        <Link to="lien-vers-le-jeu-3" className="relative group">
           <img
             src="src/assets/images/Categories.jpg"
             alt="Jeu 3"
@@ -46,10 +47,10 @@ function Categories() {
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
             <h3 className="text-white text-base sm:text-sm md:text-lg lg:text-xl font-semibold">Jeu 3</h3>
           </div>
-        </a>
+        </Link>
         
         {/* Quatrième jeu */}
-        <a href="lien-vers-le-jeu-4" className="relative group">
+        <Link to="lien-vers-le-jeu-4" className="relative group">
           <img
             src="src/assets/images/Categories.jpg"
             alt="Jeu 4"
@@ -58,10 +59,10 @@ function Categories() {
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
             <h3 className="text-white text-base sm:text-sm md:text-lg lg:text-xl font-semibold">Jeu 4</h3>
           </div>
-        </a>
+        </Link>
         
         {/* Cinquième jeu */}
-        <a href="lien-vers-le-jeu-5" className="relative group">
+        <Link to="lien-vers-le-jeu-5" className="relative group">
           <img
             src="src/assets/images/Categories.jpg"
             alt="Jeu 5"
@@ -70,10 +71,10 @@ function Categories() {
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
             <h3 className="text-white text-base sm:text-sm md:text-lg lg:text-xl font-semibold">Jeu 5</h3>
           </div>
-        </a>
+        </Link>
         
         {/* Sixième jeu */}
-        <a href="lien-vers-le-jeu-6" className="relative group">
+        <Link to="lien-vers-le-jeu-6" className="relative group">
           <img
             src="src/assets/images/Categories.jpg"
             alt="Jeu 6"
@@ -82,7 +83,7 @@ function Categories() {
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
             <h3 className="text-white text-base sm:text-sm md:text-lg lg:text-xl font-semibold">Jeu 6</h3>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );

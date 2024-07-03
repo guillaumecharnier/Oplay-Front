@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
 
 interface HeaderProps {
@@ -11,38 +12,37 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
     <header className="bg-blue-custom-200 relative">
       <div className="flex items-center justify-center py-5 ">
       <div className="w-1/3 flex justify-center">
-        <a 
-          href="/connexion" 
+        <Link to="/connexion" 
           className="text-lg pt-8 text-white font-bold font-sans hover:text-gray-300 transition duration-300"
         >
           Se connecter
-        </a>
+        </Link>
       </div>
 
 
         <div className="w-1/3 flex flex-col items-center justify-center space-y-2">
-          <a href="/">
+          <Link to="/">
             <img
               src="src/assets/images/gamepad.svg"
               alt="Logo page accueil"
               className="w-12 h-12"
             />
-          </a>
-          <a href="/">
+          </Link>
+          <Link to="/">
             <h1 className="text-xl text-white font-bold">O'Play</h1>
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-row w-1/3 justify-center">
           {/* If connected don't show "Se connecter" */}
 
-          <a href="/panier" className="px-4">
+          <Link to="/panier" className="px-4">
             <img
               src="src/assets/images/shop.svg"
               alt="panier"
               className="w-10"
             />
-          </a>
+          </Link>
 
           {/* Add click to this profil picture that open the modal */}
           <img

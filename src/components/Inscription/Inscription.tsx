@@ -1,17 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Inscription() {
   return (
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center">
       {/* Logo et Titre */}
       <div className="absolute top-4 left-4 flex items-center">
-        <a href="/">
+        <Link to="/">
           <img
             src="src/assets/images/gamepad.svg"
             alt="Logo"
             className="w-10 h-10"
           />
-        </a>
+        </Link>
         <h1 className="text-2xl text-white ml-2">O'Play</h1>
       </div>
 

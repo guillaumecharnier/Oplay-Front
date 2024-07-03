@@ -1,21 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CustomSelection() {
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-12 mx-auto">
       {/* Titre avec l'icône */}
-      <a href="#" className="block mb-16">
+      <Link to="#" className="block mb-16">
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 transition-transform transform hover:scale-105 hover:text-blue-300">
           <span className="font-semibold hover:text-blue-300">Sélection personnalisée</span>
         </h2>
-      </a>
+      </Link>
 
 
       {/* Grille d'images avec espace supplémentaire */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 pt-8">
         {/* Premier jeu */}
-        <a
-          href="lien-vers-le-jeu-1"
+        <Link
+          to="lien-vers-le-jeu-1"
           className="group flex flex-col items-center"
         >
           <img
@@ -26,11 +27,11 @@ function CustomSelection() {
           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 1
           </h3>
-        </a>
+        </Link>
 
         {/* Deuxième jeu */}
-        <a
-          href="lien-vers-le-jeu-2"
+        <Link
+          to="lien-vers-le-jeu-2"
           className="group flex flex-col items-center"
         >
           <img
@@ -41,11 +42,11 @@ function CustomSelection() {
           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 2
           </h3>
-        </a>
+        </Link>
 
         {/* Troisième jeu */}
-        <a
-          href="lien-vers-le-jeu-3"
+        <Link
+          to="lien-vers-le-jeu-3"
           className="group flex flex-col items-center"
         >
           <img
@@ -56,11 +57,11 @@ function CustomSelection() {
           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 3
           </h3>
-        </a>
+        </Link>
 
         {/* Quatrième jeu */}
-        <a
-          href="lien-vers-le-jeu-4"
+        <Link
+          to="lien-vers-le-jeu-4"
           className="group flex flex-col items-center"
         >
           <img
@@ -71,11 +72,11 @@ function CustomSelection() {
           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 4
           </h3>
-        </a>
+        </Link>
 
         {/* Cinquième jeu */}
-        <a
-          href="lien-vers-le-jeu-5"
+        <Link
+          to="lien-vers-le-jeu-5"
           className="group flex flex-col items-center"
         >
           <img
@@ -86,11 +87,11 @@ function CustomSelection() {
           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 5
           </h3>
-        </a>
+        </Link>
 
         {/* Sixième jeu */}
-        <a
-          href="lien-vers-le-jeu-6"
+        <Link
+          to="lien-vers-le-jeu-6"
           className="group flex flex-col items-center"
         >
           <img
@@ -101,7 +102,7 @@ function CustomSelection() {
           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 6
           </h3>
-        </a>
+        </Link>
       </div>
     </div>
   );

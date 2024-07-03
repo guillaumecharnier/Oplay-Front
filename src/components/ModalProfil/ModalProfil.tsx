@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ModalProfil({ closeModal }) {
   return (
     <div className="fixed top-0 text-white h-screen w-full bg-blue-custom-200
@@ -16,9 +18,9 @@ function ModalProfil({ closeModal }) {
       </div>
       <div className="leading-[5rem] text-4xl flex items-center flex-col">
         <img src="src/assets/images/profile-user.svg" alt="image de profil" className="w-24"/>
-        <a href="/profil/[id]"> Profil </a>
-        <a href="/parametre"> Parametre </a>
-        <a href="/" className="tablet:hidden"> Deconnexion </a>
+        <Link to="/profil/[id]"> Profil </Link>
+        <Link to="/parametre"> Parametre </Link>
+        <Link to="/" className="tablet:hidden"> Deconnexion </Link>
       </div>
       <div className="flex flex-row h-8 w-60 mt-6 justify-between">
         <span className="rounded-full w-8 border-1 border-solid border-black bg-red-500"></span>
