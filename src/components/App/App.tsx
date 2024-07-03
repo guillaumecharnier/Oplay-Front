@@ -1,14 +1,11 @@
 import { useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Connexion from '../Connexion/Connexion';
-import { Route, Routes } from 'react-router-dom';
 import Inscription from '../Inscription/Inscription';
 import Erreur from '../Erreur/Erreur';
-
-
-
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -21,10 +18,10 @@ function App() {
     setModal(false);
     console.log('modal visible');
   }
-
+  let location = useLocation();
   return (
     <div>
-      <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />
+      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/connexion" element={<Connexion />} />
@@ -51,7 +48,7 @@ function App() {
         <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/backoffice" element={<SinglePostPage />} /> */}
       </Routes>
-      <Footer />
+      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
     </div>
   );
 }
