@@ -9,6 +9,8 @@ import Erreur from '../Erreur/Erreur';
 import Profil from '../Profil/Profil';
 import Edit from '../Edit/Edit';
 import Parametre from '../Parametre/Parametre';
+import React from 'react';
+import Panier from '../Panier/Panier';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -34,6 +36,7 @@ function App() {
         {/* profil/:id */}
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
+        <Route path="/panier" element={<Panier />} />
 
        {/* 
         <Route path="/panier" element={<SinglePostPage />} />
