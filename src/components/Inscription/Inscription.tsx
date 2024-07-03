@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Inscription() {
   return (
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center p-4 pt-[6rem]">
       {/* Logo et Titre */}
       <div className="absolute top-4 left-4 flex items-center">
         <Link to="/">
@@ -13,7 +13,9 @@ function Inscription() {
             className="w-10 h-10"
           />
         </Link>
-        <h1 className="text-2xl text-white ml-2">O'Play</h1>
+        <Link to="/">
+            <h1 className="text-2xl text-white ml-2">O'Play</h1>
+        </Link>
       </div>
 
       {/* Formulaire d'inscription */}
