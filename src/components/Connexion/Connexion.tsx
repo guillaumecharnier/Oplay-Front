@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 
 function Connexion() {
     return (
-    <div className="bg-blue-custom-200 text-white flex flex-col items-center py-28">
-        <div className="absolute top-0 left-autospace-y-2 flex items-center flex-col tablet:hidden">
-        <img
-          src="src/assets/images/gamepad.svg"
-          alt="Logo page accueil"
-          className="w-12"
-        />
-        <h1 className="text-xl text-white font-bold">O'Play</h1>
-        </div>
+    <div className="bg-blue-custom-200 text-white min-h-screen flex flex-col items-center py-28">
+       <div className="absolute top-4 left-4 flex items-center">
+        <Link to="/">
+          <img
+            src="src/assets/images/gamepad.svg"
+            alt="Logo"
+            className="w-10 h-10"
+          />
+        </Link>
+        <h1 className="text-2xl text-white ml-2">O'Play</h1>
+      </div>
          <h2 className="font-bold">Connexion</h2>
         <div className="flex flex-row w-56 py-10 justify-between">
             <Link to=""><img src="src/assets/images/gmail-nouveau.svg" alt="Gmail" /></Link>
