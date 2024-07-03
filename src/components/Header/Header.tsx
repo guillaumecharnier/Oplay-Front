@@ -20,17 +20,19 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
   return (
     <header className="bg-blue-custom-200 relative">
-      <div className="flex items-center justify-center py-5">
-        <div className="w-1/3 flex justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-between py-5 px-4">
+        {/* Section Se connecter */}
+        <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           <Link
             to="/connexion"
-            className="text-lg pt-8 text-white font-bold font-sans hover:text-gray-300 transition duration-300"
+            className="bg-white text-blue-600 px-6 py-2 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2"
           >
-            Se connecter
+            <span className="text-lg font-semibold">Se connecter</span>
           </Link>
         </div>
 
-        <div className="w-1/3 flex flex-col items-center justify-center space-y-2">
+        {/* Logo et titre */}
+        <div className="flex flex-col items-center justify-center w-full md:w-1/3 space-y-2">
           <Link to="/">
             <img
               src="src/assets/images/gamepad.svg"
@@ -39,31 +41,31 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             />
           </Link>
           <Link to="/">
-            <h1 className="text-xl text-white font-bold">O'Play</h1>
+            <h1 className="text-2xl text-white font-bold">O'Play</h1>
           </Link>
         </div>
 
-        <div className="flex flex-row w-1/3 justify-center">
-          {/* Si connecté, n'affiche pas "Se connecter" */}
-          <Link to="/panier" className="px-4">
+        {/* Panier et Profil */}
+        <div className="flex flex-row w-full md:w-1/3 justify-center space-x-4">
+          <Link to="/panier" className="flex items-center">
             <img
               src="src/assets/images/shop.svg"
-              alt="panier"
-              className="w-10"
+              alt="Panier"
+              className="w-10 h-10 hover:scale-105 transition-transform duration-300"
             />
           </Link>
 
-          {/* Ajoutez un clic sur cette image pour ouvrir le modal */}
           <img
             onClick={openModal}
             src="src/assets/images/profile-user.svg"
             alt="Profil"
-            className="w-10 cursor-pointer"
+            className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
           />
         </div>
       </div>
 
-      <div className="flex justify-center pb-8 px-8">
+      {/* Formulaire de recherche */}
+      <div className="flex justify-center pb-8 px-4">
         <form action="" className="relative w-full max-w-md">
           <input
             type="text"
@@ -75,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             type="submit"
             className="absolute inset-y-0 right-[-1rem] flex items-center pl-3"
           >
-            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-5 rounded-full">
+            <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-2 rounded-full">
               <img
                 src="src/assets/images/loupe.svg"
                 alt="Bouton de recherche"
