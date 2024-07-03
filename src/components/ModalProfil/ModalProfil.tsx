@@ -13,32 +13,35 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
           className="absolute top-4 right-4 text-3xl hover:text-gray-300 focus:outline-none"
           onClick={closeModal}
         >
-          &times;
+          x
         </button>
 
         {/* Contenu du Modal */}
         <div className="flex flex-col items-center space-y-6">
           <img
-            src="src/assets/images/profile-user.svg"
+            src="/src/assets/images/profile-user.svg"
             alt="Image de profil"
             className="w-24 h-24 border-white mb-4"
           />
           <div className="flex flex-col space-y-4 text-xl">
             <Link
-              to="/profil/[id]"
+              to="/profil"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
             >
               Profil
             </Link>
             <Link
               to="/parametre"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
             >
               Paramètres
             </Link>
             <Link
               to="/"
               className="tablet:hidden hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
             >
               Déconnexion
             </Link>

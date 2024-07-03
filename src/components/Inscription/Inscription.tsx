@@ -8,7 +8,7 @@ function Inscription() {
       <div className="absolute top-4 left-4 flex items-center">
         <Link to="/">
           <img
-            src="src/assets/images/gamepad.svg"
+            src="/src/assets/images/gamepad.svg"
             alt="Logo"
             className="w-10 h-10"
           />
@@ -103,4 +103,3 @@ function Inscription() {
 }
 
 export default Inscription;
-

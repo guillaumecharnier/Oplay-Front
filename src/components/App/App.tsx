@@ -6,7 +6,9 @@ import Footer from '../Footer/Footer';
 import Connexion from '../Connexion/Connexion';
 import Inscription from '../Inscription/Inscription';
 import Erreur from '../Erreur/Erreur';
-import Panier from '../Panier/Panier';
+import Profil from '../Profil/Profil';
+import Edit from '../Edit/Edit';
+import Parametre from '../Parametre/Parametre';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -28,12 +30,16 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/*" element={<Erreur />} />
-        <Route path="/panier" element={<Panier />} />
-       {/* <Route path="/profil/[id]" element={<SinglePostPage />} />
-        <Route path="/parametre" element={<SinglePostPage />} />
+        <Route path="/profil" element={<Profil />} />
+        {/* profil/:id */}
+        <Route path="/profil/edit" element={<Edit />} />
+        <Route path="/parametre" element={<Parametre />} />
+
+       {/* 
+        <Route path="/panier" element={<SinglePostPage />} />
         <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
-        <Route path="/profil/edit" element={<SinglePostPage />} />
+        
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />
@@ -54,4 +60,3 @@ function App() {
 }
 
 export default App;
-
