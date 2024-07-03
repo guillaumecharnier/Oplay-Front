@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Connexion() {
     return (
     <div className="bg-blue-custom-200 text-white flex flex-col items-center py-28">
@@ -11,9 +13,9 @@ function Connexion() {
         </div>
          <h2 className="font-bold">Connexion</h2>
         <div className="flex flex-row w-56 py-10 justify-between">
-            <a href=""><img src="src/assets/images/gmail-nouveau.svg" alt="Gmail" /></a>
-            <a href=""><img src="src/assets/images/discorde.svg" alt="Discord" /></a>
-            <a href=""><img src="src/assets/images/facebook-nouveau.svg" alt="Facebook" /></a>
+            <Link to=""><img src="src/assets/images/gmail-nouveau.svg" alt="Gmail" /></Link>
+            <Link to=""><img src="src/assets/images/discorde.svg" alt="Discord" /></Link>
+            <Link to=""><img src="src/assets/images/facebook-nouveau.svg" alt="Facebook" /></Link>
         </div>
         <span className="font-bold">ou</span>
         <form action="" className="flex flex-col items-center py-10">
@@ -22,8 +24,8 @@ function Connexion() {
             <button type="submit" className="w-40 h-10 rounded-full font-bold bg-slate-500">Se connecter</button>
         </form>
         <div className="w-80 flex justify-between">
-            <a href="/inscription">S'inscrire</a>
-            <a href="">Mot de passe oublié ?</a>
+            <Link to="/inscription">S'inscrire</Link>
+            <Link to="">Mot de passe oublié ?</Link>
         </div>
     </div>
     );
