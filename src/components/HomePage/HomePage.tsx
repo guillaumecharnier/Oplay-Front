@@ -10,6 +10,7 @@ function HomePage() {
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState('');
   const [tagData, setTagData] = useState('');
+  const [gameData, setGameData] = useState('');
 
   const fetchToken = async () => {
     try {
@@ -54,6 +55,21 @@ function HomePage() {
     }
   };
 
+  const fetchGameData = async () => {
+    try {
+      const response = await axios.get('http://192.168.91.157:8080/api/game/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setGameData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
     fetchToken();
   }, []);
@@ -62,6 +78,7 @@ function HomePage() {
     if (token) {
       fetchUserData();
       fetchTagData();
+      fetchGameData();
 
     }
   }, [token]);
