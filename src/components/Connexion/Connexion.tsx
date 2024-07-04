@@ -11,7 +11,9 @@ function Connexion() {
             className="w-10 h-10"
           />
         </Link>
-        <h1 className="text-2xl text-white ml-2">O'Play</h1>
+        <Link to="/">
+            <h1 className="text-2xl text-white ml-2">O'Play</h1>
+        </Link>
       </div>
          <h2 className="font-bold">Connexion</h2>
         <div className="flex flex-row w-56 py-10 justify-between">
