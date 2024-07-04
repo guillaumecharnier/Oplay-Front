@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CustomSelection from './CustomSelection';
 import LastAdditions from './LastAdditions';
@@ -7,24 +7,64 @@ import NextRelease from './NextRelease';
 
 function HomePage() {
 
-  // const [data, setData] = useState(null);
-  const token = 'your-auth-token';
-  // http://guillaume-charnier.vpnuser.lan/api/user/browse
-  // http://guillaume-charnier.vpnuser.lan/Apo/projet-1-o-play-back/src/Controller/Api/
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Inclure le token ici
-          },
-        });
-        console.log(response);
-        // setData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  const [token, setToken] = useState('');
+  const [userData, setUserData] = useState('');
+  const [tagData, setTagData] = useState('');
+
+  const fetchToken = async () => {
+    try {
+      const response = await axios.post('http://192.168.91.157:8080/api/login_check', {
+        username: 'admin@oplay.fr',
+        password: 'admin'
+      });
+      setToken(response.data.token);
+      // console.log(response.data.token);
+    } catch (error) {
+      console.error('Error fetching token:', error);
+    }
+  };
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get('http://192.168.91.157:8080/api/user/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setUserData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchTagData = async () => {
+    try {
+      const response = await axios.get('http://192.168.91.157:8080/api/tag/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setTagData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchToken();
+  }, []);
+  //waiting the token, when we get it we can land the second fetch to catch the set of interesting data
+  useEffect(() => {
+    if (token) {
+      fetchUserData();
+      fetchTagData();
+
+    }
+  }, [token]);
 
   return (
 
