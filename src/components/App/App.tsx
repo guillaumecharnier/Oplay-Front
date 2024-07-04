@@ -16,11 +16,9 @@ function App() {
 
   const openModal = () =>{
     setModal(true);
-    console.log('modal visible');
   }
   const closeModal = () =>{
     setModal(false); 
-    console.log('modal visible');
   }
   const location = useLocation();
   return (
