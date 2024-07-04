@@ -4,14 +4,15 @@ import CustomSelection from './CustomSelection';
 import LastAdditions from './LastAdditions';
 import Categories from './Categories';
 import NextRelease from './NextRelease';
+import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
 
 function HomePage() {
 
   const [token, setToken] = useState('');
-  const [userData, setUserData] = useState('');
-  const [tagData, setTagData] = useState('');
-  const [categoryData, setCategoryData] = useState('');
-  const [gameData, setGameData] = useState('');
+  const [userData, setUserData] = useState<UserData[]>([]);
+  const [tagData, setTagData] = useState<TagData[]>([]);
+  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
+  const [gameData, setGameData] = useState<GameData[]>([]);
 
   const fetchToken = async () => {
     try {
@@ -34,8 +35,8 @@ function HomePage() {
           'Authorization': `Bearer ${token}`,
         },
       });
-      setUserData(response.data);
-      console.log(response.data);
+      setUserData([response.data]);
+      console.log('user', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -50,7 +51,7 @@ function HomePage() {
         },
       });
       setTagData(response.data);
-      console.log(response.data);
+      console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -65,7 +66,7 @@ function HomePage() {
         },
       });
       setCategoryData(response.data);
-      console.log(response.data);
+      console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -80,7 +81,7 @@ function HomePage() {
         },
       });
       setGameData(response.data);
-      console.log(response.data);
+      console.log('Game',response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -126,17 +127,17 @@ function HomePage() {
 
       {/* Section LastAdditions */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
-        <LastAdditions />
+        <LastAdditions gameData={gameData} />
       </div>
 
       {/* Section NextRelease */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
-        <NextRelease />
+        <NextRelease gameData={gameData} />
       </div>
 
       {/* Section Categories */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
-        <Categories />
+        <Categories categoryData={categoryData} />
       </div>
     </div>
   );
