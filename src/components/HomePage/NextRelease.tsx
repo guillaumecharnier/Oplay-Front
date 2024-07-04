@@ -3,6 +3,18 @@ import { Link } from 'react-router-dom';
 
 function NextRelease({ gameData }) {
 
+  const getSixLatestReleaseDates = (gamesData) => {
+    // Convertir les dates en objets Date et trier par releaseDate décroissant
+    const sortedGames = gamesData.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+    console.log('sortedgames', sortedGames);
+    // Sélectionner les 6 premiers éléments du tableau trié
+    const latestSixDates = sortedGames.slice(0, 6).map(game => game);
+    console.log(latestSixDates);
+    return latestSixDates;
+  };
+  const lastSixGames = getSixLatestReleaseDates(gameData);
+  console.log(lastSixGames);
+
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-16 mx-auto">
       {/* Titre avec l'icône */}
