@@ -86,6 +86,8 @@ function HomePage() {
     }
   };
 
+  // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
+
   useEffect(() => {
     fetchToken();
   }, []);
