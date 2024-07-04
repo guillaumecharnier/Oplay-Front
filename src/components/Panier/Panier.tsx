@@ -1,49 +1,49 @@
 import React from 'react';
 
-function Panier(){
+function Panier() {
   return (
     <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* En-tête du panier */}
-        <div className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 py-5 px-6 flex justify-between items-center text-white">
-          <h1 className="text-3xl font-bold">Mon Panier</h1>
+        <div className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 py-5 px-6 flex flex-col md:flex-row md:items-center md:justify-between text-white">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-0">Mon Panier</h1>
         </div>
 
         {/* Liste des articles */}
         <ul className="divide-y divide-gray-200">
-          <li className="flex items-center p-6 space-x-4 border-b border-gray-200">
+          <li className="flex flex-col md:flex-row items-center p-4 md:p-6 space-y-4 md:space-y-0 md:space-x-4 border-b border-gray-200">
             <img
-              src="src/assets/images/ShopPictures.jpg"
+              src="/src/assets/images/ShopPictures.jpg"
               alt="Jeu 1"
               className="w-24 h-24 object-cover rounded-xl shadow-md"
             />
             <div className="flex-1">
-              <h2 className="text-lg font-semibold text-gray-800">Jeu 1</h2>
-              <p className="text-gray-600">1 x $59.99</p>
+              <h2 className="text-base md:text-lg font-semibold text-gray-800">Jeu 1</h2>
+              <p className="text-sm md:text-gray-600">1 x $59.99</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
               {/* Boutons pour gérer la quantité */}
-              <button className="bg-gray-200 p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+              <button className="bg-gray-200 p-1 md:p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
                 <img
-                  src="src\assets\images\less-circle.svg"
+                  src="/src/assets/images/less-circle.svg"
                   alt="Diminuer la quantité"
                   className="w-4 h-4"
                 />
               </button>
-              <span className="text-lg font-bold text-gray-800">1</span>
-              <button className="bg-gray-200 p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+              <span className="text-sm md:text-lg font-bold text-gray-800">1</span>
+              <button className="bg-gray-200 p-1 md:p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
                 <img
-                  src="src\assets\images\plus-circle.svg"
+                  src="/src/assets/images/plus-circle.svg"
                   alt="Augmenter la quantité"
                   className="w-4 h-4"
                 />
               </button>
             </div>
-            <div className="flex items-center space-x-4">
-              <p className="text-lg font-bold text-gray-800">$59.99</p>
-              <button className="bg-red-600 p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <p className="text-sm md:text-lg font-bold text-gray-800">$59.99</p>
+              <button className="bg-red-600 p-1 md:p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
                 <img
-                  src="src\assets\images\trash.svg"
+                  src="/src/assets/images/trash.svg"
                   alt="Supprimer l'article"
                   className="w-5 h-5"
                 />
@@ -51,53 +51,51 @@ function Panier(){
             </div>
           </li>
 
-          <li className="flex items-center p-6 space-x-4 border-b border-gray-200">
+          <li className="flex flex-col md:flex-row items-center p-4 md:p-6 space-y-4 md:space-y-0 md:space-x-4 border-b border-gray-200">
             <img
-              src="src/assets/images/ShopPictures.jpg"
+              src="/src/assets/images/ShopPictures.jpg"
               alt="Jeu 2"
               className="w-24 h-24 object-cover rounded-xl shadow-md"
             />
             <div className="flex-1">
-              <h2 className="text-lg font-semibold text-gray-800">Jeu 2</h2>
-              <p className="text-gray-600">2 x $49.99</p>
+              <h2 className="text-base md:text-lg font-semibold text-gray-800">Jeu 2</h2>
+              <p className="text-sm md:text-gray-600">2 x $49.99</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
               {/* Boutons pour gérer la quantité */}
-              <button className="bg-gray-200 p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+              <button className="bg-gray-200 p-1 md:p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
                 <img
-                  src="src\assets\images\less-circle.svg"
+                  src="/src/assets/images/less-circle.svg"
                   alt="Diminuer la quantité"
                   className="w-4 h-4"
                 />
               </button>
-              <span className="text-lg font-bold text-gray-800">2</span>
-              <button className="bg-gray-200 p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+              <span className="text-sm md:text-lg font-bold text-gray-800">2</span>
+              <button className="bg-gray-200 p-1 md:p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
                 <img
-                  src="src\assets\images\plus-circle.svg"
+                  src="/src/assets/images/plus-circle.svg"
                   alt="Augmenter la quantité"
                   className="w-4 h-4"
                 />
               </button>
             </div>
-            <div className="flex items-center space-x-4">
-              <p className="text-lg font-bold text-gray-800">$99.98</p>
-              <button className="bg-red-600 p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <p className="text-sm md:text-lg font-bold text-gray-800">$99.98</p>
+              <button className="bg-red-600 p-1 md:p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
                 <img
-                  src="src\assets\images\trash.svg"
+                  src="/src/assets/images/trash.svg"
                   alt="Supprimer l'article"
                   className="w-5 h-5"
                 />
               </button>
             </div>
           </li>
-
-          {/* Ajouter plus d'articles ici si nécessaire */}
         </ul>
 
         {/* Total du panier */}
-        <div className="bg-gray-50 py-5 px-6 flex justify-between items-center border-t border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-800">Total</h2>
-          <p className="text-xl font-bold text-gray-800">$159.97</p>
+        <div className="bg-gray-50 py-5 px-6 flex flex-col md:flex-row justify-between items-center border-t border-gray-200">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-800">Total</h2>
+          <p className="text-lg md:text-xl font-bold text-gray-800">$159.97</p>
         </div>
 
         {/* Actions du panier */}
