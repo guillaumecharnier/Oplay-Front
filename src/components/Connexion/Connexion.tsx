@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Connexion() {
@@ -23,8 +24,8 @@ function Connexion() {
         </div>
         <span className="font-bold">ou</span>
         <form action="" className="flex flex-col items-center py-10">
-            <input type="email" name="" id="" placeholder="Email" className="pl-4 rounded-full mb-10 w-80" />
-            <input type="password" name="" id=""placeholder="Mot de passe" className="pl-4 rounded-full mb-10 w-80"/>
+            <input type="email" name="email" id="email" placeholder="Email" className="pl-4 rounded-full mb-10 w-80" />
+            <input type="password" name="password" id="password" placeholder="Mot de passe" className="pl-4 rounded-full mb-10 w-80"/>
             <button type="submit" className="w-40 h-10 rounded-full font-bold bg-slate-500">Se connecter</button>
         </form>
         <div className="w-80 flex justify-between">
