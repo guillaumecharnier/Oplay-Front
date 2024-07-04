@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           <Link
             to="/connexion"
-            className="bg-white text-blue-600 px-6 py-2 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2"
+            className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs md:text-lg"
           >
             <span className="text-lg font-semibold">Se connecter</span>
           </Link>
