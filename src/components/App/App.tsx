@@ -11,6 +11,8 @@ import Edit from '../Edit/Edit';
 import Parametre from '../Parametre/Parametre';
 import Panier from '../Panier/Panier';
 import React from 'react';
+import { PluginContainer } from 'vite';
+import Panier from '../Panier/Panier';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -34,13 +36,9 @@ function App() {
         {/* profil/:id */}
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
-        <Route path="/panier" element={<Panier />} />
-
-       {/* 
-      
+        <Route path="/panier" element={<Panier/>} />
         <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
-        
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />
