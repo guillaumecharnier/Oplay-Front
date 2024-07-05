@@ -14,10 +14,10 @@ import Parametre from '../Parametre/Parametre';
 import Panier from '../Panier/Panier';
 import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
-import PageDeJjeu from '../Page de jeu/PageDeJeu'
 import React from 'react';
-import GamePage from '../Page de jeu/PageDeJeu';
+import GamePage from '../PageJeu/PageJeu';
 import axios from 'axios';
+import PageJeu from '../PageJeu/PageJeu';
 
 function App() {
   const [token, setToken] = useState('');
@@ -62,7 +62,8 @@ function App() {
         <Route path="/panier" element={<Panier/>} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
-        {/* <Route path="/jeu/:id" element={<Jeu />} /> */}
+        <Route path="/jeu/:id" element={<PageJeu gameData={undefined} />} />
+        // TODO voir le typage undefined 
 
         {/* <Route path="/categories" element={<Category />} /> */}
         {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}

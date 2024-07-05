@@ -24,7 +24,8 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             to="/connexion"
             className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs md:text-lg"
           >
-            <span className="text-lg font-semibold">Se connecter</span>
+            {/* //TODO if connected is true remove button Se connecter */}
+            <span className="text-s  font-semibold tablet:text-lg">Se connecter</span>
           </Link>
         </div>
         {/* Logo et titre */}
