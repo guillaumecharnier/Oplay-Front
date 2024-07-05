@@ -13,6 +13,10 @@ import Panier from '../Panier/Panier';
 import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
 import { GameData } from '../../assets/type';
+import PageDeJjeu from '../Page de jeu/PageDeJeu'
+import React from 'react';
+import { PluginContainer } from 'vite';
+import GamePage from '../Page de jeu/PageDeJeu';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -46,13 +50,24 @@ function App() {
        {/* 
        
         <Route path="/paiement" element={<SinglePostPage />} />
+
+        <Route path="/jeu/:id" element={<GamePage />} />
+
+        {/* <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
-        
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />
+
      
   
+
+        <Route path="/derniere-sortie" element={<SinglePostPage />} />
+        <Route path="/derniere-ajout" element={<SinglePostPage />} />
+        <Route path="/categories" element={<SinglePostPage />} />
+        <Route path="/categorie/:id" element={<SinglePostPage />} />
+        
+
         <Route path="/conditions-generales" element={<SinglePostPage />} />
         <Route path="/mentions-légales" element={<SinglePostPage />} />
         <Route path="/supprimer" element={<SinglePostPage />} />
@@ -64,4 +79,3 @@ function App() {
 }
 
 export default App;
-
