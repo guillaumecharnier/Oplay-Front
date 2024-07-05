@@ -5,6 +5,7 @@ import LastAdditions from './LastAdditions';
 import Categories from './Categories';
 import NextRelease from './NextRelease';
 import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
+import GamePage from '../Page de jeu/PageDeJeu';
 
 function HomePage() {
 
@@ -36,7 +37,7 @@ function HomePage() {
         },
       });
       setUserData([response.data]);
-      console.log('user', response.data);
+      // console.log('user', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -51,7 +52,7 @@ function HomePage() {
         },
       });
       setTagData(response.data);
-      console.log('Tag', response.data);
+      // console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -66,7 +67,7 @@ function HomePage() {
         },
       });
       setCategoryData(response.data);
-      console.log('category', response.data);
+      // console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -138,10 +139,16 @@ function HomePage() {
       {/* Section Categories */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
         <Categories categoryData={categoryData} />
+
+      {/* Section Page de jeu */}
+      <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32"></div>
+      <GamePage />
       </div>
     </div>
   );
 }
+
+
 
 export default HomePage;
 

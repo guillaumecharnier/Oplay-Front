@@ -10,7 +10,11 @@ import Profil from '../Profil/Profil';
 import Edit from '../Edit/Edit';
 import Parametre from '../Parametre/Parametre';
 import Panier from '../Panier/Panier';
+import PageDeJjeu from '../Page de jeu/PageDeJeu'
 import React from 'react';
+import { PluginContainer } from 'vite';
+import GamePage from '../Page de jeu/PageDeJeu';
+
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -34,13 +38,11 @@ function App() {
         {/* profil/:id */}
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
-        <Route path="/panier" element={<Panier />} />
+        <Route path="/panier" element={<Panier/>} />
+        <Route path="/jeu/:id" element={<GamePage />} />
 
-       {/* 
-        
-        <Route path="/paiement" element={<SinglePostPage />} />
+        {/* <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
-        
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />
@@ -48,7 +50,7 @@ function App() {
         <Route path="/derniere-ajout" element={<SinglePostPage />} />
         <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/categorie/:id" element={<SinglePostPage />} />
-        <Route path="/jeu/:id" element={<SinglePostPage />} />
+        
         <Route path="/conditions-generales" element={<SinglePostPage />} />
         <Route path="/mentions-légales" element={<SinglePostPage />} />
         <Route path="/supprimer" element={<SinglePostPage />} />
@@ -61,4 +63,3 @@ function App() {
 }
 
 export default App;
-
