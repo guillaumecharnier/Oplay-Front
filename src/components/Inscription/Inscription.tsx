@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -35,8 +35,6 @@ function Inscription({ token }) {
       return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(motdepasse);
     };
     // this regex send us true or false, depending on that the password should pass or not
-    // console.log(motdepasse);
-    // console.log(motDePassePattern(motdepasse));
     if (!motDePasseRegex(motdepasse)) {
       setErreur('Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial');
       return;
@@ -70,6 +68,8 @@ function Inscription({ token }) {
         }
       });
       console.log(response.data);
+      // TODO redirection vers page de connexion ? 
+      // history.push('/connexion');
     } catch (error) {
       console.error('pas fonctionné');
     }

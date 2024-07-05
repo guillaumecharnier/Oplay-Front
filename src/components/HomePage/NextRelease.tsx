@@ -17,7 +17,7 @@ function NextRelease({ gameData }:IGameData) {
     return latestSixDates;
   };
   const lastRealeasedGames = getSixLatestReleaseDates(gameData);
-  console.log('lastRealeasedGames', lastRealeasedGames);
+  // console.log('lastRealeasedGames', lastRealeasedGames);
 
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-16 mx-auto">
@@ -26,7 +26,7 @@ function NextRelease({ gameData }:IGameData) {
           <span className="font-semibold hover:text-blue-300">Sorties 2024</span>
         </h2>
       </Link>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
       {lastRealeasedGames.map((element) => ( 
         <Link
           key={element.id}
@@ -36,9 +36,9 @@ function NextRelease({ gameData }:IGameData) {
           <img
             src={element.picture}
             alt={element.name}
-            className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-64 lg:h-56 xl:w-72 xl:h-64 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
+            className=" w-72 h-80 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
-          <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
+          <h3 className="md:text-lg lg:text-xl xl:text-xl text-blue-100 mt-5 text-center">
             {element.name}
           </h3>
         </Link>

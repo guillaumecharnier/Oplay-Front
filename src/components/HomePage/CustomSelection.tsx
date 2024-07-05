@@ -12,7 +12,7 @@ function CustomSelection() {
       </Link>
 
       {/* Grille d'images avec espace supplémentaire */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-2 gap-8 tablet:grid-cols-3">
         {/* Premier jeu */}
         <Link
           to="lien-vers-le-jeu-1"
@@ -25,81 +25,6 @@ function CustomSelection() {
           />
           <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
             Jeu 1
-          </h3>
-        </Link>
-
-        {/* Deuxième jeu */}
-        <Link
-          to="lien-vers-le-jeu-2"
-          className="group flex flex-col items-center"
-        >
-          <img
-            src="/src/assets/images/HomePagePicture.jpg"
-            alt="Jeu 2"
-            className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-56 lg:h-48 xl:w-64 xl:h-56 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
-          />
-          <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
-            Jeu 2
-          </h3>
-        </Link>
-
-        {/* Troisième jeu */}
-        <Link
-          to="lien-vers-le-jeu-3"
-          className="group flex flex-col items-center"
-        >
-          <img
-            src="/src/assets/images/HomePagePicture.jpg"
-            alt="Jeu 3"
-            className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-56 lg:h-48 xl:w-64 xl:h-56 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
-          />
-          <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
-            Jeu 3
-          </h3>
-        </Link>
-
-        {/* Quatrième jeu */}
-        <Link
-          to="lien-vers-le-jeu-4"
-          className="group flex flex-col items-center"
-        >
-          <img
-            src="/src/assets/images/HomePagePicture.jpg"
-            alt="Jeu 4"
-            className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-56 lg:h-48 xl:w-64 xl:h-56 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
-          />
-          <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
-            Jeu 4
-          </h3>
-        </Link>
-
-        {/* Cinquième jeu */}
-        <Link
-          to="lien-vers-le-jeu-5"
-          className="group flex flex-col items-center"
-        >
-          <img
-            src="/src/assets/images/HomePagePicture.jpg"
-            alt="Jeu 5"
-            className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-56 lg:h-48 xl:w-64 xl:h-56 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
-          />
-          <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
-            Jeu 5
-          </h3>
-        </Link>
-
-        {/* Sixième jeu */}
-        <Link
-          to="lien-vers-le-jeu-6"
-          className="group flex flex-col items-center"
-        >
-          <img
-            src="/src/assets/images/HomePagePicture.jpg"
-            alt="Jeu 6"
-            className="w-40 h-32 sm:w-44 sm:h-36 md:w-48 md:h-40 lg:w-56 lg:h-48 xl:w-64 xl:h-56 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
-          />
-          <h3 className="text-sm md:text-lg lg:text-xl xl:text-2xl text-blue-100 mt-2 text-center">
-            Jeu 6
           </h3>
         </Link>
       </div>
