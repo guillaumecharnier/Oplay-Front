@@ -9,9 +9,10 @@ import Erreur from '../Erreur/Erreur';
 import Profil from '../Profil/Profil';
 import Edit from '../Edit/Edit';
 import Parametre from '../Parametre/Parametre';
-import React from 'react';
-import { PluginContainer } from 'vite';
 import Panier from '../Panier/Panier';
+import LastAdditions from '../HomePage/LastAdditions';
+import NextRelease from '../HomePage/NextRelease';
+import { GameData } from '../../assets/type';
 
 function App() {
   const [isModal, setModal] = useState(false);
@@ -31,11 +32,17 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/*" element={<Erreur />} />
-        <Route path="/profil" element={<Profil />} />
+        <Route path="/profil/" element={<Profil />} />
         {/* profil/:id */}
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier/>} />
+        <Route path="/derniere-sortie" element={<NextRelease />} />
+        <Route path="/derniere-ajout" element={<LastAdditions />} />
+        {/* <Route path="/jeu/:id" element={<Jeu />} /> */}
+
+        {/* <Route path="/categories" element={<Category />} /> */}
+        {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}
        {/* 
        
         <Route path="/paiement" element={<SinglePostPage />} />
@@ -44,15 +51,11 @@ function App() {
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />
-        <Route path="/derniere-sortie" element={<SinglePostPage />} />
-        <Route path="/derniere-ajout" element={<SinglePostPage />} />
-        <Route path="/categories" element={<SinglePostPage />} />
-        <Route path="/categorie/:id" element={<SinglePostPage />} />
-        <Route path="/jeu/:id" element={<SinglePostPage />} />
+     
+  
         <Route path="/conditions-generales" element={<SinglePostPage />} />
         <Route path="/mentions-légales" element={<SinglePostPage />} />
         <Route path="/supprimer" element={<SinglePostPage />} />
-        <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/backoffice" element={<SinglePostPage />} /> */}
       </Routes>
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
