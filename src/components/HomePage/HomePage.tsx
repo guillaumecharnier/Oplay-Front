@@ -139,10 +139,11 @@ function HomePage() {
       {/* Section Categories */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
         <Categories categoryData={categoryData} />
+      </div>
 
       {/* Section Page de jeu */}
-      <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32"></div>
-      <GamePage />
+      <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
+        <GamePage />
       </div>
     </div>
   );

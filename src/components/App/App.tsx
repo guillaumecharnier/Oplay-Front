@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { GameData } from '../../assets/type';
+import { PluginContainer } from 'vite';
+
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -12,10 +15,8 @@ import Parametre from '../Parametre/Parametre';
 import Panier from '../Panier/Panier';
 import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
-import { GameData } from '../../assets/type';
 import PageDeJjeu from '../Page de jeu/PageDeJeu'
 import React from 'react';
-import { PluginContainer } from 'vite';
 import GamePage from '../Page de jeu/PageDeJeu';
 
 function App() {
@@ -41,8 +42,8 @@ function App() {
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier/>} />
-        <Route path="/derniere-sortie" element={<NextRelease />} />
-        <Route path="/derniere-ajout" element={<LastAdditions />} />
+        <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
+        <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
         {/* <Route path="/jeu/:id" element={<Jeu />} /> */}
 
         {/* <Route path="/categories" element={<Category />} /> */}

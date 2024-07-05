@@ -10,7 +10,7 @@ function NextRelease({ gameData }:IGameData) {
 
   const getSixLatestReleaseDates = (gamesData) => {
     // Converts dates in Date objects and order by releasedDate
-    const sortedGames = gamesData.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+    const sortedGames = gamesData.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime() );
     
     // Select the 6 first elements of the array
     const latestSixDates = sortedGames.slice(0, 6).map(game => game);
