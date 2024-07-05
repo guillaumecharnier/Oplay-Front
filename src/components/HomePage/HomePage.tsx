@@ -36,7 +36,7 @@ function HomePage() {
         },
       });
       setUserData([response.data]);
-      console.log('user', response.data);
+      // console.log('user', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -51,7 +51,7 @@ function HomePage() {
         },
       });
       setTagData(response.data);
-      console.log('Tag', response.data);
+      // console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -66,7 +66,7 @@ function HomePage() {
         },
       });
       setCategoryData(response.data);
-      console.log('category', response.data);
+      // console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
