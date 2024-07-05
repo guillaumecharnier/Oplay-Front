@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { GameData } from '../../assets/type';
 
-function NextRelease({ gameData }) {
+interface IGameData {
+  gameData: GameData[];
+}
+
+function NextRelease({ gameData }:IGameData) {
 
   const getSixLatestReleaseDates = (gamesData) => {
     // Converts dates in Date objects and order by releasedDate
@@ -16,7 +21,7 @@ function NextRelease({ gameData }) {
 
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-16 mx-auto">
-      <Link to="#" className="block mb-16">
+      <Link to="/derniere-sortie" className="block mb-16">
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 transition-transform transform hover:scale-105 hover:text-blue-300">
           <span className="font-semibold hover:text-blue-300">Sorties 2024</span>
         </h2>
@@ -25,7 +30,7 @@ function NextRelease({ gameData }) {
       {lastRealeasedGames.map((element) => ( 
         <Link
           key={element.id}
-          to={`/categorie/${element.id}`}
+          to={`/jeu/${element.id}`}
           className="group flex flex-col items-center"
         >
           <img
