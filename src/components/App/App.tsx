@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { GameData } from '../../assets/type';
 import { PluginContainer } from 'vite';
-
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -18,10 +17,29 @@ import NextRelease from '../HomePage/NextRelease';
 import PageDeJjeu from '../Page de jeu/PageDeJeu'
 import React from 'react';
 import GamePage from '../Page de jeu/PageDeJeu';
+import axios from 'axios';
 
 function App() {
+  const [token, setToken] = useState('');
   const [isModal, setModal] = useState(false);
 
+  const fetchToken = async () => {
+    try {
+      const response = await axios.post('http://192.168.91.157:8080/api/login_check', {
+        username: 'admin@oplay.fr',
+        password: 'admin'
+      });
+      setToken(response.data.token);
+      // console.log(response.data.token);
+    } catch (error) {
+      console.error('Error fetching token:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchToken();
+  }, []);
+  
   const openModal = () =>{
     setModal(true);
   }
@@ -33,9 +51,9 @@ function App() {
     <div>
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage token={token} />} />
         <Route path="/connexion" element={<Connexion />} />
-        <Route path="/inscription" element={<Inscription />} />
+        <Route path="/inscription" element={<Inscription token={token} />} />
         <Route path="/*" element={<Erreur />} />
         <Route path="/profil/" element={<Profil />} />
         {/* profil/:id */}

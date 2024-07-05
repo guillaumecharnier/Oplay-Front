@@ -7,26 +7,12 @@ import NextRelease from './NextRelease';
 import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
 import GamePage from '../Page de jeu/PageDeJeu';
 
-function HomePage() {
+function HomePage({ token }) {
 
-  const [token, setToken] = useState('');
   const [userData, setUserData] = useState<UserData[]>([]);
   const [tagData, setTagData] = useState<TagData[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [gameData, setGameData] = useState<GameData[]>([]);
-
-  const fetchToken = async () => {
-    try {
-      const response = await axios.post('http://192.168.91.157:8080/api/login_check', {
-        username: 'admin@oplay.fr',
-        password: 'admin'
-      });
-      setToken(response.data.token);
-      // console.log(response.data.token);
-    } catch (error) {
-      console.error('Error fetching token:', error);
-    }
-  };
 
   const fetchUserData = async () => {
     try {
@@ -90,9 +76,7 @@ function HomePage() {
 
   // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
 
-  useEffect(() => {
-    fetchToken();
-  }, []);
+ 
   //waiting the token, when we get it we can land the second fetch to catch the set of interesting data
   useEffect(() => {
     if (token) {
