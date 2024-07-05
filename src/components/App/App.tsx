@@ -41,8 +41,8 @@ function App() {
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier/>} />
-        <Route path="/derniere-sortie" element={<NextRelease />} />
-        <Route path="/derniere-ajout" element={<LastAdditions />} />
+        <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
+        <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
         {/* <Route path="/jeu/:id" element={<Jeu />} /> */}
 
         {/* <Route path="/categories" element={<Category />} /> */}
