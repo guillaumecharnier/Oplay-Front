@@ -2,12 +2,13 @@ import React from "react";
 import { Link, redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
-
-
-function Inscription({ token }) {
+function Inscription() {
+  
+  const { token } = useAuth();
   const [erreur, setErreur] = useState('');
-
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -51,7 +52,7 @@ function Inscription({ token }) {
     }
 
     try {
-      const response = await axios.post('http://192.168.94.134:8080/api/user/register', {
+      const response = await axios.post('http://localhost:8080/api/user/register', {
         email: email,
         password: motdepasse,
         firstname: prenom,
@@ -63,8 +64,7 @@ function Inscription({ token }) {
           'Authorization': `Bearer ${token}`
         }
       });
-      console.log(response.data);
-      console.log(token);
+
       // TODO redirection vers page de connexion ? 
       // history.push('/connexion');
     } catch (error) {

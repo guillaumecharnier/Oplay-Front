@@ -1,26 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-function Connexion({ userData }) {
-console.log(userData);
-    const user = userData.map((element) => console.log(element));
-
-  function handleSubmit (event) {
+const Connexion: React.FC = () => {
+  const { token } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+  async function handleSubmit(event) {
     event.preventDefault();
-    
+
     const form = event.target;
     const formData = new FormData(form);
     const email = formData.get("email");
     const password = formData.get("password");
-    const found = user.find((element) => element.email = email);
-    console.log(found);
 
-    console.log(email);
-    console.log('grg', user);
-    
-    // if email && password
+    try {
+      const response = await fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      if (response.ok) {
+        console.log("Connexion réussie", result);
+        // login(result.token);
+        // setLog(true);
+        // Redirection ou autre action en cas de succès
+        <Navigate to="/"/>;
+      } else {
+        console.log("Échec de la connexion", result);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
+    }
+
+    // Affichage des valeurs pour le débogage
+    console.log("Email saisi :", email);
+    console.log("Mot de passe saisi :", password);
   }
-
+// console.log(localStorage.getItem('jwtToken'));
     return (
     <div className="bg-blue-custom-200 text-white min-h-screen flex flex-col items-center py-28">
        <div className="absolute top-4 left-4 flex items-center">
@@ -56,3 +82,12 @@ console.log(userData);
   }
   
   export default Connexion;
+
+  // if ('success' === r.message) {
+  //   localStorage.setItem('user', JSON.stringify({ email, token: r.token }))
+  //   props.setLoggedIn(true)
+  //   props.setEmail(email)
+  //   navigate('/')
+  // } else {
+  //   window.alert('Wrong email or password')
+  // }
