@@ -6,20 +6,18 @@ import axios from "axios";
 
 
 function Inscription({ token }) {
-
   const [erreur, setErreur] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    // on empeche le rechargement de la page
     event.preventDefault();
 
-    // on recupère le form
+    // getting the form
     const form = event.currentTarget;
 
-    // on créé un formData
+    // creating formData
     const formData = new FormData(form);
 
-    // on récupère les données grace à la méthode "get" du formdata et au "name" de l'input
+    // getting the data in get of the dataForm with name names of inputs
     const email = formData.get("email");
     const motdepasse = formData.get("motdepasse");
     const prenom = formData.get("prenom");
@@ -52,15 +50,13 @@ function Inscription({ token }) {
       return;
     }
 
-    // on peut ensuite les utiliser
-    // console.log(email, motdepasse, prenom, nom, pseudo); 
     try {
-      const response = await axios.post('http://192.168.91.157:8080/api/user/register', {
+      const response = await axios.post('http://192.168.94.134:8080/api/user/register', {
         email: email,
         password: motdepasse,
         firstname: prenom,
         lastname: nom,
-        username: pseudo
+        nickname: pseudo
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -68,6 +64,7 @@ function Inscription({ token }) {
         }
       });
       console.log(response.data);
+      console.log(token);
       // TODO redirection vers page de connexion ? 
       // history.push('/connexion');
     } catch (error) {
@@ -75,11 +72,9 @@ function Inscription({ token }) {
     }
   };
 
-
-// console.log(FormData);
   return (
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center p-4 pt-[6rem]">
-      {/* Logo et Titre */}
+      {/* Logo et Title */}
       <div className="absolute top-4 left-4 flex items-center">
         <Link to="/">
           <img
@@ -95,7 +90,7 @@ function Inscription({ token }) {
 
 
     
-      {/* Formulaire d'inscription */}
+      {/* Inscription form  */}
       <form className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold mb-6 text-center text-black-custom-800">Inscription</h2>
 
@@ -112,7 +107,7 @@ function Inscription({ token }) {
           </label>
         </div>
 
-        {/* Mot de Passe */}
+        {/* Password */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="motdepasse">
           <input
@@ -125,7 +120,7 @@ function Inscription({ token }) {
           </label>
         </div>
 
-        {/* Prénom */}
+        {/* Firstname */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="prenom">
           <input
@@ -138,7 +133,7 @@ function Inscription({ token }) {
           </label>
         </div>
 
-        {/* Nom */}
+        {/* Lastname */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="nom">
           <input
@@ -151,7 +146,7 @@ function Inscription({ token }) {
           </label>
         </div>
 
-        {/* Pseudo */}
+        {/* Nickname */}
         <div className="mb-4">
         <label className="block text-gray-700 text-sm font-semibold mb-9" htmlFor="pseudo">
         <input
@@ -164,7 +159,7 @@ function Inscription({ token }) {
           </label>
         </div>
 
-        {/* Bouton Envoyer */}
+        {/* Sending button */}
         <button
           type="submit"
           className="w-full bg-blue-custom-500 hover:bg-blue-custom-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -173,7 +168,7 @@ function Inscription({ token }) {
         </button>
         {erreur && <p className="text-red-500 mt-2">{erreur}</p>}
 
-        {/* Lien de redirection */}
+        {/* Redirection link */}
         <div className="mt-4 text-center text-gray-600">
           <p>Déjà un compte ? <Link to="/connexion" className="text-black hover:text-blue-custom-200">Se connecter</Link></p>
         </div>

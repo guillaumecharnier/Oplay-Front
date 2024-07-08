@@ -4,89 +4,9 @@ import CustomSelection from './CustomSelection';
 import LastAdditions from './LastAdditions';
 import Categories from './Categories';
 import NextRelease from './NextRelease';
-import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
 import PageJeu from '../PageJeu/PageJeu';
 
-function HomePage({ token }) {
-
-  const [userData, setUserData] = useState<UserData[]>([]);
-  const [tagData, setTagData] = useState<TagData[]>([]);
-  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
-  const [gameData, setGameData] = useState<GameData[]>([]);
-
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get('http://192.168.94.134:8080/api/user/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setUserData([response.data]);
-      console.log('user', response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  const fetchTagData = async () => {
-    try {
-      const response = await axios.get('http://192.168.94.134:8080/api/tag/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setTagData(response.data);
-      // console.log('Tag', response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  const fetchCategoryData = async () => {
-    try {
-      const response = await axios.get('http://192.168.94.134:8080/api/category/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setCategoryData(response.data);
-      // console.log('category', response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  const fetchGameData = async () => {
-    try {
-      const response = await axios.get('http://192.168.94.134:8080/api/game/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setGameData(response.data);
-      console.log('Game',response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
-
- 
-  //waiting the token, when we get it we can land the second fetch to catch the set of interesting data
-  useEffect(() => {
-    if (token) {
-      fetchUserData();
-      fetchTagData();
-      fetchCategoryData();
-      fetchGameData();
-    }
-  }, [token]);
-
+function HomePage({ gameData, categoryData }) {
   return (
 
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
