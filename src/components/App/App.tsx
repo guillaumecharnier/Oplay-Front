@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useAuth } from "../../context/AuthContext";
 import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
@@ -17,99 +18,87 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 
 function App() {
-  const [token, setToken] = useState('');
   const [userData, setUserData] = useState<UserData[]>([]);
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [tagData, setTagData] = useState<TagData[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [isModal, setModal] = useState(false);
 
-  const fetchToken = async () => {
-    try {
-      const response = await axios.post('http://192.168.94.134:8080/api/login_check', {
-        username: 'admin@oplay.fr',
-        password: 'admin'
-      });
-      setToken(response.data.token);
-      // console.log(response.data.token);
-    } catch (error) {
-      console.error('Error fetching token:', error);
-    }
-  };
+  // const token = localStorage.getItem('jwtToken');
+  const { token } = useAuth();
+  //la maniere de recuperer le token est ici
+  //TODO voir comment fonctionne le passage use auth du token
+  // console.log(token);
+
   // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
 
-
-  const fetchUserData = async () => {
+ const fetchUserData = async () => {
     try {
-      const response = await axios.get('http://192.168.94.134:8080/api/user/browse', {
+      const response = await axios.get('http://localhost:8080/api/user/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
       setUserData([response.data]);
-      console.log('user', response.data);
+      console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-    }
-  };
+  }
+};
 
   const fetchGameData = async () => {
-    try {
-      const response = await axios.get('http://192.168.94.134:8080/api/game/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setGameData(response.data);
-      console.log('Game',response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      try {
+        const response = await axios.get('http://localhost:8080/api/game/browse', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        setGameData(response.data);
+        console.log('Game',response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
     }
   };
 
   const fetchTagData = async () => {
     try {
-      const response = await axios.get('http://192.168.94.134:8080/api/tag/browse', {
+      const response = await axios.get('http://localhost:8080/api/tag/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
       setTagData(response.data);
-      // console.log('Tag', response.data);
+      console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-    }
+  }
   };
 
   const fetchCategoryData = async () => {
     try {
-      const response = await axios.get('http://192.168.94.134:8080/api/category/browse', {
+      const response = await axios.get('http://localhost:8080/api/category/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
       setCategoryData(response.data);
-      // console.log('category', response.data);
+      console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-    }
+  }
   };
 
-  useEffect(() => {
-    fetchToken();
-  }, []);
-  
   useEffect(() => {
     if (token) {
       fetchUserData();
       fetchTagData();
       fetchCategoryData();
       fetchGameData();
-    }
+    } 
   }, [token]);
 
   const openModal = () =>{
@@ -125,8 +114,8 @@ function App() {
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
       <Routes>
         <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
-        <Route path="/connexion" element={<Connexion userData={userData} />} />
-        <Route path="/inscription" element={<Inscription token={token} />} />
+        <Route path="/connexion" element={<Connexion />} />
+        <Route path="/inscription" element={<Inscription />} />
         <Route path="/*" element={<Erreur />} />
         <Route path="/profil/" element={<Profil />} />
         {/* profil/:id */}
@@ -141,31 +130,23 @@ function App() {
         {/* <Route path="/categories" element={<Category />} /> */}
         {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}
        {/* 
-       
         <Route path="/paiement" element={<SinglePostPage />} />
-
         <Route path="/jeu/:id" element={<GamePage />} />
-
         {/* <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/jeux-personnalise" element={<SinglePostPage />} />
-
-     
-  
-
         <Route path="/derniere-sortie" element={<SinglePostPage />} />
         <Route path="/derniere-ajout" element={<SinglePostPage />} />
         <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/categorie/:id" element={<SinglePostPage />} />
-        
-
         <Route path="/conditions-generales" element={<SinglePostPage />} />
         <Route path="/mentions-légales" element={<SinglePostPage />} />
         <Route path="/supprimer" element={<SinglePostPage />} />
         <Route path="/backoffice" element={<SinglePostPage />} /> */}
       </Routes>
+
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
     </div>
   );
