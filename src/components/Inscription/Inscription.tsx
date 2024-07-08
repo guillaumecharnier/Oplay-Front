@@ -3,8 +3,6 @@ import { Link, redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-
-
 function Inscription({ token }) {
 
   const [erreur, setErreur] = useState('');
