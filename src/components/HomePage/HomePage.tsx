@@ -16,7 +16,7 @@ function HomePage({ token }) {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get('http://192.168.91.157:8080/api/user/browse', {
+      const response = await axios.get('http://192.168.94.134:8080/api/user/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -31,7 +31,7 @@ function HomePage({ token }) {
 
   const fetchTagData = async () => {
     try {
-      const response = await axios.get('http://192.168.91.157:8080/api/tag/browse', {
+      const response = await axios.get('http://192.168.94.134:8080/api/tag/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -46,7 +46,7 @@ function HomePage({ token }) {
 
   const fetchCategoryData = async () => {
     try {
-      const response = await axios.get('http://192.168.91.157:8080/api/category/browse', {
+      const response = await axios.get('http://192.168.94.134:8080/api/category/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -61,7 +61,7 @@ function HomePage({ token }) {
 
   const fetchGameData = async () => {
     try {
-      const response = await axios.get('http://192.168.91.157:8080/api/game/browse', {
+      const response = await axios.get('http://192.168.94.134:8080/api/game/browse', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
