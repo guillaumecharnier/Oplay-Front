@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { GameData } from '../../assets/type';
-import { PluginContainer } from 'vite';
+import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -14,18 +13,20 @@ import Parametre from '../Parametre/Parametre';
 import Panier from '../Panier/Panier';
 import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
-import React from 'react';
-import GamePage from '../PageJeu/PageJeu';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 
 function App() {
   const [token, setToken] = useState('');
+  const [userData, setUserData] = useState<UserData[]>([]);
+  const [gameData, setGameData] = useState<GameData[]>([]);
+  const [tagData, setTagData] = useState<TagData[]>([]);
+  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [isModal, setModal] = useState(false);
 
   const fetchToken = async () => {
     try {
-      const response = await axios.post('http://192.168.91.157:8080/api/login_check', {
+      const response = await axios.post('http://192.168.94.134:8080/api/login_check', {
         username: 'admin@oplay.fr',
         password: 'admin'
       });
@@ -35,11 +36,82 @@ function App() {
       console.error('Error fetching token:', error);
     }
   };
+  // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
+
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get('http://192.168.94.134:8080/api/user/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setUserData([response.data]);
+      console.log('user', response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchGameData = async () => {
+    try {
+      const response = await axios.get('http://192.168.94.134:8080/api/game/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setGameData(response.data);
+      console.log('Game',response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchTagData = async () => {
+    try {
+      const response = await axios.get('http://192.168.94.134:8080/api/tag/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setTagData(response.data);
+      // console.log('Tag', response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchCategoryData = async () => {
+    try {
+      const response = await axios.get('http://192.168.94.134:8080/api/category/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setCategoryData(response.data);
+      // console.log('category', response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
     fetchToken();
   }, []);
   
+  useEffect(() => {
+    if (token) {
+      fetchUserData();
+      fetchTagData();
+      fetchCategoryData();
+      fetchGameData();
+    }
+  }, [token]);
+
   const openModal = () =>{
     setModal(true);
   }
@@ -47,12 +119,13 @@ function App() {
     setModal(false); 
   }
   const location = useLocation();
+
   return (
     <div>
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
       <Routes>
-        <Route path="/" element={<HomePage token={token} />} />
-        <Route path="/connexion" element={<Connexion />} />
+        <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
+        <Route path="/connexion" element={<Connexion userData={userData} />} />
         <Route path="/inscription" element={<Inscription token={token} />} />
         <Route path="/*" element={<Erreur />} />
         <Route path="/profil/" element={<Profil />} />
