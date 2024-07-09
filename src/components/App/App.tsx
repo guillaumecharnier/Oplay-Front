@@ -18,45 +18,41 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 
 function App() {
-  const [userData, setUserData] = useState<UserData[]>([]);
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [tagData, setTagData] = useState<TagData[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [isModal, setModal] = useState(false);
 
-  // const token = localStorage.getItem('jwtToken');
   const { token } = useAuth();
-  //la maniere de recuperer le token est ici
-  //TODO voir comment fonctionne le passage use auth du token
-  // console.log(token);
+  const location = useLocation();
 
   // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
 
- const fetchUserData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/user/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setUserData([response.data]);
-      console.log('User', response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-  }
-};
+//  const fetchUserData = async () => {
+//     try {
+//       const response = await axios.get('http://localhost:8080/api/user/browse', {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${token}`,
+//         },
+//       });
+//       setUserData([response.data]);
+//       // console.log('User', response.data);
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//   }
+// };
 
   const fetchGameData = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/game/browse', {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer ${token}`,
           },
         });
         setGameData(response.data);
-        console.log('Game',response.data);
+        // console.log('Game',response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -67,11 +63,11 @@ function App() {
       const response = await axios.get('http://localhost:8080/api/tag/browse', {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
         },
       });
       setTagData(response.data);
-      console.log('Tag', response.data);
+      // console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
   }
@@ -82,11 +78,11 @@ function App() {
       const response = await axios.get('http://localhost:8080/api/category/browse', {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
         },
       });
       setCategoryData(response.data);
-      console.log('category', response.data);
+      // console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
   }
@@ -94,20 +90,15 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      fetchUserData();
+      // fetchUserData();
       fetchTagData();
       fetchCategoryData();
       fetchGameData();
     } 
   }, [token]);
 
-  const openModal = () =>{
-    setModal(true);
-  }
-  const closeModal = () =>{
-    setModal(false); 
-  }
-  const location = useLocation();
+  const openModal = () => setModal(true);
+  const closeModal = () => setModal(false);
 
   return (
     <div>
@@ -124,7 +115,7 @@ function App() {
         <Route path="/panier" element={<Panier/>} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
-        <Route path="/jeu/:id" element={<PageJeu gameData={undefined} />} />
+        <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         // TODO voir le typage undefined 
 
         {/* <Route path="/categories" element={<Category />} /> */}

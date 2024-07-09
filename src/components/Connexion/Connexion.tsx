@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import axios from "axios";
+import { UserData } from '../../assets/type';
 
 const Connexion: React.FC = () => {
-  const { token } = useAuth();
-  const [error, setError] = useState<string | null>(null);
-  async function handleSubmit(event) {
+  const { token, login, logout, setToken } = useAuth();
+  const [error, setError] = useState<string | null>(null)
+  const [userData, setUserData] = useState<UserData[]>([]);
+  
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -13,12 +19,26 @@ const Connexion: React.FC = () => {
     const email = formData.get("email");
     const password = formData.get("password");
 
+    const fetchToken = async () => {
+      try {
+          const response = await axios.post('http://localhost:8080/api/login_check', {
+              username: 'admin@oplay.fr',
+              password: 'admin'
+          });
+          const newToken = response.data.token;
+          setToken(newToken);
+          localStorage.setItem('jwtToken', newToken);
+      } catch (error) {
+          console.error('Error fetching token:', error);
+      }
+  };
+
     try {
       const response = await fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           username: email,
@@ -27,26 +47,43 @@ const Connexion: React.FC = () => {
       });
 
       const result = await response.json();
-      console.log(result);
 
       if (response.ok) {
-        console.log("Connexion réussie", result);
-        // login(result.token);
-        // setLog(true);
-        // Redirection ou autre action en cas de succès
-        <Navigate to="/"/>;
-      } else {
-        console.log("Échec de la connexion", result);
+        const newToken = token;
+        // lance le token
+
+        fetchToken();
+        login(newToken, true);
+        navigate('/');
+        getUser();
       }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
+      setError("Erreur lors de la connexion. Veuillez réessayer plus tard.");
     }
+  };
 
-    // Affichage des valeurs pour le débogage
-    console.log("Email saisi :", email);
-    console.log("Mot de passe saisi :", password);
+  const getUser = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/user/browse', {
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${token}`,
+        },
+      });
+      setUserData([response.data]);
+      console.log('User', response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
   }
-// console.log(localStorage.getItem('jwtToken'));
+};
+
+useEffect(() => {
+  console.log(userData);
+}, [handleSubmit]);
+console.log(userData);
+
+
     return (
     <div className="bg-blue-custom-200 text-white min-h-screen flex flex-col items-center py-28">
        <div className="absolute top-4 left-4 flex items-center">
@@ -82,12 +119,3 @@ const Connexion: React.FC = () => {
   }
   
   export default Connexion;
-
-  // if ('success' === r.message) {
-  //   localStorage.setItem('user', JSON.stringify({ email, token: r.token }))
-  //   props.setLoggedIn(true)
-  //   props.setEmail(email)
-  //   navigate('/')
-  // } else {
-  //   window.alert('Wrong email or password')
-  // }

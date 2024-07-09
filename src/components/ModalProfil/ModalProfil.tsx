@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 interface ModalProfilProps {
   closeModal: () => void;
 }
 
 function ModalProfil({ closeModal }: ModalProfilProps) {
+  const { isLog, logout } = useAuth();
+  
+
   return (
     <div className="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center">
       <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96 ">
-        {/* Icone de fermeture */}
+        {/* Closing cross */}
         <button
           className="absolute top-4 right-4 text-3xl hover:text-gray-300 focus:outline-none"
           onClick={closeModal}
@@ -16,7 +20,7 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
           x
         </button>
 
-        {/* Contenu du Modal */}
+        {/* Modal content */}
         <div className="flex flex-col items-center space-y-6">
           <img
             src="/src/assets/images/profile-user.svg"
@@ -38,16 +42,19 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
             >
               Paramètres
             </Link>
-            <Link
-              to="/"
-              className="hidden hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
-              //TODO if connected to add deconnection button
-              onClick={closeModal}
-            >
-              Déconnexion
-            </Link>
+            {isLog && (
+              <button
+                className="hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+                onClick={() => {
+                  logout(); // Appeler la fonction de déconnexion
+                  closeModal();
+                }}
+              >
+                Déconnexion
+              </button>
+            )}
           </div>
-          {/* Couleurs de bordure */}
+          {/* Border colors */}
           <div className="flex flex-row justify-center space-x-2 mt-6">
             <span className="w-12 h-12 rounded-full border border-black bg-red-500"></span>
             <span className="w-12 h-12 rounded-full border border-black bg-blue-500"></span>

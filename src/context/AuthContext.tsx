@@ -5,115 +5,62 @@ import { createContext, useState, useContext, useEffect } from 'react';
 // Créer le contexte
 interface AuthContextType {
     token: string;
-    // login: (newToken: string) => void;
-    // logout: () => void;
+    setToken: React.Dispatch<React.SetStateAction<string>>
+    isLog: boolean;
+    login: (newToken: string, logged: boolean) => void;
+    logout: () => void;
 }
 
 // Créer le contexte avec un type spécifique
 const AuthContext = createContext<AuthContextType>({
     token: '',
-    // login: (newToken: string) => {},
-    // logout: () => {}
+    setToken: () => {},
+    isLog: (false),
+    login: (newToken: string, logged: false) => {},
+    logout: () => {}
 });
+
 // Fournir le contexte
 export const AuthProvider = ({ children }) => {
 
-    const [token, setToken] = useState<string>('');
+    // const [token, setToken] = useState<string>('');
+    // const [isLog, setIsLog] = useState(false);
 
+    const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
+    const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'true');
+    
     useEffect(() => {
-        const fetchToken = async () => {
-            try {
-                const response = await axios.post('http://localhost:8080/api/login_check', {
-                    username: 'admin@oplay.fr',
-                    password: 'admin'
-                });
-                const newToken = response.data.token;
-                setToken(newToken);
-                localStorage.setItem('jwtToken', newToken);
-            } catch (error) {
-                console.error('Error fetching token:', error);
-            }
-        };
-        fetchToken();
+        const storedToken = localStorage.getItem('jwtToken');
+        if (storedToken) {
+            setToken(storedToken);
+            setIsLog(true);
+        } else {
+            setIsLog(false);
+        }
     }, []);
+    
+    const login = (newToken: string, logged: boolean) => {
+        localStorage.setItem('jwtToken', newToken);
+        setToken(newToken);
 
-    // const login = (newToken) => {
-    //     localStorage.setItem('jwtToken', newToken);
-    //     setToken(newToken);
-    // };
+        localStorage.setItem('logged', logged.toString());
+        setIsLog(logged);
+    };
 
-    // const logout = () => {
-    //     localStorage.removeItem('jwtToken');
-    //     setToken('');
-    // };
+    const logout = () => {
+        localStorage.removeItem('jwtToken');
+        setToken(null);
+        localStorage.removeItem('logged');
+        setIsLog(false)
+      };
 
     return (
-        <AuthContext.Provider value={{ token }}>
-            {children}
+        <AuthContext.Provider value={{ token, isLog, login, logout, setToken }}>
+        {children}
         </AuthContext.Provider>
     );
 };
 
-
-// Hook pour utiliser le contexte
 export const useAuth = () => {
     return useContext(AuthContext);
 };
-// import axios from 'axios';
-// import { createContext, useState, useContext, useEffect } from 'react';
-
-// // Créer le contexte
-// const AuthContext = createContext(null);
-
-// // Fournir le contexte
-// export const AuthProvider = ({ children }) => {
-
-//     const [token, setToken] = useState('');
-//     const [user, setUser] = useState(null); // Initialisé à null plutôt qu'à une chaîne vide
-    
-//     const fetchToken = async () => {
-//         try {
-//             const response = await axios.post('http://localhost:8080/api/login_check', {
-//                 username: 'admin@oplay.fr',
-//                 password: 'admin'
-//             });
-//             const newToken = response.data.token;
-//             setToken(newToken);
-//             localStorage.setItem('jwtToken', newToken); // Utilise newToken pour mettre à jour localStorage
-//             setUser({ token: newToken }); // Met à jour user avec un objet contenant le token
-//         } catch (error) {
-//             console.error('Error fetching token:', error);
-//         }
-//     };
-
-//     useEffect(() => {
-//         fetchToken();
-//         // Récupérer le token stocké dans localStorage
-//         const storedToken = localStorage.getItem('jwtToken');
-//         if (storedToken) {
-//             setUser({ token: storedToken });
-//         }
-//     }, []);
-
-//     const login = (newToken) => { // Utilise newToken comme paramètre plutôt que token
-//         localStorage.setItem('jwtToken', newToken);
-//         setUser({ token: newToken });
-//     };
-
-//     const logout = () => {
-//         localStorage.removeItem('jwtToken');
-//         setUser(null);
-//     };
-//     console.log(token);
-
-//     return (
-//         <AuthContext.Provider value={{ user, login, logout }}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
-
-// // Hook pour utiliser le contexte
-// export const useAuth = () => {
-//     return useContext(AuthContext);
-// };
