@@ -24,11 +24,8 @@ function App() {
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [isModal, setModal] = useState(false);
 
-  // const token = localStorage.getItem('jwtToken');
   const { token } = useAuth();
-  //la maniere de recuperer le token est ici
-  //TODO voir comment fonctionne le passage use auth du token
-  // console.log(token);
+  const location = useLocation();
 
   // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
 
@@ -41,7 +38,7 @@ function App() {
         },
       });
       setUserData([response.data]);
-      console.log('User', response.data);
+      // console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
   }
@@ -52,11 +49,11 @@ function App() {
         const response = await axios.get('http://localhost:8080/api/game/browse', {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer ${token}`,
           },
         });
         setGameData(response.data);
-        console.log('Game',response.data);
+        // console.log('Game',response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -71,7 +68,7 @@ function App() {
         },
       });
       setTagData(response.data);
-      console.log('Tag', response.data);
+      // console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
   }
@@ -86,7 +83,7 @@ function App() {
         },
       });
       setCategoryData(response.data);
-      console.log('category', response.data);
+      // console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
   }
@@ -101,13 +98,15 @@ function App() {
     } 
   }, [token]);
 
-  const openModal = () =>{
-    setModal(true);
-  }
-  const closeModal = () =>{
-    setModal(false); 
-  }
-  const location = useLocation();
+  // const openModal = () =>{
+  //   setModal(true);
+  // }
+  // const closeModal = () =>{
+  //   setModal(false); 
+  // }
+ 
+  const openModal = () => setModal(true);
+  const closeModal = () => setModal(false);
 
   return (
     <div>

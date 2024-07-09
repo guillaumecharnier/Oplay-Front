@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
+import { useAuth } from "../../context/AuthContext";
+
 interface HeaderProps {
   isModal: boolean;
   openModal: () => void;
   closeModal: () => void;
+
 }
 const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
+  const { isLog } = useAuth();
+
   const location = useLocation();
   // Vérifiez si l'URL actuelle est `/inscription`
   const isInscriptionPage = location.pathname === '/inscription';
@@ -18,7 +23,9 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
   return (
     <header className="bg-blue-custom-200 relative">
       <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
-        {/* Section Se connecter */}
+      
+      {/* Section Se connecter */}
+      {!isLog ?
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           <Link
             to="/connexion"
@@ -27,7 +34,9 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             {/* //TODO if connected is true remove button Se connecter */}
             <span className="text-s  font-semibold tablet:text-lg">Se connecter</span>
           </Link>
-        </div>
+        </div> : ''}
+
+
         {/* Logo et titre */}
         <div className="flex flex-col items-center justify-center w-full md:w-1/3 space-y-2">
           <Link to="/">

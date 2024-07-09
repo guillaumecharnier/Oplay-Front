@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
@@ -8,6 +8,7 @@ function Inscription() {
   
   const { token } = useAuth();
   const [erreur, setErreur] = useState('');
+  const navigate = useNavigate();
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -65,8 +66,7 @@ function Inscription() {
         }
       });
 
-      // TODO redirection vers page de connexion ? 
-      // history.push('/connexion');
+      navigate('/');
     } catch (error) {
       console.error('pas fonctionné');
     }
