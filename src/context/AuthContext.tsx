@@ -28,11 +28,20 @@ export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
     const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'true');
-   
+    
+    useEffect(() => {
+        const storedToken = localStorage.getItem('jwtToken');
+        if (storedToken) {
+            setToken(storedToken);
+            setIsLog(true);
+        } else {
+            setIsLog(false);
+        }
+    }, []);
+    
     const login = (newToken: string, logged: boolean) => {
         localStorage.setItem('jwtToken', newToken);
         setToken(newToken);
-        console.log(localStorage);
 
         localStorage.setItem('logged', logged.toString());
         setIsLog(logged);
@@ -45,7 +54,6 @@ export const AuthProvider = ({ children }) => {
         setIsLog(false)
       };
 
-    console.log(localStorage);
     return (
         <AuthContext.Provider value={{ token, isLog, login, logout, setToken }}>
         {children}

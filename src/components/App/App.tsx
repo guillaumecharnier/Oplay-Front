@@ -18,7 +18,6 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 
 function App() {
-  const [userData, setUserData] = useState<UserData[]>([]);
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [tagData, setTagData] = useState<TagData[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
@@ -29,20 +28,20 @@ function App() {
 
   // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
 
- const fetchUserData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/user/browse', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      setUserData([response.data]);
-      // console.log('User', response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-  }
-};
+//  const fetchUserData = async () => {
+//     try {
+//       const response = await axios.get('http://localhost:8080/api/user/browse', {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${token}`,
+//         },
+//       });
+//       setUserData([response.data]);
+//       // console.log('User', response.data);
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//   }
+// };
 
   const fetchGameData = async () => {
       try {
@@ -64,7 +63,7 @@ function App() {
       const response = await axios.get('http://localhost:8080/api/tag/browse', {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
         },
       });
       setTagData(response.data);
@@ -79,7 +78,7 @@ function App() {
       const response = await axios.get('http://localhost:8080/api/category/browse', {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
         },
       });
       setCategoryData(response.data);
@@ -91,20 +90,13 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      fetchUserData();
+      // fetchUserData();
       fetchTagData();
       fetchCategoryData();
       fetchGameData();
     } 
   }, [token]);
 
-  // const openModal = () =>{
-  //   setModal(true);
-  // }
-  // const closeModal = () =>{
-  //   setModal(false); 
-  // }
- 
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
@@ -123,7 +115,7 @@ function App() {
         <Route path="/panier" element={<Panier/>} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
-        <Route path="/jeu/:id" element={<PageJeu gameData={undefined} />} />
+        <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         // TODO voir le typage undefined 
 
         {/* <Route path="/categories" element={<Category />} /> */}

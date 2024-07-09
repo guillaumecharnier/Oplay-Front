@@ -6,6 +6,7 @@ import Categories from './Categories';
 import NextRelease from './NextRelease';
 import PageJeu from '../PageJeu/PageJeu';
 
+
 function HomePage({ gameData, categoryData }) {
   return (
 
@@ -43,15 +44,13 @@ function HomePage({ gameData, categoryData }) {
       {/* Section Categories */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
         <Categories categoryData={categoryData} />
+      
+      {/* Section AdminButton */}
+      
       </div>
     </div>
   );
 }
 
 
-
 export default HomePage;
-
-
-
-
