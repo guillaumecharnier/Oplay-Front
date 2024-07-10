@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { createContext, useState, useContext, useEffect } from 'react';
 
@@ -22,9 +21,6 @@ const AuthContext = createContext<AuthContextType>({
 
 // Fournir le contexte
 export const AuthProvider = ({ children }) => {
-
-    // const [token, setToken] = useState<string>('');
-    // const [isLog, setIsLog] = useState(false);
 
     const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
     const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'true');

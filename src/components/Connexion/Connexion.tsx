@@ -31,7 +31,7 @@ const Connexion: React.FC = () => {
       } catch (error) {
           console.error('Error fetching token:', error);
       }
-  };
+    };
 
     try {
       const response = await fetch('http://localhost:8080/login', {
@@ -62,7 +62,7 @@ const Connexion: React.FC = () => {
       setError("Erreur lors de la connexion. Veuillez réessayer plus tard.");
     }
   };
-
+  
   const getUser = async () => {
     try {
       const response = await axios.get('http://localhost:8080/api/user/browse', {
@@ -75,14 +75,30 @@ const Connexion: React.FC = () => {
       console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-  }
-};
+    }
+  };
 
-useEffect(() => {
+  useEffect(() => {
   console.log(userData);
-}, [handleSubmit]);
-console.log(userData);
+}, [userData]);
 
+//   axios.get('localhost_url/usersdata/:id')
+//     .then(response => {
+//        this.setState({ message_user : response.data })
+//     })
+// }
+
+// const MyComponent = ({ userData, handleSubmit }) => {
+//   const [isAdmin, setIsAdmin] = useState(false);
+
+//   useEffect(() => {
+    
+//     if (userData && userData.role === 'admin') {
+//       setIsAdmin(true);
+//     } else {
+//       setIsAdmin(false);
+//     }
+//   }, [userData, handleSubmit])};
 
     return (
     <div className="bg-blue-custom-200 text-white min-h-screen flex flex-col items-center py-28">
