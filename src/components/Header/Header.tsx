@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
-  const { isLog } = useAuth();
+  const { isLog, roles } = useAuth();
 
   const location = useLocation();
   // Vérifiez si l'URL actuelle est `/inscription`
@@ -20,10 +20,14 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
     return null;
   }
 
+  // console.log(roles);
   return (
     <header className="bg-blue-custom-200 relative">
       <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
-      
+        {/* TODO slice le role pour avoir user ou admin et affiche le boutton backoffice */}
+      {/* {roles && roles.map((role, index) => (
+                <p key={index}>{role}</p>
+            ))} */}
       {/* Section Se connecter */}
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
          
