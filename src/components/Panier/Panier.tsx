@@ -1,6 +1,23 @@
+import axios from 'axios';
 import React from 'react';
+import { useState, useEffect } from 'react';
 
 function Panier() {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await axios.get('/api/order/cart');  // Récupère les articles du panier
+        setCartItems(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération du panier:", error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
   return (
     <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
@@ -41,46 +58,6 @@ function Panier() {
             </div>
             <div className="flex items-center space-x-2 md:space-x-4">
               <p className="text-sm md:text-lg font-bold text-gray-800">$59.99</p>
-              <button className="bg-red-600 p-1 md:p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
-                <img
-                  src="/src/assets/images/trash.svg"
-                  alt="Supprimer l'article"
-                  className="w-5 h-5"
-                />
-              </button>
-            </div>
-          </li>
-
-          <li className="flex flex-col md:flex-row items-center p-4 md:p-6 space-y-4 md:space-y-0 md:space-x-4 border-b border-gray-200">
-            <img
-              src="/src/assets/images/ShopPictures.jpg"
-              alt="Jeu 2"
-              className="w-24 h-24 object-cover rounded-xl shadow-md"
-            />
-            <div className="flex-1">
-              <h2 className="text-base md:text-lg font-semibold text-gray-800">Jeu 2</h2>
-              <p className="text-sm md:text-gray-600">2 x $49.99</p>
-            </div>
-            <div className="flex items-center space-x-2 md:space-x-4">
-              {/* Boutons pour gérer la quantité */}
-              <button className="bg-gray-200 p-1 md:p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
-                <img
-                  src="/src/assets/images/less-circle.svg"
-                  alt="Diminuer la quantité"
-                  className="w-4 h-4"
-                />
-              </button>
-              <span className="text-sm md:text-lg font-bold text-gray-800">2</span>
-              <button className="bg-gray-200 p-1 md:p-2 rounded-full text-gray-600 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
-                <img
-                  src="/src/assets/images/plus-circle.svg"
-                  alt="Augmenter la quantité"
-                  className="w-4 h-4"
-                />
-              </button>
-            </div>
-            <div className="flex items-center space-x-2 md:space-x-4">
-              <p className="text-sm md:text-lg font-bold text-gray-800">$99.98</p>
               <button className="bg-red-600 p-1 md:p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
                 <img
                   src="/src/assets/images/trash.svg"
