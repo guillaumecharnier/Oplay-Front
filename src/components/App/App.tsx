@@ -16,6 +16,9 @@ import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
+import jeuxPersonnalise from '../Page/jeuxPersonnalise'
+import JeuxPersonnalise from '../Page/jeuxPersonnalise';
+
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -116,6 +119,8 @@ function App() {
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
+        <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
+    
         // TODO voir le typage undefined 
 
         {/* <Route path="/categories" element={<Category />} /> */}
@@ -127,7 +132,6 @@ function App() {
         <Route path="/confirmation" element={<SinglePostPage />} />
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
-        <Route path="/jeux-personnalise" element={<SinglePostPage />} />
         <Route path="/derniere-sortie" element={<SinglePostPage />} />
         <Route path="/derniere-ajout" element={<SinglePostPage />} />
         <Route path="/categories" element={<SinglePostPage />} />
