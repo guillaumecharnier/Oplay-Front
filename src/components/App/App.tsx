@@ -50,7 +50,7 @@ function App() {
 
   const fetchGameData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/game/browse', {
+        const response = await axios.get('http://localhost:8080/api/game', {
           headers: {
             'Content-Type': 'application/json',
             // 'Authorization': `Bearer ${token}`,
@@ -65,7 +65,7 @@ function App() {
 
   const fetchTagData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/tag/browse', {
+      const response = await axios.get('http://localhost:8080/api/tag', {
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${token}`,
@@ -80,7 +80,7 @@ function App() {
 
   const fetchCategoryData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/category/browse', {
+      const response = await axios.get('http://localhost:8080/api/category', {
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${token}`,
@@ -91,17 +91,21 @@ function App() {
     } catch (error) {
       console.error('Error fetching data:', error);
   }
-  };
-
+};
   useEffect(() => {
     if (token) {
       // fetchUserData();
-      fetchTagData();
-      fetchCategoryData();
-      fetchGameData();
+      // fetchTagData();
+      // fetchCategoryData();
     } 
   }, [token]);
 
+  useEffect(() => {
+    fetchTagData();
+    fetchCategoryData();
+    fetchGameData();
+  },[]);
+  
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
@@ -129,7 +133,6 @@ function App() {
         {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}
        {/* 
         <Route path="/paiement" element={<SinglePostPage />} />
-        <Route path="/jeu/:id" element={<GamePage />} />
         {/* <Route path="/paiement" element={<SinglePostPage />} />
         <Route path="/confirmation" element={<SinglePostPage />} />
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
