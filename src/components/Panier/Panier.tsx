@@ -21,40 +21,35 @@ interface PageJeuProps {
 function Panier({ gameData }: PageJeuProps) {
   const { token } = useAuth();
   const { cartItems } = useCart();
-
   const { id } = useParams<{ id: string }>();
   // const game = gameData.find((game) => game.id === parseInt(id));
 
 console.log(cartItems);
 
-
-
-  // if (!game) return <p>Jeu non trouvé</p>;
-
   // const gameId = game.id;
 
-  // const addToCart = async (game: Game) => {
-  //   try {
-  //     await axios.post(
-  //       'http://localhost:8080/api/order/add',
-  //       { 'game_id': game.id },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': `Bearer ${token}`, 
-  //         },
-  //       }
-  //     );
-  //     console.log('envoyé');
-  //     addToCartContext(game); // Ajouter le jeu au contexte du panier
-  //   } catch (error) {
-  //     console.error(
-  //       'Erreur lors de l\'ajout du jeu au panier:',
-  //       error.response ? error.response.data : error.message
-  //     );
-  //     console.log('raté');
-  //   }
-  // };
+  const deleteFromCart = async (gameId) => {
+    try {
+      await axios.post(
+        'http://localhost:8080/api/order/remove',
+        { 'game_id': gameId },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, 
+          },
+        }
+      );
+      console.log('envoyé');
+      // addToCartContext(game); // Ajouter le jeu au contexte du panier
+    } catch (error) {
+      console.error(
+        'Erreur lors de l\'ajout du jeu au panier:',
+        error.response ? error.response.data : error.message
+      );
+      console.log('raté');
+    }
+  };
 
   return (
     <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
@@ -98,7 +93,7 @@ console.log(cartItems);
               <div className="flex items-center space-x-2 md:space-x-4">
                 <p className="text-sm md:text-lg font-bold text-gray-800">{game.price}€</p>
                 <button 
-                  // onClick={deleteFromCart}
+                  onClick={() => deleteFromCart(game.id)}
                   className="bg-red-600 p-1 md:p-2 rounded-full text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
                 >
                   <img
