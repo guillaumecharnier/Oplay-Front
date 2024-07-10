@@ -1,23 +1,55 @@
 import axios from 'axios';
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 
-function PageJeu({ gameData }) {
-  const { id } = useParams();
-  const navigate = useNavigate();
+
+interface Game {
+  id: number;
+  name: string;
+  description: string;
+  releaseDate: string;
+  editor: string;
+  picture: string;
+  price: number;
+}
+
+interface PageJeuProps {
+  gameData: Game[];
+}
+
+function PageJeu({ gameData }: PageJeuProps) {
+  const { token } = useAuth();
+  const { addToCartContext } = useCart();
+
+  const { id } = useParams<{ id: string }>();
   const game = gameData.find((game) => game.id === parseInt(id));
 
   if (!game) return <p>Jeu non trouvé</p>;
 
-  const addToCart = async () => {
+  const gameId = game.id;
+
+  const addToCart = async (gameId: number) => {
     try {
-      // Assure-toi que l'URL est correcte et accessible
-      await axios.post('/api/order/add', { gameId: game.id });
-      alert("Jeu ajouté au panier !");
-      navigate('/panier');  // Redirige vers le panier après l'ajout
+      await axios.post(
+        'http://localhost:8080/api/order/add',
+        {'game_id': gameId},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, 
+          },
+        }
+      );
+      console.log('envoyé');
+      addToCartContext(game)
     } catch (error) {
-      console.error('Erreur lors de l\'ajout du jeu au panier:', error.response ? error.response.data : error.message)
-      alert('Une erreur est survenue. Veuillez réessayer.');
+      console.error(
+        'Erreur lors de l\'ajout du jeu au panier:',
+        error.response ? error.response.data : error.message
+      );
+      console.log('raté');
     }
   };
 
@@ -51,7 +83,7 @@ function PageJeu({ gameData }) {
           <div className="flex flex-col md:flex-row items-center justify-between mt-8">
             <span className="text-3xl md:text-4xl font-bold text-gray-900">{game.price}€</span>
             <button 
-              onClick={addToCart}
+              onClick={() => addToCart(gameId)}
               className="bg-blue-500 text-white px-5 py-3 rounded-lg text-lg md:text-xl hover:bg-blue-600 transition duration-300 mt-4 md:mt-0"
             >
               Ajouter au Panier
@@ -64,6 +96,3 @@ function PageJeu({ gameData }) {
 }
 
 export default PageJeu;
-
-
-
