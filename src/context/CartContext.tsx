@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from 'react';
 
 interface Game {
   id: number;
@@ -13,11 +13,13 @@ interface Game {
 interface CartContextType {
   cartItems: Game[];
   addToCartContext: (game: Game) => void;
+  setCartItems: Dispatch<SetStateAction<Game[]>>;
 }
 
 const CartContext = createContext<CartContextType>({
   cartItems: [],
   addToCartContext: () => {},
+  setCartItems: () => {},
 });
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -27,8 +29,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => [...prevItems, game]);
   };
 
+  // const removeToCartContext = (game: Game) => {
+  //   removecartItems((prevItems) => [...prevItems, game]);
+  // };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCartContext }}>
+    <CartContext.Provider value={{ cartItems, addToCartContext, setCartItems }}>
       {children}
     </CartContext.Provider>
   );
