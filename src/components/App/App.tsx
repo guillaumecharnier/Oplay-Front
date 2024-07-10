@@ -16,8 +16,10 @@ import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
-import jeuxPersonnalise from '../Page/jeuxPersonnalise'
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
+import DernierAjout from '../DernierAjout/DernierAjout';
+
+
 
 
 function App() {
@@ -120,8 +122,8 @@ function App() {
         <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
-    
-        // TODO voir le typage undefined 
+        {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
+        {/* // TODO voir le typage undefined  */}
 
         {/* <Route path="/categories" element={<Category />} /> */}
         {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}
@@ -133,7 +135,6 @@ function App() {
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
         <Route path="/derniere-sortie" element={<SinglePostPage />} />
-        <Route path="/derniere-ajout" element={<SinglePostPage />} />
         <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/categorie/:id" element={<SinglePostPage />} />
         <Route path="/conditions-generales" element={<SinglePostPage />} />
