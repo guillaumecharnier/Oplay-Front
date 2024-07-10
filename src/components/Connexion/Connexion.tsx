@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+
 import axios from "axios";
-import { UserData } from '../../assets/type';
 
 const Connexion: React.FC = () => {
-  const { token, login, logout, setToken } = useAuth();
+  const { token, login, logout, setToken, users } = useAuth();
   const [error, setError] = useState<string | null>(null)
-  const [userData, setUserData] = useState<UserData[]>([]);
-  
+  // const [userData, setUserData] = useState<UserData[]>([]);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -71,16 +71,25 @@ const Connexion: React.FC = () => {
           // 'Authorization': `Bearer ${token}`,
         },
       });
-      setUserData([response.data]);
+      // setUserData([response.data]);
+      users(response.data);
       console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  useEffect(() => {
-  console.log(userData);
-}, [userData]);
+  // const users = (jack) => {
+  //   console.log(jack);
+  //   setUserData(jack);
+  // }
+
+  // useEffect(() => {
+  //   console.log(userData);
+  // }, [userData]);
+
+
+  
 
 //   axios.get('localhost_url/usersdata/:id')
 //     .then(response => {

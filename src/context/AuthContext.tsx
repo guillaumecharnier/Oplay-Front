@@ -1,8 +1,9 @@
-import axios from 'axios';
 import { createContext, useState, useContext, useEffect } from 'react';
+import { UserData } from '../assets/type';
 
 // Créer le contexte
 interface AuthContextType {
+    users:[];
     token: string;
     setToken: React.Dispatch<React.SetStateAction<string>>
     isLog: boolean;
@@ -12,6 +13,7 @@ interface AuthContextType {
 
 // Créer le contexte avec un type spécifique
 const AuthContext = createContext<AuthContextType>({
+    users: [],
     token: '',
     setToken: () => {},
     isLog: (false),
@@ -24,6 +26,7 @@ export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
     const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'true');
+    const [userData, setUserData] = useState<UserData[]>([]);
     
     useEffect(() => {
         const storedToken = localStorage.getItem('jwtToken');
@@ -50,8 +53,14 @@ export const AuthProvider = ({ children }) => {
         setIsLog(false)
       };
 
+    const users = (jack) => {
+    console.log(jack);
+    setUserData(jack);
+    }
+    console.log(userData);
+
     return (
-        <AuthContext.Provider value={{ token, isLog, login, logout, setToken }}>
+        <AuthContext.Provider value={{ token, isLog, login, logout, setToken, users }}>
         {children}
         </AuthContext.Provider>
     );
