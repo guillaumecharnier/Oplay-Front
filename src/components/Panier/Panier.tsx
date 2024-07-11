@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'; // Importer useState
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { useTheme } from '../Theme/ThemeContext'; 
 
 function Panier() {
   const { token } = useAuth();
   const { cartItems, setCartItems } = useCart(); // Obtenir cartItems et setCartItems depuis le contexte
   const { id } = useParams<{ id: string }>();
+  const { theme } = useTheme(); // Récupération du thème
 
   const deleteFromCart = async (gameId) => {
     try {
@@ -60,7 +62,7 @@ function Panier() {
 
 
   return (
-    <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
+    <div className={`min-h-screen ${theme} min-h-screen py-10 px-4 md:px-8 `}>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* En-tête du panier */}
         <div className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 py-5 px-6 flex flex-col md:flex-row md:items-center md:justify-between text-white">

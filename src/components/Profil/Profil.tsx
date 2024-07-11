@@ -1,10 +1,13 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTheme } from '../Theme/ThemeContext';
 
 function Profil() {
+  const { theme } = useTheme(); // Récupération du thème
+
   return (
-    <div className="bg-blue-custom-200 text-white py-32 px-[7rem] min-h-[40rem] relative">
+    <div className={`min-h-screen ${theme} text-white py-32 px-[7rem] min-h-[40rem] relative `}>
         <div className="absolute right-[5rem] flex flex-rox bg-red-400">
             <Link to="/profil/edit" className=" px-2"><img className="w-8" src="/src/assets/images/edit.svg" alt="boutton editer sont profil" /></Link>
             <Link to="/parametre" className=" px-2"><img className="w-8" src="/src/assets/images/setter.svg" alt="boutton parametre" /></Link>
