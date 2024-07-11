@@ -1,15 +1,25 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'; // Importer useState
-import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { useUser } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
+
+interface Game {
+  id: number;
+  name: string;
+  picture: string;
+  price: number;
+}
 
 function Panier() {
   const { token } = useAuth();
-  const { cartItems, setCartItems } = useCart(); // Obtenir cartItems et setCartItems depuis le contexte
-  const { id } = useParams<{ id: string }>();
+  const { cartItems, setCartItems } = useCart();
+  const { user } = useUser();
 
-  const deleteFromCart = async (gameId) => {
+  const purchaseOrder = user.map(userunique => userunique.purchasedOrder);
+  const order = [].concat(...purchaseOrder.map(purchase => purchase.map(p => p.games))).flat();
+
+  const deleteFromCart = async (gameId: number) => {
     try {
       await axios.post(
         'http://localhost:8080/api/order/remove',
@@ -53,11 +63,26 @@ function Panier() {
     }
   };
 
-  useEffect(() => {
-    // Vous pouvez effectuer des actions supplémentaires après la suppression d'un article si nécessaire
-    console.log('Panier mis à jour après suppression :', cartItems);
-  }, [cartItems]); // useEffect s'exécute à chaque changement de cartItems
-
+  const validateOrder = async () => {
+    try {
+      await axios.post(
+        'http://localhost:8080/api/order/checkout',
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, 
+          },
+        }
+      );
+      setCartItems([]); // Mettre à jour le panier pour le vider
+    } catch (error) {
+      console.error(
+        'Erreur lors de la suppression de tous les articles du panier:',
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
 
   return (
     <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
@@ -68,7 +93,7 @@ function Panier() {
         </div>
         {/* Liste des articles */}
         <ul className="divide-y divide-gray-200">
-          {cartItems.map((game) => (
+          {order.map((game: Game) => (
             <li key={game.id} className="flex flex-col md:flex-row items-center p-4 md:p-6 space-y-4 md:space-y-0 md:space-x-4 border-b border-gray-200">
               <img
                 src={game.picture}
@@ -126,12 +151,17 @@ function Panier() {
           <button onClick={() => deleteAllItems()} className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">
             Tout Supprimer
           </button>
-          <button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">
-            Continuer mes achats
-          </button>
-          <button className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">
+          <Link to="/" className="group flex flex-col items-center" >
+            <button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">
+              Continuer mes achats
+            </button>
+          </Link>
+          <Link to="/confirmation" className="group flex flex-col items-center" >
+          <button onClick={() => validateOrder()} className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">
             Passer à la caisse
           </button>
+          </Link>
+         
         </div>
       </div>
     </div>

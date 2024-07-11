@@ -18,9 +18,7 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import DernierAjout from '../DernierAjout/DernierAjout';
-
-
-
+import Confirmation from '../Confirmation/Confirmation';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -35,7 +33,7 @@ function App() {
 
 //  const fetchUserData = async () => {
 //     try {
-//       const response = await axios.get('http://localhost:8080/api/user/browse', {
+//       const response = await axios.get('http://localhost:8080/api/user', {
 //         headers: {
 //           'Content-Type': 'application/json',
 //           'Authorization': `Bearer ${token}`,
@@ -92,13 +90,13 @@ function App() {
       console.error('Error fetching data:', error);
   }
 };
-  useEffect(() => {
-    if (token) {
-      // fetchUserData();
-      // fetchTagData();
-      // fetchCategoryData();
-    } 
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     // fetchUserData();
+  //     // fetchTagData();
+  //     // fetchCategoryData();
+  //   } 
+  // }, [token]);
 
   useEffect(() => {
     fetchTagData();
@@ -121,11 +119,13 @@ function App() {
         {/* profil/:id */}
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
-        <Route path="/panier" element={<Panier/>} />
+        <Route path="/panier" element={<Panier />} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+
         {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
         {/* // TODO voir le typage undefined  */}
 
@@ -134,10 +134,8 @@ function App() {
        {/* 
         <Route path="/paiement" element={<SinglePostPage />} />
         {/* <Route path="/paiement" element={<SinglePostPage />} />
-        <Route path="/confirmation" element={<SinglePostPage />} />
         <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
         <Route path="/test-personnalite" element={<SinglePostPage />} />
-        <Route path="/derniere-sortie" element={<SinglePostPage />} />
         <Route path="/categories" element={<SinglePostPage />} />
         <Route path="/categorie/:id" element={<SinglePostPage />} />
         <Route path="/conditions-generales" element={<SinglePostPage />} />

@@ -3,9 +3,6 @@ import React, { createContext, useState, useContext, ReactNode, Dispatch, SetSta
 interface Game {
   id: number;
   name: string;
-  description: string;
-  releaseDate: string;
-  editor: string;
   picture: string;
   price: number;
 }
