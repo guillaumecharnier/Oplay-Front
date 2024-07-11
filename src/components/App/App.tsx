@@ -19,6 +19,7 @@ import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
+import React from 'react';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -30,21 +31,6 @@ function App() {
   const location = useLocation();
 
   // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
-
-//  const fetchUserData = async () => {
-//     try {
-//       const response = await axios.get('http://localhost:8080/api/user', {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization': `Bearer ${token}`,
-//         },
-//       });
-//       setUserData([response.data]);
-//       // console.log('User', response.data);
-//     } catch (error) {
-//       console.error('Error fetching data:', error);
-//   }
-// };
 
   const fetchGameData = async () => {
       try {
@@ -90,13 +76,6 @@ function App() {
       console.error('Error fetching data:', error);
   }
 };
-  // useEffect(() => {
-  //   if (token) {
-  //     // fetchUserData();
-  //     // fetchTagData();
-  //     // fetchCategoryData();
-  //   } 
-  // }, [token]);
 
   useEffect(() => {
     fetchTagData();
@@ -115,8 +94,6 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/*" element={<Erreur />} />
-        <Route path="/profil/" element={<Profil />} />
-        {/* profil/:id */}
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
@@ -125,7 +102,9 @@ function App() {
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
         <Route path="/confirmation" element={<Confirmation />} />
-
+        <Route path="/profil/" element={<Profil />} />
+        {/* profil/:id */}
+        
         {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
         {/* // TODO voir le typage undefined  */}
 
