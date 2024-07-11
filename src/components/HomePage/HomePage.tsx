@@ -10,7 +10,7 @@ import PageJeu from '../PageJeu/PageJeu';
 function HomePage({ gameData, categoryData }) {
   return (
 
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+    <div className="bg-blue-custom-200 dark:bg-black min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
 
       {/* Image de couverture */}
       <div className="relative w-full mb-36 flex justify-center">

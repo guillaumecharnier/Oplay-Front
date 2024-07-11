@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
 
   // console.log(roles);
   return (
-    <header className="bg-blue-custom-200 relative">
+    <header className="bg-blue-custom-200 dark:bg-black relative">
       <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
         {/* TODO slice le role pour avoir user ou admin et affiche le boutton backoffice */}
       {/* {roles && roles.map((role, index) => (
