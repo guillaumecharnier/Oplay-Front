@@ -1,24 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* styles/globals.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-
-
-html, body {
-  overflow-x: hidden; /* Assurez-vous qu'il n'y a pas de défilement horizontal */
-  overflow-y: auto; /* Assurez-vous que le défilement vertical est autorisé */
-  height: 100%; /* Assurez-vous que le corps occupe 100% de la hauteur */
-  margin: 0; /* Retirer les marges par défaut du corps */
-  box-sizing: border-box; /* Inclure les bordures et les marges dans les dimensions */
-  position: relative;
+/* Ajouter des styles pour le mode sombre */
+.dark .bg-blue-custom-200 {
+  background-color: #000000;
 }
 
-
-
-/* @media (min-width: 430px) {
-  
+.dark .text-white {
+  color: #f9fafb;
 }
 
-@media (min-width: 768px) {
-  
-} */
+.dark .hover\:bg-blue-500:hover {
+  background-color: #1e40af;
+}
+
+.dark .hover\:bg-blue-600:hover {
+  background-color: #1d4ed8;
+}
+
+.dark .bg-blue-500 {
+  background-color: #1e3a8a;
+}
+
+.dark .text-white {
+  color: #e5e7eb;
+}

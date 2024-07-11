@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext';
+import { useState, useEffect } from 'react';
 
 interface ModalProfilProps {
   closeModal: () => void;
@@ -7,11 +8,50 @@ interface ModalProfilProps {
 
 function ModalProfil({ closeModal }: ModalProfilProps) {
   const { isLog, logout } = useAuth();
-  
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isActionMode, setIsActionMode] = useState(false);
+
+  // Fonction pour basculer entre les thèmes Dark et Light
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
+    localStorage.setItem('theme', !isDarkMode ? 'dark' : 'light');
+  };
+
+  // Charger le thème stocké dans le localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    }
+  }, []);
+
+ // Fonction pour basculer entre les modes Action et Light
+  const toggleActionMode = () => {
+    const newActionMode = !isActionMode;
+    setIsActionMode(newActionMode);
+    document.documentElement.classList.toggle('action', newActionMode);
+    if (newActionMode) {
+      localStorage.setItem('theme', 'action');
+    } else {
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+  };
+
+
+  // Charger le thème stocké dans le localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsActionMode(savedTheme === 'dark');
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    }
+  }, []);
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center">
-      <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96 ">
+    <div className={`fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center ${isDarkMode ? 'dark' : ''}`}>
+      <div className={`relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96 ${isDarkMode ? 'dark:bg-blue-900' : ''}`}>
         {/* Closing cross */}
         <button
           className="absolute top-4 right-4 text-3xl hover:text-gray-300 focus:outline-none"
@@ -54,14 +94,14 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
               </button>
             )}
           </div>
-          {/* Border colors */}
+          {/* Theme Buttons */}
           <div className="flex flex-row justify-center space-x-2 mt-6">
-            <span className="w-12 h-12 rounded-full border border-black bg-red-500"></span>
-            <span className="w-12 h-12 rounded-full border border-black bg-blue-500"></span>
-            <span className="w-12 h-12 rounded-full border border-black bg-orange-500"></span>
-            <span className="w-12 h-12 rounded-full border border-black bg-green-500"></span>
-            <span className="w-12 h-12 rounded-full border border-black bg-purple-500"></span>
-            <span className="w-12 h-12 rounded-full border border-black bg-yellow-500"></span>
+          <button
+            onClick={toggleDarkMode}
+            className="bg-blue-500 text-white p-2 rounded hover:bg-black dark:bg-black-700 dark:hover:bg-blue-800"
+          >
+            {isDarkMode ? '🌞 Mode Clair' : '🌙 Mode Sombre'}
+          </button>
           </div>
         </div>
       </div>
@@ -70,3 +110,4 @@ function ModalProfil({ closeModal }: ModalProfilProps) {
 }
 
 export default ModalProfil;
+

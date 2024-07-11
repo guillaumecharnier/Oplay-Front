@@ -6,7 +6,9 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'selector',
   theme: {
+    darkMode:'class',
     extend: {
       screens: {
         'tablet': '768px',  
@@ -36,8 +38,8 @@ export default {
           800: '#1C1C1C',
           900: '#0C0C0C',
         },
+      }
     },
   },
   plugins: [],
-}
 }
