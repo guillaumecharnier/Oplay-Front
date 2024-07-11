@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",
+    "target": "ES2019", // Définit la version ECMAScript cible
+    "module": "ESNext", // Choix du module approprié pour votre projet
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2019", "DOM"] // Inclut ES2019 et DOM pour les définitions
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]

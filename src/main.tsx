@@ -8,12 +8,15 @@ import App from './components/App/App';
 
 import './styles/index.css';
 import { CartProvider } from './context/CartContext';
+import { UserProvider } from './context/UserContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <AuthProvider>
       <CartProvider>
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
       </CartProvider>
     </AuthProvider>
   </BrowserRouter>
