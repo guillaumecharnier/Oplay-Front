@@ -21,6 +21,7 @@ import ModalProfil from '../ModalProfil/ModalProfil';
 import { ThemeProvider } from '../Theme/ThemeContext';
 import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
+import TestPage from '../TestPersonnalise/TestPage'
 
 
 
@@ -107,6 +108,7 @@ function App() {
           <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/profil/" element={<Profil />} />
+          <Route path="/test-personnalite" element={<TestPage/>} />
         </Routes>
         {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
         {isModal && <ModalProfil closeModal={closeModal} onThemeChange={toggleTheme} />}
