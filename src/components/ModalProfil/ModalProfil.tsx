@@ -24,7 +24,7 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) 
       <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96" onClick={(e) => e.stopPropagation()}>
         {/* Icone de fermeture */}
         <button
-          className="absolute top-4 right-4 text-3xl transition-transform transform hover:rotate-90 hover:text-red-500 focus:outline-none"
+          className="absolute top-4 right-4 text-3xl hover:text-red-500 focus:outline-none"
           onClick={closeModal}
         >
           x
@@ -64,16 +64,16 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) 
               </button>
             )}
           </div>
-          <div className="p-6 rounded shadow-lg">
+          <div className="p-6 rounded shadow-lg bg-blue-900">
             <h2 className="text-xl mb-4 text-black"></h2>
             <div className="grid grid-cols-2 gap-2">
-              <button onClick={() => onThemeChange('light')} className="p-2 bg-pink-400 text-white rounded">Light</button>
-              <button onClick={() => onThemeChange('horror')} className="p-2 bg-gray-200 text-black rounded">Horror</button>
+              <button onClick={() => onThemeChange('light')} className="p-2 bg-indigo-900 text-white rounded">Light</button>
+              <button onClick={() => onThemeChange('horror')} className="p-2 bg-red-900 text-white rounded">Horror</button>
               <button onClick={() => onThemeChange('action')} className="p-2 bg-gray-800 text-white rounded">Action</button>
-              <button onClick={() => onThemeChange('aventure')} className="p-2 bg-green-500 text-black rounded">Aventure</button>
-              <button onClick={() => onThemeChange('online')} className="p-2 bg-blue-900 text-cyan-300 rounded">Online</button>
-              <button onClick={() => onThemeChange('sport')} className="p-2 bg-yellow-300 text-red-900 rounded">Sport</button>
-              <button onClick={() => onThemeChange('strategie')} className="p-2 bg-purple-700 text-lime-300 rounded">Strategie</button>
+              <button onClick={() => onThemeChange('aventure')} className="p-2 bg-green-600 text-white rounded">Aventure</button>
+              <button onClick={() => onThemeChange('online')} className="p-2 bg-pink-400 text-whiterounded rounded">Online</button>
+              <button onClick={() => onThemeChange('sport')} className="p-2 bg-yellow-600 text-whiterounded rounded">Sport</button>
+              <button onClick={() => onThemeChange('strategie')} className="p-2 bg-purple-700 text-white rounded">Strategie</button>
             </div>
           </div>
         </div>
