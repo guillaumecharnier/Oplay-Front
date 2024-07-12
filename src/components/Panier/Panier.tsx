@@ -3,21 +3,23 @@ import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useUser } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
-
-interface Game {
-  id: number;
-  name: string;
-  picture: string;
-  price: number;
-}
+import { useTheme } from '../Theme/ThemeContext'; 
 
 function Panier() {
   const { token } = useAuth();
   const { cartItems, setCartItems } = useCart();
   const { user } = useUser();
+  const { theme } = useTheme(); // Récupération du thème
 
   const purchaseOrder = user.map(userunique => userunique.purchasedOrder);
   const order = [].concat(...purchaseOrder.map(purchase => purchase.map(p => p.games))).flat();
+  
+  interface Game {
+    id: number;
+    name: string;
+    picture: string;
+    price: number;
+  }
 
   const deleteFromCart = async (gameId: number) => {
     try {
@@ -85,7 +87,7 @@ function Panier() {
   };
 
   return (
-    <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
+    <div className={`min-h-screen ${theme} min-h-screen py-10 px-4 md:px-8 `}>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* En-tête du panier */}
         <div className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 py-5 px-6 flex flex-col md:flex-row md:items-center md:justify-between text-white">
@@ -139,6 +141,10 @@ function Panier() {
             </li>
           ))}
         </ul>
+
+
+
+
         {/* Total du panier */}
         <div className="bg-gray-50 py-5 px-6 flex flex-col md:flex-row justify-between items-center border-t border-gray-200">
           <h2 className="text-lg md:text-xl font-semibold text-gray-800">Total</h2>
@@ -146,6 +152,10 @@ function Panier() {
             {cartItems.reduce((total, game) => total + game.price, 0)}€
           </p>
         </div>
+
+
+
+        
         {/* Actions du panier */}
         <div className="py-6 px-6 flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 md:justify-between">
           <button onClick={() => deleteAllItems()} className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">

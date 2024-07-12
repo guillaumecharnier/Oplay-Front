@@ -21,19 +21,16 @@ function Categories({ categoryData }) {
             className="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 group-hover:brightness-110 transition-transform transition-brightness duration-300"
           />
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center rounded-lg text-center p-2">
-            <h3 className="text-white text-[3.5rem] font-semibold">{element.name}</h3>
+            <h3 className="text-white text-[2.5rem] font-semibold">{element.name}</h3>
           </div>
         </Link>
-        ))};
+        ))}
       </div>
     </div>
   );
 }
 
 export default Categories;
-
-
-
 
 
 

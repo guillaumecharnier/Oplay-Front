@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
         },
       });
       setUser([response.data]);
-    //   console.log('User', response.data);s
+    //   console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
