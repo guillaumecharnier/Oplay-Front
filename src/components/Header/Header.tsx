@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import { useAuth } from "../../context/AuthContext";
+import { useTheme, Theme } from '../Theme/ThemeContext'; // Assurez-vous que Theme est importé correctement depuis ThemeContext
 
 interface HeaderProps {
   isModal: boolean;
@@ -11,34 +12,36 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
   const { isLog, roles } = useAuth();
+  const { theme, setTheme } = useTheme(); // Utilisation du contexte de thème
 
   const location = useLocation();
-  // Vérifiez si l'URL actuelle est `/inscription`
   const isInscriptionPage = location.pathname === '/inscription';
-  // Ne pas afficher le Header sur la page d'inscription
+
   if (isInscriptionPage) {
     return null;
   }
 
-  // console.log(roles);
-  return (
-    <header className="bg-blue-custom-200 dark:bg-black relative">
-      <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
-        {/* TODO slice le role pour avoir user ou admin et affiche le boutton backoffice */}
-      {/* {roles && roles.map((role, index) => (
-                <p key={index}>{role}</p>
-            ))} */}
-      {/* Section Se connecter */}
-        <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
-         
-        {isLog ? '' :
-        <Link to="/connexion" > 
-          <span className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs md:text-lg file:text-s  font-semibold tablet:text-lg">Se connecter</span>
-        </Link>  
-         } 
-        </div> 
+  // Fonction pour changer le thème
+  const handleThemeChange = (newTheme: string) => {
+    // Convertir la chaîne de caractères en type Theme
+    const themeValue: Theme = newTheme as Theme;
+    console.log(`Theme changed to: ${themeValue}`);
+    setTheme(themeValue);
+  };
 
-      {/* Logo et titre */}
+  return (
+    <header className={`relative ${theme}`}>
+      <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
+        <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
+          {!isLog ? (
+            <Link to="/connexion">
+              <span className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs file:text-s font-semibold tablet:text-lg">
+                Se connecter
+              </span>
+            </Link>
+          ) : null}
+        </div>
+
         <div className="flex flex-col items-center justify-center w-full md:w-1/3 space-y-2">
           <Link to="/">
             <img
@@ -52,7 +55,6 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
           </Link>
         </div>
 
-        {/* Panier et Profil */}
         <div className="flex flex-row w-full md:w-1/3 justify-center space-x-4">
           <Link to="/panier" className="flex items-center">
             <img
@@ -71,7 +73,6 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         </div>
       </div>
 
-      {/* Formulaire de recherche */}
       <div className="flex justify-center pb-8 px-4">
         <form action="" className="relative w-full max-w-md">
           <input
@@ -94,8 +95,12 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
           </button>
         </form>
       </div>
-      {isModal && <ModalProfil closeModal={closeModal} />}
+
+      {isModal && <ModalProfil closeModal={closeModal} onThemeChange={handleThemeChange} />}
     </header>
   );
 };
+
 export default Header;
+
+
