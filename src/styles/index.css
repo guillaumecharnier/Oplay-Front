@@ -3,27 +3,61 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* Ajouter des styles pour le mode sombre */
-.dark .bg-blue-custom-200 {
-  background-color: #000000;
+/* Thème Horror */
+
+:root.horror {
+  --bg-color: #260101;
+  --text-color: #0D0B0C;
 }
 
-.dark .text-white {
-  color: #f9fafb;
+/* Thème Action */
+
+:root.action {
+  --bg-color: #2e0753;
+  --text-color: #1525D6;
 }
 
-.dark .hover\:bg-blue-500:hover {
-  background-color: #1e40af;
+/* Thème Aventure */
+
+:root.aventure {
+  --bg-color: #736436;
+  --text-color: #D9B79A;
 }
 
-.dark .hover\:bg-blue-600:hover {
-  background-color: #1d4ed8;
+
+/* Thème Online */
+
+:root.online {
+  --bg-color: #403E8C;
+  --text-color: #85D3F2;
 }
 
-.dark .bg-blue-500 {
-  background-color: #1e3a8a;
+
+/* Thème Sport */
+
+:root.sport {
+  --bg-color: #1A1E26;
+  --text-color: #3D4F73;
 }
 
-.dark .text-white {
-  color: #e5e7eb;
+
+/* Thème Strategie */
+
+:root.strategie {
+  --bg-color: #401D15;
+  --text-color: #F2C48D;
+}
+
+/* Thème Light */
+
+:root.light {
+  --bg-color: #1b1f47;
+  --text-color: #fff;
+}
+
+
+
+body, html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

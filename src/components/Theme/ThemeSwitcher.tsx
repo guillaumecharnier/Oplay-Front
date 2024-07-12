@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const ThemeSwitcher = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface ThemeSwitcherProps {
+  onThemeChange: (theme: string) => void;
+}
 
-  useEffect(() => {
-    // Charger le thème stocké dans le localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode ? 'dark' : 'light';
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-    localStorage.setItem('theme', newTheme);
-  };
+const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ onThemeChange }) => {
+  const themes = ['horror', 'action', 'aventure', 'online', 'sport', 'strategie'];
 
   return (
-    <button onClick={toggleTheme} className="p-2 blue-custom-200 rounded dark:bg-black dark:text-white">
-      {isDarkMode ? '🌞 Mode Clair' : '🌙 Mode Sombre'}
-    </button>
+    <div className="theme-switcher">
+      {themes.map((theme) => (
+        <button
+          key={theme}
+          onClick={() => {
+            console.log(`Switching to theme: ${theme}`);
+            onThemeChange(theme);
+          }}
+          className={`m-2 p-2 rounded ${theme}`}
+        >
+          {theme.charAt(0).toUpperCase() + theme.slice(1)}
+        </button>
+      ))}
+    </div>
   );
 };
 
 export default ThemeSwitcher;
+
+
+
