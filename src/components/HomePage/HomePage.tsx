@@ -9,13 +9,14 @@ import PageJeu from '../PageJeu/PageJeu';
 function HomePage({ gameData, categoryData }) {
   const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
 
+
   return (
     <div className={`bg-${theme}-bg min-h-screen flex flex-col items-center justify-start overflow-x-hidden`}>
       {/* Image de couverture */}
       <div className="relative w-full mb-36 flex justify-center">
         <img
-          src="/src/assets/images/Last-Of-Us.jpeg"
-          alt="The Last of Us"
+          src="src/assets/images/Last-Of-Us.jpeg"
+          alt="Cover Image"
           className="w-full max-h-80 object-cover shadow-lg"
         />
         <div className="absolute top-4 md:left-6 lg:left-8">

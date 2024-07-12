@@ -6,22 +6,22 @@
 /* Thème Horror */
 
 :root.horror {
-  --bg-color: #260101;
-  --text-color: #0D0B0C;
+  --bg-color: #600f0f;
+  --text-color: #fff;
 }
 
 /* Thème Action */
 
 :root.action {
-  --bg-color: #2e0753;
-  --text-color: #1525D6;
+  --bg-color: #0A0A0A;
+  --text-color: #fff;
 }
 
 /* Thème Aventure */
 
 :root.aventure {
-  --bg-color: #736436;
-  --text-color: #D9B79A;
+  --bg-color: #838C3F;
+  --text-color: #fff;
 }
 
 
@@ -29,23 +29,23 @@
 
 :root.online {
   --bg-color: #403E8C;
-  --text-color: #85D3F2;
+  --text-color: #fff;
 }
 
 
 /* Thème Sport */
 
 :root.sport {
-  --bg-color: #1A1E26;
-  --text-color: #3D4F73;
+  --bg-color: #3D4F73;
+  --text-color: #fff;
 }
 
 
 /* Thème Strategie */
 
 :root.strategie {
-  --bg-color: #401D15;
-  --text-color: #F2C48D;
+  --bg-color: #260F01;
+  --text-color: #fff;
 }
 
 /* Thème Light */

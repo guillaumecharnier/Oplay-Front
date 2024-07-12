@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
-
-import { useTheme } from '../Theme/ThemeContext';
+// import { useTheme } from '../Theme/ThemeContext';
 
 interface Game {
   id: number;
@@ -23,15 +22,16 @@ interface PageJeuProps {
 function PageJeu({ gameData }: PageJeuProps) {
   const { token } = useAuth();
   const { addToCartContext } = useCart();
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   const { id } = useParams<{ id: string }>();
   const game = gameData.find((game) => game.id === parseInt(id));
 
-  // if (!game) return <p>Jeu non trouvé</p>;
+  if (!game) return <p>Jeu non trouvé</p>;
   // loading ? 
 
   const gameId = game.id;
+  console.log('jeu', gameId);
 
   const addToCart = async (gameId: number) => {
     try {
@@ -58,7 +58,8 @@ function PageJeu({ gameData }: PageJeuProps) {
 
   return (
     <div>
-      <div className={`min-h-screen ${theme} min-h-screen flex flex-col items-center justify-center py-12 px-6 `}>
+      {/* ${theme} */}
+      <div className={`min-h-screen flex flex-col items-center justify-center py-12 px-6 `}>
         <div className="max-w-4xl w-full bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
           <img
             src={game.picture}

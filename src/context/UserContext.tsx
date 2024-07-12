@@ -31,7 +31,7 @@ const UserContext = createContext<UserContextType>({
   
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState<User[]>([]);
+    const [user, setUser] = useState<User[]>([]);
   const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
   const { cartItems } = useCart();
   const searchUser = () => {
@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
         },
       });
       setUser([response.data]);
-    //   console.log('User', response.data);s
+    //   console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
