@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           {!isLog ? (
             <Link to="/connexion">
-              <span className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs file:text-s font-semibold tablet:text-lg">
+              <span className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs font-semibold tablet:text-lg">
                 Se connecter
               </span>
             </Link>
@@ -47,11 +47,11 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
             <img
               src="/src/assets/images/gamepad.svg"
               alt="Logo page accueil"
-              className="w-12 h-12"
+              className="w-12 h-12 hover:scale-110 hover:rotate-12 transition-transform duration-300"
             />
           </Link>
           <Link to="/">
-            <h1 className="text-2xl text-white font-bold">O'Play</h1>
+            <h1 className="text-2xl text-white font-bold hover:text-blue-500 transition-colors duration-300">O'Play</h1>
           </Link>
         </div>
 
