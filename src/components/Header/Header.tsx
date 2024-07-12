@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
          
         {isLog ? '' :
         <Link to="/connexion" > 
-          <span className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs md:text-lg file:text-s  font-semibold tablet:text-lg">Se connecter</span>
+          <span className="bg-white text-blue-600 px-6 py-1 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 flex items-center space-x-2 text-xs file:text-s font-semibold tablet:text-lg">Se connecter</span>
         </Link>  
          } 
         </div> 
