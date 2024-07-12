@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import ThemeSwitcher from '../Theme/ThemeSwitcher';
+import { useAuth } from "../../context/AuthContext";
 
 interface ModalProfilProps {
   closeModal: () => void;
@@ -8,12 +8,23 @@ interface ModalProfilProps {
 }
 
 const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) => {
+  const { isLog, logout } = useAuth();
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
   return (
-    <div className="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center">
-      <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96">
+    <div 
+      className="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center" 
+      onClick={handleBackdropClick}
+    >
+      <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96" onClick={(e) => e.stopPropagation()}>
         {/* Icone de fermeture */}
         <button
-          className="absolute top-4 right-4 text-3xl hover:text-gray-300 focus:outline-none"
+          className="absolute top-4 right-4 text-3xl transition-transform transform hover:rotate-90 hover:text-red-500 focus:outline-none"
           onClick={closeModal}
         >
           x
@@ -41,24 +52,29 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) 
             >
               Paramètres
             </Link>
-            <Link
-              to="/"
-              className="hidden hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
-              //TODO if connected to add deconnection button
-              onClick={closeModal}
-            >
-              Déconnexion
-            </Link>
+            {isLog && (
+              <button
+                className="hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+                onClick={() => {
+                  logout();
+                  closeModal();
+                }}
+              >
+                Déconnexion
+              </button>
+            )}
           </div>
           <div className="p-6 rounded shadow-lg">
             <h2 className="text-xl mb-4 text-black"></h2>
-            <button onClick={() => onThemeChange('light')} className="m-2 p-2 bg-pink-400 text-white rounded">Light</button>
-            <button onClick={() => onThemeChange('horror')} className="m-2 p-2 bg-gray-200 text-black rounded">Horror</button>
-            <button onClick={() => onThemeChange('action')} className="m-2 p-2 bg-gray-800 text-white rounded">Action</button>
-            <button onClick={() => onThemeChange('aventure')} className="m-2 p-2 bg-green-500 text-black rounded">Aventure</button>
-            <button onClick={() => onThemeChange('online')} className="m-2 p-2 bg-blue-900 text-cyan-300 rounded">Online</button>
-            <button onClick={() => onThemeChange('sport')} className="m-2 p-2 bg-yellow-300 text-red-900 rounded">Sport</button>
-            <button onClick={() => onThemeChange('strategie')} className="m-2 p-2 bg-purple-700 text-lime-300 rounded">Strategie</button>
+            <div className="grid grid-cols-2 gap-2">
+              <button onClick={() => onThemeChange('light')} className="p-2 bg-pink-400 text-white rounded">Light</button>
+              <button onClick={() => onThemeChange('horror')} className="p-2 bg-gray-200 text-black rounded">Horror</button>
+              <button onClick={() => onThemeChange('action')} className="p-2 bg-gray-800 text-white rounded">Action</button>
+              <button onClick={() => onThemeChange('aventure')} className="p-2 bg-green-500 text-black rounded">Aventure</button>
+              <button onClick={() => onThemeChange('online')} className="p-2 bg-blue-900 text-cyan-300 rounded">Online</button>
+              <button onClick={() => onThemeChange('sport')} className="p-2 bg-yellow-300 text-red-900 rounded">Sport</button>
+              <button onClick={() => onThemeChange('strategie')} className="p-2 bg-purple-700 text-lime-300 rounded">Strategie</button>
+            </div>
           </div>
         </div>
       </div>
@@ -67,4 +83,8 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) 
 };
 
 export default ModalProfil;
+
+
+
+
 

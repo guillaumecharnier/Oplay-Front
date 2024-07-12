@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-import { createContext, useState, useContext, useEffect } from 'react';
+import  { jwtDecode, JwtPayload } from 'jwt-decode';
+import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
-// Créer le contexte
+// Interface pour le contexte d'authentification
 interface AuthContextType {
     token: string;
     setToken: React.Dispatch<React.SetStateAction<string>>;
@@ -12,7 +12,7 @@ interface AuthContextType {
     roles: string[] | null;
 }
 
-// Créer le contexte avec un type spécifique
+// Contexte d'authentification initialisé avec des valeurs par défaut
 const AuthContext = createContext<AuthContextType>({
     token: '',
     setToken: () => {},
@@ -22,19 +22,25 @@ const AuthContext = createContext<AuthContextType>({
     roles: null,
 });
 
+// Interface pour la charge utile du token JWT
 interface MyJwtPayload extends JwtPayload {
-    roles: string[]; // Définissez le type de votre propriété 'roles'
-    username: string; // Ajoutez d'autres propriétés si nécessaire
-    iat: number;
-    exp: number;
+    roles: string[];
+    username: string;
+    id: number;
 }
 
-// Fournir le contexte
-export const AuthProvider = ({ children }) => {
+// Propriétés attendues par le AuthProvider
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
+// Composant fournissant le contexte d'authentification
+export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
     const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'true');
-    const [roles, setRole] = useState<string[] | null>(null);
+    const [roles, setRoles] = useState<string[] | null>(null);
 
+    // Effet de chargement initial pour récupérer le token du localStorage
     useEffect(() => {
         const storedToken = localStorage.getItem('jwtToken');
         if (storedToken) {
@@ -44,11 +50,8 @@ export const AuthProvider = ({ children }) => {
             // Décoder le token et extraire les rôles
             try {
                 const decodedToken = jwtDecode<MyJwtPayload>(storedToken);
-                console.log(decodedToken);
-                console.log(decodedToken.roles);
-
-                const userRole = decodedToken.roles; // Remplacez 'roles' par le nom de votre champ contenant les rôles dans le token
-                setRole(userRole);
+                const userRoles = decodedToken.roles;
+                setRoles(userRoles);
             } catch (error) {
                 console.error('Error decoding token:', error);
             }
@@ -57,30 +60,25 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
+    // Fonction de login pour mettre à jour le token et l'état de connexion
     const login = (newToken: string, logged: boolean) => {
         localStorage.setItem('jwtToken', newToken);
         setToken(newToken);
 
         localStorage.setItem('isLog', logged.toString());
         setIsLog(logged);
-
-        // uncrypt the token and extract the role
-        try {
-            const decodedToken = jwtDecode<MyJwtPayload>(newToken);
-            const userRole = decodedToken.roles; 
-        } catch (error) {
-            console.error('Error decoding token:', error);
-        }
     };
 
+    // Fonction de logout pour effacer le token et réinitialiser l'état de connexion
     const logout = () => {
         localStorage.removeItem('jwtToken');
         setToken('');
         localStorage.removeItem('isLog');
         setIsLog(false);
-        setRole(null);
+        setRoles(null);
     };
 
+    // Rendu du contexte d'authentification pour être utilisé par les composants enfants
     return (
         <AuthContext.Provider value={{ token, isLog, login, logout, setToken, roles }}>
             {children}
@@ -88,6 +86,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+// Hook personnalisé pour utiliser le contexte d'authentification
+export const useAuth = (): AuthContextType => useContext(AuthContext);

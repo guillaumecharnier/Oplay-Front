@@ -19,6 +19,10 @@ import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import { ThemeProvider } from '../Theme/ThemeContext';
+import DernierAjout from '../DernierAjout/DernierAjout';
+import Confirmation from '../Confirmation/Confirmation';
+
+
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -101,6 +105,8 @@ function App() {
           <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
           <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
           <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/profil/" element={<Profil />} />
         </Routes>
         {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
         {isModal && <ModalProfil closeModal={closeModal} onThemeChange={toggleTheme} />}

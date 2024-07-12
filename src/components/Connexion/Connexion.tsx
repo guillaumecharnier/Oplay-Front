@@ -28,11 +28,12 @@ const Connexion: React.FC = () => {
         });
         const newToken = response.data.token;
         setToken(newToken);
+        console.log(newToken);
         localStorage.setItem('jwtToken', newToken);
 
         // Décodez le token pour obtenir les informations utilisateur
         const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
-        console.log('Decoded Token:', decodedToken);
+        // console.log('Decoded Token:', decodedToken);
         setUserData(decodedToken);  // Mettez à jour userData avec les informations décryptées
       } catch (error) {
         console.error('Error fetching token:', error);
