@@ -42,7 +42,7 @@ function NextRelease({ gameData }:IGameData) {
             {element.name}
           </h3>
         </Link>
-         ))};
+         ))}
       </div>
     </div>
   );
