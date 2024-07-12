@@ -139,6 +139,10 @@ function Panier() {
             </li>
           ))}
         </ul>
+
+
+
+
         {/* Total du panier */}
         <div className="bg-gray-50 py-5 px-6 flex flex-col md:flex-row justify-between items-center border-t border-gray-200">
           <h2 className="text-lg md:text-xl font-semibold text-gray-800">Total</h2>
@@ -146,6 +150,10 @@ function Panier() {
             {cartItems.reduce((total, game) => total + game.price, 0)}€
           </p>
         </div>
+
+
+
+        
         {/* Actions du panier */}
         <div className="py-6 px-6 flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 md:justify-between">
           <button onClick={() => deleteAllItems()} className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:scale-105 transform transition-transform duration-300">

@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 
-
 interface Game {
   id: number;
   name: string;
@@ -26,7 +25,8 @@ function PageJeu({ gameData }: PageJeuProps) {
   const { id } = useParams<{ id: string }>();
   const game = gameData.find((game) => game.id === parseInt(id));
 
-  if (!game) return <p>Jeu non trouvé</p>;
+  // if (!game) return <p>Jeu non trouvé</p>;
+  // loading ? 
 
   const gameId = game.id;
 
@@ -43,7 +43,7 @@ function PageJeu({ gameData }: PageJeuProps) {
         }
       );
       console.log('envoyé');
-      addToCartContext(game)
+      addToCartContext(game);
     } catch (error) {
       console.error(
         'Erreur lors de l\'ajout du jeu au panier:',
