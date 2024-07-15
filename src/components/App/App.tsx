@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
 import { CategoryData, GameData, TagData } from '../../assets/type';
-
-import { ThemeProvider } from '../Theme/ThemeContext';
+import { ThemeProvider } from '../../context/ThemeContext';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -19,11 +18,10 @@ import NextRelease from '../HomePage/NextRelease';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
-import ModalProfil from '../ModalProfil/ModalProfil';
-
-// import DernierAjout from '../DernierAjout/DernierAjout';
+import ModalProfil from '../ModalProfil/ModalProfil';  
 import Confirmation from '../Confirmation/Confirmation';
-import SearchResults from '../SearchResults/SearchResults';
+import TestPage from '../TestPersonnalise/TestPage'
+// import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -104,10 +102,11 @@ function App() {
         <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
-        <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
+        {/* <Route path="/search/:name" element={<SearchResults gameData={gameData} />} /> */}
+        <Route path="/test-personnalite" element={<TestPage/>} />
+        
         {/* profil/:id */}
         
-        {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
         {/* // TODO voir le typage undefined  */}
 
         {/* <Route path="/categories" element={<Category />} /> */}
@@ -124,8 +123,9 @@ function App() {
         <Route path="/supprimer" element={<SinglePostPage />} />
         <Route path="/backoffice" element={<SinglePostPage />} /> */}
       </Routes>
-
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
+      {isModal && <ModalProfil closeModal={closeModal} onThemeChange={toggleTheme} />}
+    
     </div>
   );
 }
