@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useUser } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../Theme/ThemeContext'; 
+import { useTheme } from '../../context/ThemeContext'
 
 function Panier() {
   const { token } = useAuth();

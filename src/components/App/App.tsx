@@ -19,12 +19,9 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';
-import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
-import TestPage from '../TestPersonnalise/TestPage'
-import Confirmation from '../Confirmation/Confirmation';
-import TestPage from '../TestPersonnalise/TestPage'
-// import SearchResults from '../SearchResults/SearchResults';
+import TestPage from '../TestPersonnalise/TestPage';
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
