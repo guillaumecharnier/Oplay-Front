@@ -20,7 +20,7 @@ import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';  
 import Confirmation from '../Confirmation/Confirmation';
-import TestPage from '../TestPersonnalise/TestPage'
+import TestPage from '../TestPersonnalise/TestPage';
 import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
