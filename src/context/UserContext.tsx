@@ -48,19 +48,19 @@ export const UserProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/user/detail`, {
+      const response = await axios.get(`http://localhost:8080/api/user`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
       setUser([response.data]);
-    //   console.log('User', response.data);
+      console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-
+  // http://localhost:8080/api/user/detail
   useEffect(() => {
     searchUser();
   }, [cartItems]);

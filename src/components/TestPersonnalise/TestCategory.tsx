@@ -1,29 +1,53 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+
+import axios from 'axios';
 
 const TestCategory = ({ categoryData }) => {
-  const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
-  const [selectedCategories, setSelectedCategories] = useState([]); // État pour les catégories sélectionnées
-  const navigate = useNavigate(); // Hook pour la navigation
-  
-  // Fonction pour gérer la soumission du formulaire
-  const handleSubmit = () => {
+  const { theme } = useTheme();
+  const { user } = useUser();
+  const { token } = useAuth();
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
     if (selectedCategories.length > 0) {
-      // Logique pour gérer la soumission de la catégorie sélectionnée
-      console.log('Catégorie sélectionnée : ', selectedCategories);
-      navigate(`/test-personnalite/Tags`); // Redirige vers la page TestCategory avec la catégorie sélectionnée
+   
+      await postCategoryData(selectedCategories);
+
+      navigate(`/test-personnalite/Tags`);
     } else {
       alert('Veuillez sélectionner une catégorie.');
     }
   };
 
   // Fonction pour gérer la sélection d'une catégorie
-  const handleCategoryToggle = (categoryName) => {
+  const handleCategoryChange = (categoryName) => {
     if (selectedCategories.includes(categoryName)) {
-      setSelectedCategories(selectedCategories.filter(cat => cat !== categoryName));
+      setSelectedCategories(selectedCategories.filter(categ => categ !== categoryName));
     } else {
       setSelectedCategories([...selectedCategories, categoryName]);
+    }
+  };
+
+  
+  const postCategoryData = async (categoryIds) => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/user/categories', {
+        category_ids: categoryIds
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log('category Response:', response.data);
+    } catch (error) {
+      console.error('Error posting data:', error);
     }
   };
 
@@ -37,12 +61,12 @@ const TestCategory = ({ categoryData }) => {
             <input
               type="checkbox"
               className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
-              checked={selectedCategories.includes(category.name)}
-              onChange={() => handleCategoryToggle(category.name)}
+              checked={selectedCategories.includes(category.id)}
+              onChange={() => handleCategoryChange(category.id)}
             />
-            <div className={`category-card relative w-[300px] h-[200px] ${selectedCategories.includes(category.name) ? 'border-pink-500' : ''}`} onClick={() => handleCategoryToggle(category.name)}>
+            <div className={`category-card relative w-[300px] h-[200px] ${selectedCategories.includes(category.id) ? 'border-pink-500' : ''}`} onClick={() => handleCategoryChange(category.id)}>
               <img
-                src={category.picture}
+                src="src/assets/images/CategoriesPictures.jpg"
                 alt={category.name}
                 className="rounded-lg w-full h-full object-cover"
               />

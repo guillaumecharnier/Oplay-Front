@@ -4,10 +4,10 @@ import { useAuth } from "../../context/AuthContext";
 
 interface ModalProfilProps {
   closeModal: () => void;
-  onThemeChange: (theme: string) => void;
+  setTheme: (theme: string) => void;
 }
 
-const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) => {
+const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, setTheme }) => {
   const { isLog, logout } = useAuth();
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -21,7 +21,7 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) 
       className="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 flex items-center justify-center" 
       onClick={handleBackdropClick}
     >
-      <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96" onClick={(e) => e.stopPropagation()}>
+      <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96">
         {/* Icone de fermeture */}
         <button
           className="absolute top-4 right-4 text-3xl hover:text-red-500 focus:outline-none"
@@ -67,13 +67,13 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, onThemeChange }) 
           <div className="p-6 rounded shadow-lg bg-blue-900">
             <h2 className="text-xl mb-4 text-black"></h2>
             <div className="grid grid-cols-2 gap-2">
-              <button onClick={() => onThemeChange('light')} className="p-2 bg-indigo-900 text-white rounded">Light</button>
-              <button onClick={() => onThemeChange('horror')} className="p-2 bg-red-900 text-white rounded">Horror</button>
-              <button onClick={() => onThemeChange('action')} className="p-2 bg-gray-800 text-white rounded">Action</button>
-              <button onClick={() => onThemeChange('aventure')} className="p-2 bg-green-600 text-white rounded">Aventure</button>
-              <button onClick={() => onThemeChange('online')} className="p-2 bg-pink-400 text-whiterounded rounded">Online</button>
-              <button onClick={() => onThemeChange('sport')} className="p-2 bg-yellow-600 text-whiterounded rounded">Sport</button>
-              <button onClick={() => onThemeChange('strategie')} className="p-2 bg-purple-700 text-white rounded">Strategie</button>
+              <button onClick={() => setTheme('strategie')} className="p-2 bg-indigo-900 text-white rounded">Strategie</button>
+              <button onClick={() => setTheme('horror')} className="p-2 bg-red-900 text-white rounded">Horror</button>
+              <button onClick={() => setTheme('action')} className="p-2 bg-gray-800 text-white rounded">Action</button>
+              <button onClick={() => setTheme('aventure')} className="p-2 bg-green-600 text-white rounded">Aventure</button>
+              <button onClick={() => setTheme('online')} className="p-2 bg-pink-400 text-whiterounded rounded">Online</button>
+              <button onClick={() => setTheme('sport')} className="p-2 bg-yellow-600 text-whiterounded rounded">Sport</button>
+              
             </div>
           </div>
         </div>

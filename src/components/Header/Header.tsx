@@ -94,14 +94,14 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         <div className="flex flex-row w-full md:w-1/3 justify-center space-x-4">
           <Link to="/panier" className="flex items-center">
             <img
-              src="src/assets/images/shop.svg"
+              src="/src/assets/images/shop.svg"
               alt="Panier"
               className="w-10 h-10 hover:scale-105 transition-transform duration-300"
             />
           </Link>
           <img
             onClick={openModal}
-            src="src/assets/images/profile-user.svg"
+            src="/src/assets/images/profile-user.svg"
             alt="Profil"
             className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
           />

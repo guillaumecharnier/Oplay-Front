@@ -4,8 +4,8 @@ interface ThemeSwitcherProps {
   onThemeChange: (theme: string) => void;
 }
 
-const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ onThemeChange }) => {
-  const themes = ['horror', 'action', 'aventure', 'online', 'sport', 'strategie'];
+const ThemeSwitcher: React.FC<ThemeSwitcherProps> = () => {
+  const themes = ['horror', 'action', 'aventure', 'online', 'sport', 'strategie','light'];
 
   return (
     <div className="theme-switcher">
@@ -14,7 +14,7 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ onThemeChange }) => {
           key={theme}
           onClick={() => {
             console.log(`Switching to theme: ${theme}`);
-            onThemeChange(theme);
+           
           }}
           className={`m-2 p-2 rounded ${theme}`}
         >
