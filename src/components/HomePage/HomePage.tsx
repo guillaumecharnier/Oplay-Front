@@ -43,7 +43,7 @@ function HomePage({ gameData, categoryData }) {
 
       {/* Section Categories */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
-        <Categories categoryData={categoryData} />
+        <Categories />
       </div>
     </div>
   );

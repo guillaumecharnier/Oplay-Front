@@ -1,4 +1,3 @@
-// ThemeContext.tsx
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -10,9 +9,13 @@ export type Theme = 'horror' | 'action' | 'aventure' | 'online' | 'sport' | 'str
 
 interface ThemeContextType {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
+  categoryData: CategoryData[];
+  tagData: TagData[];
+  selectedCategory: string;
+  handleCategoryChange: (categoryName: string) => void;
+  handleSubmit: () => void;
 }
-
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const useTheme = () => {
@@ -24,6 +27,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  
   const navigate = useNavigate();
   const { token } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -63,17 +67,16 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setTheme(newTheme);
   };
 
-// Fonction pour gérer la sélection d'un thème
-const handleCategoryChange = (categoryName) => {
-  setSelectedCategory(categoryName);
-};
+  // Fonction pour gérer la sélection d'un thème
+  const handleCategoryChange = (categoryName: string) => {
+    setSelectedCategory(categoryName);
+  };
 
   // Fonction pour gérer la soumission du formulaire
   const handleSubmit = async () => {
     if (selectedCategory) {
       // Récupère l'ID du thème sélectionné
       const selectedCategoryData = categoryData.find(categ => categ.name === selectedCategory);
-      // TODO: recuperer CategoryData
       if (selectedCategoryData) {
         const themeId = selectedCategoryData.id;
         console.log('ID du thème', themeId);
@@ -104,9 +107,10 @@ const handleCategoryChange = (categoryName) => {
       console.error('Error posting data:', error);
     }
   };
+
   // Fournit le contexte de thème aux composants enfants
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, categoryData, tagData }}>
+    <ThemeContext.Provider value={{ theme, setTheme, categoryData, tagData, selectedCategory, handleCategoryChange, handleSubmit }}>
       {children}
     </ThemeContext.Provider>
   );

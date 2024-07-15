@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
-import axios from 'axios';
 
-const TestPage = ({ categoryData }) => {
-  const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
+const TestPage = () => {
+  const { theme, categoryData, selectedCategory, handleCategoryChange, handleSubmit } = useTheme();
 
   return (
     <div className={`min-h-screen bg-${theme}-bg flex flex-col items-center justify-center p-8`}>
@@ -40,22 +39,3 @@ const TestPage = ({ categoryData }) => {
 };
 
 export default TestPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function handleThemeChange(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-

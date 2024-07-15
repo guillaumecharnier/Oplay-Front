@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
 
-function Categories({ categoryData }) {
+function Categories() {
+  const { categoryData } = useTheme();
+
   return (
     <div className="mt-6 w-full max-w-7xl px-4 mb-12 mx-auto">
       {/* Titre avec l'icône */}

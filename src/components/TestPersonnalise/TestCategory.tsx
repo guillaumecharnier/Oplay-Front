@@ -6,8 +6,8 @@ import { useAuth } from '../../context/AuthContext';
 
 import axios from 'axios';
 
-const TestCategory = ({ categoryData }) => {
-  const { theme } = useTheme();
+const TestCategory = () => {
+  const { theme, categoryData } = useTheme();
   const { user } = useUser();
   const { token } = useAuth();
 

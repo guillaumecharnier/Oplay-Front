@@ -28,7 +28,6 @@ const Connexion: React.FC = () => {
         });
         const newToken = response.data.token;
         setToken(newToken);
-        console.log(newToken);
         localStorage.setItem('jwtToken', newToken);
 
         // Décodez le token pour obtenir les informations utilisateur

@@ -108,8 +108,8 @@ function App() {
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
         <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
-        <Route path="/test-personnalite" element={<TestTheme categoryData={categoryData} />} />
-        <Route path="/test-personnalite/Categories" element={<TestCategory categoryData={categoryData} />} />
+        <Route path="/test-personnalite" element={<TestTheme />} />
+        <Route path="/test-personnalite/Categories" element={<TestCategory />} />
         <Route path="/test-personnalite/Tags" element={<TestTag tagData={tagData} />} />
          
         {/* profil/:id */}
