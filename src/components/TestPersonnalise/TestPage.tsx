@@ -24,12 +24,12 @@ const TestPage = () => {
     <div className={`min-h-screen bg-${theme}-bg flex flex-col items-center justify-center p-8`}>
       <h1 className="text-3xl font-bold mb-8">Test Personnalisé</h1>
       
-      <div className="grid grid-cols-2 gap-6 space-y-8">
+      <div className="grid grid-cols-2 gap-6">
         {/* Catégorie Action */}
-        <label className="flex items-center">
+        <label className="flex items-center space-x-2 relative">
           <input
             type="checkbox"
-            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer mr-2"
+            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
             checked={selectedCategories.includes('Action')}
             onChange={() => handleCategoryToggle('Action')}
           />
@@ -39,15 +39,15 @@ const TestPage = () => {
               alt="Action"
               className="rounded-lg w-full h-full object-cover"
             />
-            <p className="text-lg font-semibold mt-2 text-center">Action</p>
+            <p className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-lg font-semibold">Action</p>
           </div>
         </label>
 
         {/* Catégorie Aventure */}
-        <label className="flex items-center">
+        <label className="flex items-center space-x-2 relative">
           <input
             type="checkbox"
-            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer mr-2"
+            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
             checked={selectedCategories.includes('Aventure')}
             onChange={() => handleCategoryToggle('Aventure')}
           />
@@ -57,15 +57,15 @@ const TestPage = () => {
               alt="Aventure"
               className="rounded-lg w-full h-full object-cover"
             />
-            <p className="text-lg font-semibold mt-2 text-center">Aventure</p>
+            <p className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-lg font-semibold">Aventure</p>
           </div>
         </label>
 
         {/* Catégorie Stratégie */}
-        <label className="flex items-center">
+        <label className="flex items-center space-x-2 relative">
           <input
             type="checkbox"
-            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer mr-2"
+            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
             checked={selectedCategories.includes('Stratégie')}
             onChange={() => handleCategoryToggle('Stratégie')}
           />
@@ -75,15 +75,15 @@ const TestPage = () => {
               alt="Stratégie"
               className="rounded-lg w-full h-full object-cover"
             />
-            <p className="text-lg font-semibold mt-2 text-center">Stratégie</p>
+            <p className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-lg font-semibold">Stratégie</p>
           </div>
         </label>
 
         {/* Catégorie Puzzle */}
-        <label className="flex items-center">
+        <label className="flex items-center space-x-2 relative">
           <input
             type="checkbox"
-            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer mr-2"
+            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
             checked={selectedCategories.includes('Puzzle')}
             onChange={() => handleCategoryToggle('Puzzle')}
           />
@@ -93,15 +93,15 @@ const TestPage = () => {
               alt="Puzzle"
               className="rounded-lg w-full h-full object-cover"
             />
-            <p className="text-lg font-semibold mt-2 text-center">Puzzle</p>
+            <p className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-lg font-semibold">Puzzle</p>
           </div>
         </label>
 
         {/* Catégorie Simulation */}
-        <label className="flex items-center">
+        <label className="flex items-center space-x-2 relative">
           <input
             type="checkbox"
-            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer mr-2"
+            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
             checked={selectedCategories.includes('Simulation')}
             onChange={() => handleCategoryToggle('Simulation')}
           />
@@ -111,15 +111,15 @@ const TestPage = () => {
               alt="Simulation"
               className="rounded-lg w-full h-full object-cover"
             />
-            <p className="text-lg font-semibold mt-2 text-center">Simulation</p>
+            <p className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-lg font-semibold">Simulation</p>
           </div>
         </label>
 
         {/* Catégorie Sport */}
-        <label className="flex items-center">
+        <label className="flex items-center space-x-2 relative">
           <input
             type="checkbox"
-            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer mr-2"
+            className="appearance-none border-2 border-gray-300 rounded-md w-6 h-6 checked:bg-blue-500 checked:border-transparent cursor-pointer"
             checked={selectedCategories.includes('Sport')}
             onChange={() => handleCategoryToggle('Sport')}
           />
@@ -129,7 +129,7 @@ const TestPage = () => {
               alt="Sport"
               className="rounded-lg w-full h-full object-cover"
             />
-            <p className="text-lg font-semibold mt-2 text-center">Sport</p>
+            <p className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-lg font-semibold">Sport</p>
           </div>
         </label>
       </div>
@@ -142,6 +142,8 @@ const TestPage = () => {
 };
 
 export default TestPage;
+
+
 
 
 
