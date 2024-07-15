@@ -18,7 +18,10 @@ import NextRelease from '../HomePage/NextRelease';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
-import ModalProfil from '../ModalProfil/ModalProfil';  
+import ModalProfil from '../ModalProfil/ModalProfil';
+import DernierAjout from '../DernierAjout/DernierAjout';
+import Confirmation from '../Confirmation/Confirmation';
+import TestPage from '../TestPersonnalise/TestPage'
 import Confirmation from '../Confirmation/Confirmation';
 import TestPage from '../TestPersonnalise/TestPage'
 // import SearchResults from '../SearchResults/SearchResults';
@@ -102,7 +105,7 @@ function App() {
         <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
-        {/* <Route path="/search/:name" element={<SearchResults gameData={gameData} />} /> */}
+        <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
         <Route path="/test-personnalite" element={<TestPage/>} />
         
         {/* profil/:id */}

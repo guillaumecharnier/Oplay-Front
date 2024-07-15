@@ -7,7 +7,7 @@ function Profil() {
 
   return (
     <div className={`min-h-screen ${theme} text-white py-16 px-8 flex flex-col items-center`}>
-      <div className="w-full max-w-3xl bg-gray-800 rounded-lg shadow-lg p-8 relative">
+      <div className="w-full max-w-3xl bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 rounded-lg shadow-2xl p-8 relative">
         {/* Boutons d'édition et de paramètres */}
         <div className="absolute top-4 right-4 flex space-x-4">
           <Link to="/profil/edit" className="text-white hover:text-gray-300">
@@ -18,9 +18,18 @@ function Profil() {
           </Link>
         </div>
         {/* Section du profil */}
-        <div className="flex items-center space-x-8">
-          <img src="/src/assets/images/profile-user.svg" className="w-32 h-32" alt="Photo de profil" />
-          <h2 className="text-4xl font-bold">Pseudo</h2>
+        <div className="flex items-center space-x-6">
+          <div className="relative">
+            <img 
+              src="src/assets/images/GandalfPDP.jpeg" 
+              className="w-32 h-32 rounded-full border-4 border-gray-700" 
+              alt="Photo de profil" 
+            />
+            <div className="absolute inset-0 rounded-full border-4 border-gradient-to-r from-yellow-400 via-red-500 to-pink-500" />
+          </div>
+          <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-pink-500 to-red-500">
+            Gandalf2578
+          </h2>
         </div>
       </div>
     </div>
