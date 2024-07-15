@@ -20,6 +20,9 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';
+import DernierAjout from '../DernierAjout/DernierAjout';
+import Confirmation from '../Confirmation/Confirmation';
+import TestPage from '../TestPersonnalise/TestPage'
 
 // import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
@@ -105,6 +108,8 @@ function App() {
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
         <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
+        <Route path="/test-personnalite" element={<TestPage/>} />
+        
         {/* profil/:id */}
         
         {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
