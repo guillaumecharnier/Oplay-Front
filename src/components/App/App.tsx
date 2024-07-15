@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
 import { CategoryData, GameData, TagData } from '../../assets/type';
+
+import { ThemeProvider } from '../Theme/ThemeContext';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -18,12 +20,13 @@ import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';
-import { ThemeProvider } from '../Theme/ThemeContext';
 import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
 import TestPage from '../TestPersonnalise/TestPage'
 
-
+// import DernierAjout from '../DernierAjout/DernierAjout';
+import Confirmation from '../Confirmation/Confirmation';
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -88,32 +91,47 @@ function App() {
   const closeModal = () => setModal(false);
 
   return (
-    <ThemeProvider>
-      <div>
-        {location.pathname !== '/connexion' && location.pathname !== '/inscription' && (
-          <Header isModal={isModal} openModal={openModal} closeModal={closeModal} />
-        )}
-        <Routes>
-          <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
-          <Route path="/connexion" element={<Connexion />} />
-          <Route path="/inscription" element={<Inscription />} />
-          <Route path="/*" element={<Erreur />} />
-          <Route path="/profil/" element={<Profil />} />
-          <Route path="/profil/edit" element={<Edit />} />
-          <Route path="/parametre" element={<Parametre />} />
-          <Route path="/panier" element={<Panier />} />
-          <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
-          <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
-          <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
-          <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
-          <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/profil/" element={<Profil />} />
-          <Route path="/test-personnalite" element={<TestPage/>} />
-        </Routes>
-        {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
-        {isModal && <ModalProfil closeModal={closeModal} onThemeChange={toggleTheme} />}
-      </div>
-    </ThemeProvider>
+    <div>
+      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header gameData={gameData} isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
+      <Routes>
+        <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
+        <Route path="/connexion" element={<Connexion />} />
+        <Route path="/inscription" element={<Inscription />} />
+        <Route path="/*" element={<Erreur />} />
+        <Route path="/profil/edit" element={<Edit />} />
+        <Route path="/parametre" element={<Parametre />} />
+        <Route path="/panier" element={<Panier />} />
+        <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
+        <Route path="/derniere-ajout" element={<LastAdditions gameData={gameData} />} />
+        <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
+        <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/profil/" element={<Profil />} />
+        <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
+        <Route path="/test-personnalite" element={<TestPage/>} />
+        
+        {/* profil/:id */}
+        
+        {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
+        {/* // TODO voir le typage undefined  */}
+
+        {/* <Route path="/categories" element={<Category />} /> */}
+        {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}
+       {/* 
+        <Route path="/paiement" element={<SinglePostPage />} />
+        {/* <Route path="/paiement" element={<SinglePostPage />} />
+        <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
+        <Route path="/test-personnalite" element={<SinglePostPage />} />
+        <Route path="/categories" element={<SinglePostPage />} />
+        <Route path="/categorie/:id" element={<SinglePostPage />} />
+        <Route path="/conditions-generales" element={<SinglePostPage />} />
+        <Route path="/mentions-légales" element={<SinglePostPage />} />
+        <Route path="/supprimer" element={<SinglePostPage />} />
+        <Route path="/backoffice" element={<SinglePostPage />} /> */}
+      </Routes>
+
+      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
+    </div>
   );
 }
 

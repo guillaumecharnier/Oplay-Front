@@ -1,25 +1,59 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import { useAuth } from "../../context/AuthContext";
 import { useTheme, Theme } from '../Theme/ThemeContext'; // Assurez-vous que Theme est importé correctement depuis ThemeContext
+
+interface Game {
+  id: number;
+  name: string;
+  picture: string;
+}
 
 interface HeaderProps {
   isModal: boolean;
   openModal: () => void;
   closeModal: () => void;
+  gameData: Game[];
 }
 
-const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
+const Header: React.FC<HeaderProps> = ({ gameData, isModal, openModal, closeModal }) => {
   const { isLog, roles } = useAuth();
   const { theme, setTheme } = useTheme(); // Utilisation du contexte de thème
-
+  const [gameName, setGameName] = useState<string>(''); // Update to string type
+  const [searchResults, setSearchResults] = useState<Game[]>([])
   const location = useLocation();
   const isInscriptionPage = location.pathname === '/inscription';
+  const navigate = useNavigate();
 
   if (isInscriptionPage) {
     return null;
   }
+
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const value = e.target.value.toLowerCase();
+  setGameName(value);
+
+  if (value) {
+    const results = gameData.filter((game) => game.name.toLowerCase().includes(value));
+    setSearchResults(results.slice(0, 6)); // To Limit the results to 6
+  } else {
+    setSearchResults([]);
+  }
+};
+
+    const handleGameSelection = () => {
+      setGameName('');
+      setSearchResults([]);
+    };
+  
+      const handleSearch = (e: React.FormEvent) => {
+      e.preventDefault();
+      navigate(`/search/${gameName}`);
+      handleGameSelection();
+    };
+
+    
 
   // Fonction pour changer le thème
   const handleThemeChange = (newTheme: string) => {
@@ -58,24 +92,20 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
         <div className="flex flex-row w-full md:w-1/3 justify-center space-x-4">
           <Link to="/panier" className="flex items-center">
             <img
-              src="/src/assets/images/shop.svg"
-              alt="Panier"
-              className="w-10 h-10 hover:scale-105 transition-transform duration-300"
+              onClick={openModal}
+              src="/src/assets/images/profile-user.svg"
+              alt="Profil"
+              className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
             />
           </Link>
-
-          <img
-            onClick={openModal}
-            src="/src/assets/images/profile-user.svg"
-            alt="Profil"
-            className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
-          />
         </div>
       </div>
 
       <div className="flex justify-center pb-8 px-4">
         <form action="" className="relative w-full max-w-md">
           <input
+            onChange={handleInputChange}
+            value={gameName}
             type="text"
             name="gameSearch"
             placeholder="Recherche ton jeu"
@@ -84,6 +114,7 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
           <button
             type="submit"
             className="absolute inset-y-0 right-[-1rem] flex items-center pl-3"
+            onClick={handleSearch}
           >
             <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-3 rounded-full">
               <img
@@ -93,6 +124,25 @@ const Header: React.FC<HeaderProps> = ({ isModal, openModal, closeModal }) => {
               />
             </div>
           </button>
+
+        {/* Liste déroulante des résultats de recherche */}
+        {searchResults.length > 0 && (
+            <div className="absolute z-10 w-full mt-2 bg-white rounded-lg shadow-lg">
+              <ul className="py-2">
+                {searchResults.map((game) => (
+                  <li key={game.id} className="hover:bg-gray-200">
+                    <Link 
+                      to={`/jeu/${game.id}`} 
+                      className="block px-4 py-2 text-gray-800"
+                      onClick={handleGameSelection}
+                    >
+                      {game.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </form>
       </div>
 
