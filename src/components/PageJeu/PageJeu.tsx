@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
@@ -25,7 +24,7 @@ function PageJeu({ gameData }: PageJeuProps) {
   const { id } = useParams<{ id: string }>();
   const game = gameData.find((game) => game.id === parseInt(id));
 
-  // if (!game) return <p>Jeu non trouvé</p>;
+  if (!game) return <p>Jeu non trouvé</p>;
   // loading ? 
 
   const gameId = game.id;

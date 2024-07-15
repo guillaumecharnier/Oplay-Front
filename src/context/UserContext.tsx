@@ -13,7 +13,6 @@ interface User {
 
 interface UserContextType {
   user: User[];
-  fetchUserData: (userId: number) => void;
 }
 
 interface MyJwtPayload extends JwtPayload {
@@ -26,7 +25,6 @@ interface MyJwtPayload extends JwtPayload {
 
 const UserContext = createContext<UserContextType>({
     user: [],
-    fetchUserData: () => {},
   });
   
 
@@ -34,32 +32,30 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState<User[]>([]);
   const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
   const { cartItems } = useCart();
+  
   const searchUser = () => {
     const storedToken = localStorage.getItem('jwtToken');
     if (storedToken) {
       setToken(storedToken);
 
       try {
-        const decodedToken = jwtDecode<MyJwtPayload>(storedToken);
-
-        const userId = decodedToken.id;
-        fetchUserData(userId);
+        fetchUserData();
       } catch (error) {
         console.error('Error decoding token:', error);
       }
     }
   };
 
-  const fetchUserData = async (userId: number) => {
+  const fetchUserData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/user/${userId}`, {
+      const response = await axios.get(`http://localhost:8080/api/user/detail`, {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
         },
       });
       setUser([response.data]);
-    //   console.log('User', response.data);s
+    //   console.log('User', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -70,7 +66,7 @@ export const UserProvider = ({ children }) => {
   }, [cartItems]);
 
   return (
-    <UserContext.Provider value={{ user, fetchUserData }}>
+    <UserContext.Provider value={{ user }}>
       {children}
     </UserContext.Provider>
   );

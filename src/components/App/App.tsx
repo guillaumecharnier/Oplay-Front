@@ -17,9 +17,10 @@ import NextRelease from '../HomePage/NextRelease';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
-import DernierAjout from '../DernierAjout/DernierAjout';
+// import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
 import React from 'react';
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -88,7 +89,7 @@ function App() {
 
   return (
     <div>
-      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
+      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header gameData={gameData} isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
       <Routes>
         <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
         <Route path="/connexion" element={<Connexion />} />
@@ -98,11 +99,12 @@ function App() {
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
-        <Route path="/derniere-ajout" element={<LastAdditions gameData={undefined} />} />
+        <Route path="/derniere-ajout" element={<LastAdditions gameData={gameData} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
+        <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
         {/* profil/:id */}
         
         {/* <Route path="/derniere-ajout" element={<DernierAjout />} /> */}
