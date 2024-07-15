@@ -24,7 +24,8 @@ export const useTheme = () => {
 
 // Composant fournisseur de thème
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('horror'); // Thème initialisé à 'horror'
+  
+  const [theme, setTheme] = useState<Theme>('aventure'); 
 
   // Fonction pour changer le thème
   const toggleTheme = (newTheme: Theme) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from '../../context/ThemeContext';
+import GandalfPDP from '../../assets/images/GandalfPDP.jpeg'; // Assurez-vous que le chemin est correct
 
 function Edit() {
   const { theme } = useTheme();
@@ -21,7 +22,7 @@ function Edit() {
         <div className="flex items-center space-x-6">
           <div className="relative">
             <img 
-              src="/assets/images/GandalfPDP.jpeg"
+              src={GandalfPDP}
               className="w-32 h-32 rounded-full border-4 border-gray-700" 
               alt="Photo de profil" 
             />
@@ -45,4 +46,5 @@ function Edit() {
 }
 
 export default Edit;
+
 

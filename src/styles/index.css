@@ -20,7 +20,7 @@
 /* Thème Aventure */
 
 :root.aventure {
-  --bg-color: #838C3F;
+  --bg-color: #61A04C;
   --text-color: #fff;
 }
 
@@ -28,7 +28,7 @@
 /* Thème Online */
 
 :root.online {
-  --bg-color: #403E8C;
+  --bg-color: #093078;
   --text-color: #fff;
 }
 
@@ -44,7 +44,7 @@
 /* Thème Strategie */
 
 :root.strategie {
-  --bg-color: #260F01;
+  --bg-color: #F590BF;
   --text-color: #fff;
 }
 
