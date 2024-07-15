@@ -20,7 +20,10 @@ import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import Confirmation from '../Confirmation/Confirmation';
-import TestPage from '../TestPersonnalise/TestPage';
+import TestTheme from '../TestPersonnalise/TestTheme';
+import TestCategory from '../TestPersonnalise/TestCategory';
+import TestTag from '../TestPersonnalise/TestTag';
+
 import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
@@ -103,8 +106,11 @@ function App() {
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
         <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
-        <Route path="/test-personnalite" element={<TestPage/>} />
-        
+        <Route path="/test-personnalite" element={<TestTheme/>} />
+        <Route path="/test-personnalite/Categories" element={<TestCategory categoryData={categoryData} />} />
+        <Route path="/test-personnalite/Tags" element={<TestTag tagData={tagData} />} />
+
+e         
         {/* profil/:id */}
         
         {/* // TODO voir le typage undefined  */}
@@ -131,4 +137,3 @@ function App() {
 }
 
 export default App;
-
