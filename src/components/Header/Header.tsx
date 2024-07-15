@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import { useAuth } from "../../context/AuthContext";
-import { useTheme, Theme } from '../Theme/ThemeContext'; // Assurez-vous que Theme est importé correctement depuis ThemeContext
+import { useTheme, Theme } from '../../context/ThemeContext'; // Assurez-vous que Theme est importé correctement depuis ThemeContext
 
 interface Game {
   id: number;

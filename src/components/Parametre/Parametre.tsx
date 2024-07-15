@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from '../Theme/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import { Link } from "react-router-dom";
 
 function Parametre() {

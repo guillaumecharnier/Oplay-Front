@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from '../Theme/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 function Profil() {
   const { theme } = useTheme();
