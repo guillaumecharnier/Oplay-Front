@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../Theme/ThemeContext'; // Assurez-vous du chemin correct
 
 function Erreur() {
+  const { theme } = useTheme(); // Récupération du thème
+
   return (
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-center p-5 text-white text-center">
+    <div className={`min-h-screen ${theme} flex flex-col items-center justify-center p-5 text-white text-center`}>
       {/* Image d'erreur */}
       <img
         src="/src/assets/images/icons-dark-vador.svg" // Assurez-vous que le chemin est correct selon votre structure de projet
@@ -25,3 +28,4 @@ function Erreur() {
 }
 
 export default Erreur;
+

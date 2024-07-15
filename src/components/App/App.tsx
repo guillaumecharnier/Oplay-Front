@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
-import { CategoryData, GameData, TagData, UserData } from '../../assets/type';
+import { CategoryData, GameData, TagData } from '../../assets/type';
+
+import { ThemeProvider } from '../Theme/ThemeContext';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -17,9 +19,10 @@ import NextRelease from '../HomePage/NextRelease';
 import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
+import ModalProfil from '../ModalProfil/ModalProfil';
+
 // import DernierAjout from '../DernierAjout/DernierAjout';
 import Confirmation from '../Confirmation/Confirmation';
-import React from 'react';
 import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
@@ -27,63 +30,60 @@ function App() {
   const [tagData, setTagData] = useState<TagData[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [isModal, setModal] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   const { token } = useAuth();
   const location = useLocation();
 
-  // https://oplay.guillaumecharnier-server.eddi.cloud/api/user/browse
+  useEffect(() => {
+    document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = (newTheme: string) => {
+    console.log(`Theme changed to: ${newTheme}`);
+    setTheme(newTheme);
+  };
 
   const fetchGameData = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/game', {
-          headers: {
-            'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`,
-          },
-        });
-        setGameData(response.data);
-        // console.log('Game',response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+    try {
+      const response = await axios.get('http://localhost:8080/api/game', {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      setGameData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   };
 
   const fetchTagData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/api/tag', {
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
       });
       setTagData(response.data);
-      // console.log('Tag', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-  }
+    }
   };
 
   const fetchCategoryData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/api/category', {
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
       });
       setCategoryData(response.data);
-      // console.log('category', response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-  }
-};
+    }
+  };
 
   useEffect(() => {
     fetchTagData();
     fetchCategoryData();
     fetchGameData();
-  },[]);
-  
+  }, []);
+
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
@@ -131,3 +131,4 @@ function App() {
 }
 
 export default App;
+

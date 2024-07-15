@@ -3,21 +3,23 @@ import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useUser } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
-
-interface Game {
-  id: number;
-  name: string;
-  picture: string;
-  price: number;
-}
+import { useTheme } from '../Theme/ThemeContext'; 
 
 function Panier() {
   const { token } = useAuth();
   const { cartItems, setCartItems } = useCart();
   const { user } = useUser();
+  const { theme } = useTheme(); // Récupération du thème
 
   const purchaseOrder = user.map(userunique => userunique.purchasedOrder);
   const order = [].concat(...purchaseOrder.map(purchase => purchase.map(p => p.games))).flat();
+  
+  interface Game {
+    id: number;
+    name: string;
+    picture: string;
+    price: number;
+  }
 
   const deleteFromCart = async (gameId: number) => {
     try {
@@ -85,7 +87,7 @@ function Panier() {
   };
 
   return (
-    <div className="bg-blue-custom-200 min-h-screen py-10 px-4 md:px-8">
+    <div className={`min-h-screen ${theme} min-h-screen py-10 px-4 md:px-8 `}>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* En-tête du panier */}
         <div className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 py-5 px-6 flex flex-col md:flex-row md:items-center md:justify-between text-white">

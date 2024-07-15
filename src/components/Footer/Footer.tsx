@@ -10,9 +10,9 @@ function Footer() {
             <img
               src="/src/assets/images/gamepad.svg"
               alt="Logo page accueil"
-              className="w-12 mb-2"
+              className="w-12 mb-2 hover:rotate-12 transition-transform"
             />
-            <h1 className="text-xl text-white">O'Play</h1>
+            <h1 className="text-xl text-white hover:text-blue-500 transition-colors duration-300">O'Play</h1>
           </Link>
         </div>
 
@@ -35,3 +35,4 @@ function Footer() {
 }
 
 export default Footer;
+
