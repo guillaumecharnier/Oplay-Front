@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import { useAuth } from "../../context/AuthContext";
-import { useTheme, Theme } from '../Theme/ThemeContext'; // Assurez-vous que Theme est importé correctement depuis ThemeContext
+import { Theme, useTheme } from '../../context/ThemeContext';
+
 
 interface Game {
   id: number;
@@ -89,18 +90,24 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           </Link>
         </div>
 
+        {/* Panier et Profil */}
         <div className="flex flex-row w-full md:w-1/3 justify-center space-x-4">
           <Link to="/panier" className="flex items-center">
             <img
-              onClick={openModal}
-              src="/src/assets/images/profile-user.svg"
-              alt="Profil"
-              className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
+              src="src/assets/images/shop.svg"
+              alt="Panier"
+              className="w-10 h-10 hover:scale-105 transition-transform duration-300"
             />
           </Link>
+          <img
+            onClick={openModal}
+            src="src/assets/images/profile-user.svg"
+            alt="Profil"
+            className="w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-300"
+          />
         </div>
       </div>
-
+      
       <div className="flex justify-center pb-8 px-4">
         <form action="" className="relative w-full max-w-md">
           <input

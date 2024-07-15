@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTheme } from '../Theme/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const TestPage = () => {
   const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte

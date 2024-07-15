@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../Theme/ThemeContext'; // Assurez-vous du chemin correct
+import { useTheme } from '../../context/ThemeContext'; // Assurez-vous du chemin correct
 
 function Erreur() {
   const { theme } = useTheme(); // Récupération du thème

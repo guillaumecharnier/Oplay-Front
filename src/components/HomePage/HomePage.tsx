@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../Theme/ThemeContext'; // Assurez-vous d'importer useTheme depuis votre fichier ThemeContext
+import { useTheme } from '../../context/ThemeContext'; // Assurez-vous d'importer useTheme depuis votre fichier ThemeContext
 import CustomSelection from './CustomSelection';
 import LastAdditions from './LastAdditions';
 import Categories from './Categories';
