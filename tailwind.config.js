@@ -18,7 +18,7 @@ export default {
       colors: {
         'blue-custom': {
           100: '#E6F7FF',
-          200: '#1B1F47', // Couleur pour le fond de la page
+          200: '#1B1F47', 
           300: '#4A90E2',
           400: '#357ABD',
           500: '#2C3E50',
@@ -50,8 +50,8 @@ export default {
         'sport-text': 'var(--text-color)',
         'strategie-bg': 'var(--bg-color)',
         'strategie-text': 'var(--text-color)',
-        'light-bg': 'var(--bg-color)',
-        'light-text': 'var(--text-color)',
+        // 'light-bg': 'var(--bg-color)',
+        // 'light-text': 'var(--text-color)',
       }
     },
   },
