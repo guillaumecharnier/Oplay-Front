@@ -21,7 +21,7 @@ function Edit() {
         <div className="flex items-center space-x-6">
           <div className="relative">
             <img 
-              src="assets/images/GandalfPDP.jpeg"
+              src="/assets/images/GandalfPDP.jpeg"
               className="w-32 h-32 rounded-full border-4 border-gray-700" 
               alt="Photo de profil" 
             />
