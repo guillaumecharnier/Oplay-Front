@@ -1,11 +1,7 @@
 import React from 'react';
 
-interface ThemeSwitcherProps {
-  onThemeChange: (theme: string) => void;
-}
-
-const ThemeSwitcher: React.FC<ThemeSwitcherProps> = () => {
-  const themes = ['horror', 'action', 'aventure', 'online', 'sport', 'strategie','light'];
+const ThemeSwitcher: React.FC = () => {
+  const themes = ['horror', 'action', 'aventure', 'online', 'sport', 'strategie'];
 
   return (
     <div className="theme-switcher">
@@ -18,7 +14,6 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = () => {
           }}
           className={`m-2 p-2 rounded ${theme}`}
         >
-          {theme.charAt(0).toUpperCase() + theme.slice(1)}
         </button>
       ))}
     </div>

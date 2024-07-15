@@ -1,59 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../context/AuthContext';
-
 import axios from 'axios';
 
 const TestPage = ({ categoryData }) => {
   const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
-  const { token } = useAuth();
-  const [selectedCategory, setSelectedCategory] = useState(''); // État pour la catégorie sélectionnée
-  const navigate = useNavigate(); // Hook pour la navigation
-
-  // Fonction pour gérer la soumission du formulaire
-  const handleSubmit = async () => {
-    if (selectedCategory) {
-      // Récupère l'ID du thème sélectionné
-      const selectedCategoryData = categoryData.find(categ => categ.name === selectedCategory);
-      if (selectedCategoryData) {
-        const themeId = selectedCategoryData.id;
-        console.log('ID du thème', themeId);
-
-        // Post the theme data
-        await postThemeData(themeId);
-        // postThemeData(themeId);
-    
-        // Redirige vers la page TestCategory avec la catégorie sélectionnée
-        navigate(`/test-personnalite/Categories`);
-      } else {
-        console.error('La catégorie sélectionnée n\'a pas été trouvée dans les données de catégorie.');
-      }
-    } else {
-      alert('Veuillez sélectionner un thème.');
-    }
-  };
-
-  // Fonction pour gérer la sélection d'un thème
-  const handleCategoryChange = (categoryName) => {
-    setSelectedCategory(categoryName);
-  };
-  
-  const postThemeData = async (themeId) => {
-    try {
-      const response = await axios.post('http://localhost:8080/api/user/theme', {
-        theme_id: themeId
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      console.log('user Response:', response.data);
-    } catch (error) {
-      console.error('Error posting data:', error);
-    }
-  };
 
   return (
     <div className={`min-h-screen bg-${theme}-bg flex flex-col items-center justify-center p-8`}>

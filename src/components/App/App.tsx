@@ -111,8 +111,7 @@ function App() {
         <Route path="/test-personnalite" element={<TestTheme categoryData={categoryData} />} />
         <Route path="/test-personnalite/Categories" element={<TestCategory categoryData={categoryData} />} />
         <Route path="/test-personnalite/Tags" element={<TestTag tagData={tagData} />} />
-
-e         
+         
         {/* profil/:id */}
         
         {/* // TODO voir le typage undefined  */}
@@ -132,7 +131,7 @@ e
         <Route path="/backoffice" element={<SinglePostPage />} /> */}
       </Routes>
       {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
-      {isModal && <ModalProfil closeModal={closeModal} onThemeChange={toggleTheme} />}
+      {isModal && <ModalProfil closeModal={closeModal} setTheme={toggleTheme} />}
     
     </div>
   );
