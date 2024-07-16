@@ -61,7 +61,7 @@ export const UserProvider = ({ children }) => {
       console.error('Error fetching data:', error);
     }
   };
-  // http://localhost:8080/api/user/detail
+
   useEffect(() => {
     searchUser();
   }, [cartItems]);

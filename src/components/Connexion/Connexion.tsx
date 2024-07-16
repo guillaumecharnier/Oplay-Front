@@ -33,7 +33,7 @@ const Connexion: React.FC = () => {
         // Décodez le token pour obtenir les informations utilisateur
         const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
         // console.log('Decoded Token:', decodedToken);
-        setUserData(decodedToken);  // Mettez à jour userData avec les informations décryptées
+        setUserData(decodedToken);
       } catch (error) {
         console.error('Error fetching token:', error);
       }
