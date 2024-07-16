@@ -47,14 +47,16 @@ function Profil() {
         {/* Affichage des jeux associés */}
         <div className="mt-8">
           <h3 className="text-2xl font-semibold">Mes Jeux</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4"> {/* Ajustez le nombre de colonnes ici selon vos préférences */}
             {user.userGameKeys.map((userGameKey) => (
-              <div key={userGameKey.id} className="bg-gray-800 rounded-lg p-4">
-                <img src={userGameKey.game.picture} className="w-full h-40 object-cover rounded-lg mb-2" alt={userGameKey.game.name} />
-                <p className="text-lg font-semibold">{userGameKey.game.name}</p>
-                <p className="text-sm text-gray-400">Prix {userGameKey.game.price.toFixed(2)}</p>
-                <p className="text-sm text-gray-400">clé {userGameKey.gameKey}</p>
-              </div>
+              <Link key={userGameKey.id} to={`/jeu/${userGameKey.game.id}`}>
+                <div className="bg-gray-800 rounded-lg p-4 cursor-pointer transform transition duration-300 hover:scale-105">
+                  <img src={userGameKey.game.picture} className="w-full h-40 object-cover rounded-lg mb-2" alt={userGameKey.game.name} />
+                  <p className="text-lg font-semibold">{userGameKey.game.name}</p>
+                  <p className="text-sm text-gray-400">Prix {userGameKey.game.price.toFixed(2)}</p>
+                  <p className="text-sm text-gray-400">Clé {userGameKey.gameKey}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
