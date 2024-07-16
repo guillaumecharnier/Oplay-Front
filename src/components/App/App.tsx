@@ -23,8 +23,8 @@ import Confirmation from '../Confirmation/Confirmation';
 import TestTheme from '../TestPersonnalise/TestTheme';
 import TestCategory from '../TestPersonnalise/TestCategory';
 import TestTag from '../TestPersonnalise/TestTag';
-
 import SearchResults from '../SearchResults/SearchResults';
+import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage'; // Import du composant CategoryGamesPage
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -35,8 +35,6 @@ function App() {
 
   const { token } = useAuth();
   const location = useLocation();
-
-
 
   useEffect(() => {
     document.documentElement.className = theme;
@@ -92,12 +90,12 @@ function App() {
 
   return (
     <div>
-      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Header gameData={gameData} isModal={isModal} openModal={openModal} closeModal={closeModal}  />}
+      {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Header gameData={gameData} isModal={isModal} openModal={openModal} closeModal={closeModal} />}
       <Routes>
         <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
-        <Route path="/*" element={<Erreur />} />
+        <Route path="/erreur" element={<Erreur />} />
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
@@ -111,28 +109,10 @@ function App() {
         <Route path="/test-personnalite" element={<TestTheme />} />
         <Route path="/test-personnalite/Categories" element={<TestCategory />} />
         <Route path="/test-personnalite/Tags" element={<TestTag tagData={tagData} />} />
-         
-        {/* profil/:id */}
-        
-        {/* // TODO voir le typage undefined  */}
-
-        {/* <Route path="/categories" element={<Category />} /> */}
-        {/* <Route path="/categorie/:id" element={<SinglePostPage />} /> */}
-       {/* 
-        <Route path="/paiement" element={<SinglePostPage />} />
-        {/* <Route path="/paiement" element={<SinglePostPage />} />
-        <Route path="/profil/historique-d-achat" element={<SinglePostPage />} />
-        <Route path="/test-personnalite" element={<SinglePostPage />} />
-        <Route path="/categories" element={<SinglePostPage />} />
-        <Route path="/categorie/:id" element={<SinglePostPage />} />
-        <Route path="/conditions-generales" element={<SinglePostPage />} />
-        <Route path="/mentions-légales" element={<SinglePostPage />} />
-        <Route path="/supprimer" element={<SinglePostPage />} />
-        <Route path="/backoffice" element={<SinglePostPage />} /> */}
+        <Route path="/categorie/:id" element={<CategoryGamesPage gameData={gameData} />} /> {/* Ajout de la route pour CategoryGamesPage */}
       </Routes>
-      {location.pathname !== '/connexion' && location.pathname!=='/inscription' && <Footer/>}
+      {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
       {isModal && <ModalProfil closeModal={closeModal} setTheme={toggleTheme} />}
-    
     </div>
   );
 }

@@ -8,6 +8,7 @@ interface User {
   purchasedOrder: any[];
   id: number;
   email: string;
+  roles: string[];
   // Ajoutez d'autres champs nécessaires ici
 }
 
@@ -48,7 +49,7 @@ export const UserProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/user`, {
+      const response = await axios.get(`http://localhost:8080/api/user/detail`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
