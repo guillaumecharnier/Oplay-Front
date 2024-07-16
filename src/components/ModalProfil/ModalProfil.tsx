@@ -10,7 +10,16 @@ interface ModalProfilProps {
 const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
   const { isLog, roles, logout } = useAuth();
   const isAdmin = roles && roles.includes('ROLE_ADMIN');
-  const { setTheme } = useTheme();
+  const { postThemeData } = useTheme();
+
+  const themes = [
+    { id: 1, name: 'Action', color: 'bg-gray-800' },
+    { id: 2, name: 'Aventure', color: 'bg-green-600' },
+    { id: 3, name: 'Horror', color: 'bg-red-900' },
+    { id: 4, name: 'Multiplayer', color: 'bg-pink-400' },
+    { id: 5, name: 'Simulation', color: 'bg-indigo-900' },
+    { id: 6, name: 'Sport', color: 'bg-yellow-600' },
+  ];
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
@@ -38,13 +47,21 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
             className="w-24 h-24 border-white mb-4"
           />
           <div className="flex flex-col space-y-4 text-xl">
+          {!isLog ? (
             <Link
-              to="/profil"
+              to="/connexion"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
               onClick={closeModal}
             >
               Profil
             </Link>
+          ) :   <Link
+          to="/profil"
+          className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+          onClick={closeModal}
+        >
+          Profil
+        </Link>}
             <Link
               to="/parametre"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
@@ -69,6 +86,8 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
               </Link>
             )}
             {isLog && (
+              <Link
+              to="/connexion" >
               <button
                 className="hover:bg-red-600 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
                 onClick={() => {
@@ -77,17 +96,20 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
                 }}
               >
                 Déconnexion
-              </button>
+              </button></Link>
             )}
           </div>
           <div className="p-6 rounded shadow-lg bg-blue-900">
             <div className="grid grid-cols-2 gap-2">
-              <button onClick={() => setTheme('strategie')} className="p-2 bg-indigo-900 text-white rounded">Strategie</button>
-              <button onClick={() => setTheme('horror')} className="p-2 bg-red-900 text-white rounded">Horror</button>
-              <button onClick={() => setTheme('action')} className="p-2 bg-gray-800 text-white rounded">Action</button>
-              <button onClick={() => setTheme('aventure')} className="p-2 bg-green-600 text-white rounded">Aventure</button>
-              <button onClick={() => setTheme('online')} className="p-2 bg-pink-400 text-white rounded">Online</button>
-              <button onClick={() => setTheme('sport')} className="p-2 bg-yellow-600 text-white rounded">Sport</button>
+              {themes.map((theme) => (
+                <button
+                  key={theme.id}
+                  onClick={() => postThemeData(theme.id)}
+                  className={`p-2 text-white rounded ${theme.color}`}
+                >
+                  {theme.name}
+                </button>
+              ))}
             </div>
           </div>
         </div>

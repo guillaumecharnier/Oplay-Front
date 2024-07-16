@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ModalProfil from '../ModalProfil/ModalProfil';
 import { useAuth } from "../../context/AuthContext";
-import { Theme, useTheme } from '../../context/ThemeContext';
-
+import { useTheme } from '../../context/ThemeContext';
+import { getThemeClass } from '../../Utils/themeUtils';
 
 interface Game {
   id: number;
@@ -20,9 +20,10 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ gameData, isModal, openModal, closeModal }) => {
   const { isLog, roles } = useAuth();
-  const { theme, setTheme } = useTheme(); // Utilisation du contexte de thème
-  const [gameName, setGameName] = useState<string>(''); // Update to string type
+  const { theme, setTheme } = useTheme();
+  const [gameName, setGameName] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Game[]>([])
+  const themeClass = getThemeClass(theme);
   const location = useLocation();
   const isInscriptionPage = location.pathname === '/inscription';
   const navigate = useNavigate();
@@ -54,18 +55,8 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       handleGameSelection();
     };
 
-    
-
-  // Fonction pour changer le thème
-  const handleThemeChange = (newTheme: string) => {
-    // Convertir la chaîne de caractères en type Theme
-    const themeValue: Theme = newTheme as Theme;
-    console.log(`Theme changed to: ${themeValue}`);
-    setTheme(themeValue);
-  };
-
   return (
-    <header className={`relative ${theme}`}>
+    <header className={`relative ${themeClass}`}>
       <div className="flex flex-row md:flex-row items-center justify-between py-5 px-4">
         <div className="flex justify-center w-full md:w-1/3 mb-4 md:mb-0">
           {!isLog ? (
@@ -153,7 +144,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         </form>
       </div>
 
-      {isModal && <ModalProfil closeModal={closeModal} onThemeChange={handleThemeChange} />}
+      {isModal && <ModalProfil closeModal={closeModal} />}
     </header>
   );
 };

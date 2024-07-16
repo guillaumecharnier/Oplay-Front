@@ -28,6 +28,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage';
 import Notification from '../Notification/Notification';
 
+
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [tagData, setTagData] = useState<TagData[]>([]);
@@ -55,6 +56,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
       });
       setGameData(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -119,7 +121,7 @@ function App() {
         <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
-        <Route path="/erreur" element={<Erreur />} />
+        <Route path="/*" element={<Erreur />} />
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
@@ -136,8 +138,11 @@ function App() {
         <Route path="/categorie/:id" element={<CategoryGamesPage gameData={gameData} />} />
       </Routes>
       {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
-      {isModal && <ModalProfil closeModal={closeModal} setTheme={toggleTheme} />}
-      {notificationMessage && <Notification message={notificationMessage} />} {/* Affichage de la notification */}
+
+      {isModal && <ModalProfil closeModal={closeModal} />}
+      {notificationMessage && <Notification message={notificationMessage} onClose={function (): void {
+        throw new Error('Function not implemented.');
+      } } />} {/* Affichage de la notification */}
     </div>
   );
 }
