@@ -52,7 +52,8 @@ function Profil() {
               <div key={userGameKey.id} className="bg-gray-800 rounded-lg p-4">
                 <img src={userGameKey.game.picture} className="w-full h-40 object-cover rounded-lg mb-2" alt={userGameKey.game.name} />
                 <p className="text-lg font-semibold">{userGameKey.game.name}</p>
-                <p className="text-sm text-gray-400">${userGameKey.game.price.toFixed(2)}</p>
+                <p className="text-sm text-gray-400">Prix {userGameKey.game.price.toFixed(2)}</p>
+                <p className="text-sm text-gray-400">clé {userGameKey.gameKey}</p>
               </div>
             ))}
           </div>
