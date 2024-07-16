@@ -1,78 +1,86 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import  { jwtDecode, JwtPayload } from 'jwt-decode';
-import { useCart } from './CartContext';
 
-// Définir l'interface des données utilisateur
+// Interface pour les données d'un jeu
+interface Game {
+  id: number;
+  name: string;
+  price: number;
+  picture: string;
+}
+
+// Interface pour les données d'une commande de jeu
+interface GameOrder {
+  id: number;
+  quantity: number;
+  totalPrice: number;
+  game: Game;
+}
+
+// Interface pour les données d'une commande
+interface Order {
+  id: number;
+  createdAt: string;
+  total: number;
+  status: string;
+  gameOrders: GameOrder[];
+}
+
+// Interface pour les données d'un utilisateur
 interface User {
-  purchasedOrder: any[];
   id: number;
   email: string;
-  roles: string[];
-  // Ajoutez d'autres champs nécessaires ici
+  firstname?: string;
+  lastname?: string;
+  nickname: string;
+  picture: string;
+  games: Game[];
+  userGameKeys: any[]; // Mettez à jour le type approprié si besoin
+  orders: Order[];
 }
 
 interface UserContextType {
-  user: User[];
-}
-
-interface MyJwtPayload extends JwtPayload {
-  roles: string[]; // Définissez le type de votre propriété 'roles'
-  username: string; // Ajoutez d'autres propriétés si nécessaire
-  iat: number;
-  exp: number;
-  id: number;
+  user: User | null; // Utilisateur unique au lieu d'un tableau
+  setUser: React.Dispatch<React.SetStateAction<User | null>>; // Définir la fonction setUser
 }
 
 const UserContext = createContext<UserContextType>({
-    user: [],
-  });
-  
+  user: null,
+  setUser: () => {},
+});
 
-export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState<User[]>([]);
+export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
-  const { cartItems } = useCart();
-  
-  const searchUser = () => {
-    const storedToken = localStorage.getItem('jwtToken');
-    if (storedToken) {
-      setToken(storedToken);
-
-      try {
-        fetchUserData();
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
-    }
-  };
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/user/detail`, {
+      const response = await axios.get<User>(`http://localhost:8080/api/user/detail`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
-      setUser([response.data]);
-      // console.log('User', response.data);
+
+      setUser(response.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching user data:', error);
     }
   };
-  // http://localhost:8080/api/user/detail
+
   useEffect(() => {
-    searchUser();
-  }, [cartItems]);
+    const storedToken = localStorage.getItem('jwtToken');
+    if (storedToken) {
+      setToken(storedToken);
+      fetchUserData();
+    }
+  }, []);
 
   return (
-    <UserContext.Provider value={{ user }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-export const useUser = () => {
-  return useContext(UserContext);
-};
+export const useUser = (): UserContextType => useContext(UserContext);
