@@ -24,7 +24,7 @@ import TestTheme from '../TestPersonnalise/TestTheme';
 import TestCategory from '../TestPersonnalise/TestCategory';
 import TestTag from '../TestPersonnalise/TestTag';
 import SearchResults from '../SearchResults/SearchResults';
-import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage'; // Import du composant CategoryGamesPage
+import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage';
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -52,6 +52,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
       });
       setGameData(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -95,7 +96,7 @@ function App() {
         <Route path="/" element={<HomePage categoryData={categoryData} gameData={gameData} />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
-        <Route path="/erreur" element={<Erreur />} />
+        <Route path="/*" element={<Erreur />} />
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
@@ -112,7 +113,7 @@ function App() {
         <Route path="/categorie/:id" element={<CategoryGamesPage gameData={gameData} />} /> {/* Ajout de la route pour CategoryGamesPage */}
       </Routes>
       {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
-      {isModal && <ModalProfil closeModal={closeModal} setTheme={toggleTheme} />}
+      {isModal && <ModalProfil closeModal={closeModal} />}
     </div>
   );
 }

@@ -1,100 +1,55 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { CategoryData, TagData } from '../assets/type';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { CategoryData, TagData } from '../assets/type';
+import { useAuth } from "../context/AuthContext";
+const ThemeContext = createContext(undefined);
 
-interface ThemeContextType {
-  theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
-  categoryData: CategoryData[];
-  tagData: TagData[];
-  selectedCategory: string;
-  handleCategoryChange: (categoryName: string) => void;
-  handleSubmit: () => void;
-}
+export const useTheme = () => useContext(ThemeContext);
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
-
-export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const navigate = useNavigate();
-  const { token } = useAuth();
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [theme, setTheme] = useState('');
-  const [tagData, setTagData] = useState<TagData[]>([]);
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState(null);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
-
-  const fetchCategoryData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/category', {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      setCategoryData(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  const fetchTagData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/tag', {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      setTagData(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  const { token } = useAuth();
 
   useEffect(() => {
-    fetchTagData();
-    fetchCategoryData();
-  }, []);
-
-  // Appeler handleCategoryChange et handleSubmit lorsque le thème change
-  useEffect(() => {
-    if (theme) {
-      handleCategoryChange(theme);
-      handleSubmit();
-    } else {
-      console.log('no theme charged');
-      console.log(theme);
-    }
-  }, [theme]);
-
-  const handleCategoryChange = (categoryName: string) => {
-    setSelectedCategory(categoryName);
-    console.log(categoryName);
-    // todo checker a partir dici
-  };
-
-  const handleSubmit = async () => {
-    if (selectedCategory) {
-      const selectedCategoryData = categoryData.find(categ => categ.name === selectedCategory);
-      console.log(selectedCategoryData);
-     
-      if (selectedCategoryData) {
-        const themeId = selectedCategoryData.id;
-        await postThemeData(Number(themeId));
-        navigate(`/test-personnalite/Categories`);
-      } else {
-
-        console.error('La catégorie sélectionnée n\'a pas été trouvée dans les données de catégorie.');
+    const fetchCategoryData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/category', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setCategoryData(response.data);
+      } catch (error) {
+        console.error('Error fetching category data:', error);
       }
-    } else {
-      alert('Veuillez sélectionner un thème.');
-    }
-  };
+    };
 
-  const postThemeData = async (themeId: number) => {
+    fetchCategoryData();
+  }, [token]);
+
+  useEffect(() => {
+    const fetchUserTheme = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/user/detail', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setTheme(response.data.chooseTheme.id);
+        console.log(response.data.chooseTheme.id);
+      } catch (error) {
+        console.error('Error fetching user theme:', error);
+        setTheme(1); 
+      }
+    };
+
+    fetchUserTheme();
+  }, [token]);
+
+  const postThemeData = async (themeId) => {
     try {
       const response = await axios.post('http://localhost:8080/api/user/theme', {
         theme_id: themeId
@@ -104,14 +59,16 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
           'Authorization': `Bearer ${token}`
         }
       });
-      console.log('user Response:', response.data);
+      console.log('User Response:', response.data);
+      setTheme(themeId);
     } catch (error) {
       console.error('Error posting data:', error);
     }
   };
+// console.log(theme);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, categoryData, tagData, selectedCategory, handleCategoryChange, handleSubmit }}>
+    <ThemeContext.Provider value={{ theme, categoryData, postThemeData }}>
       {children}
     </ThemeContext.Provider>
   );
