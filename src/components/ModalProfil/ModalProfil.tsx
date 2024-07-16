@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useTheme } from "../../context/ThemeContext";
 
 interface ModalProfilProps {
   closeModal: () => void;
-  setTheme: (theme: string) => void;
 }
 
-const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, setTheme }) => {
+const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
   const { isLog, logout } = useAuth();
+  const { setTheme } = useTheme();
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
@@ -22,7 +23,6 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, setTheme }) => {
       onClick={handleBackdropClick}
     >
       <div className="relative bg-blue-custom-200 text-white p-6 rounded-lg shadow-lg laptop:w-96">
-        {/* Icone de fermeture */}
         <button
           className="absolute top-4 right-4 text-3xl hover:text-red-500 focus:outline-none"
           onClick={closeModal}
@@ -30,7 +30,6 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, setTheme }) => {
           x
         </button>
 
-        {/* Contenu du Modal */}
         <div className="flex flex-col items-center space-y-6">
           <img
             src="/src/assets/images/profile-user.svg"
@@ -65,15 +64,13 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, setTheme }) => {
             )}
           </div>
           <div className="p-6 rounded shadow-lg bg-blue-900">
-            <h2 className="text-xl mb-4 text-black"></h2>
             <div className="grid grid-cols-2 gap-2">
               <button onClick={() => setTheme('strategie')} className="p-2 bg-indigo-900 text-white rounded">Strategie</button>
               <button onClick={() => setTheme('horror')} className="p-2 bg-red-900 text-white rounded">Horror</button>
               <button onClick={() => setTheme('action')} className="p-2 bg-gray-800 text-white rounded">Action</button>
               <button onClick={() => setTheme('aventure')} className="p-2 bg-green-600 text-white rounded">Aventure</button>
-              <button onClick={() => setTheme('online')} className="p-2 bg-pink-400 text-whiterounded rounded">Online</button>
-              <button onClick={() => setTheme('sport')} className="p-2 bg-yellow-600 text-whiterounded rounded">Sport</button>
-              
+              <button onClick={() => setTheme('online')} className="p-2 bg-pink-400 text-white rounded">Online</button>
+              <button onClick={() => setTheme('sport')} className="p-2 bg-yellow-600 text-white rounded">Sport</button>
             </div>
           </div>
         </div>
@@ -83,8 +80,3 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal, setTheme }) => {
 };
 
 export default ModalProfil;
-
-
-
-
-
