@@ -47,14 +47,14 @@ function Profil() {
         {/* Affichage des jeux associés */}
         <div className="mt-8">
           <h3 className="text-2xl font-semibold">Mes Jeux</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4"> {/* Ajustez le nombre de colonnes ici selon vos préférences */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-4 mt-4"> {/* Ajustez le nombre de colonnes ici selon vos préférences */}
             {user.userGameKeys.map((userGameKey) => (
               <Link key={userGameKey.id} to={`/jeu/${userGameKey.game.id}`}>
                 <div className="bg-gray-800 rounded-lg p-4 cursor-pointer transform transition duration-300 hover:scale-105">
                   <img src={userGameKey.game.picture} className="w-full h-40 object-cover rounded-lg mb-2" alt={userGameKey.game.name} />
                   <p className="text-lg font-semibold">{userGameKey.game.name}</p>
-                  <p className="text-sm text-gray-400">Prix {userGameKey.game.price.toFixed(2)}</p>
-                  <p className="text-sm text-gray-400">Clé {userGameKey.gameKey}</p>
+                  <p className="text-sm text-gray-400">Prix : {userGameKey.game.price.toFixed(2)} €</p>
+                  <p className="text-sm text-gray-400">Clé : {userGameKey.gameKey}</p>
                 </div>
               </Link>
             ))}
@@ -65,7 +65,7 @@ function Profil() {
         <div className="mt-8">
           <h3 className="text-2xl font-semibold">Mes Commandes</h3>
           {user.orders.map((order) => (
-            <div key={order.id} className="border border-gray-300 p-4 mt-4 rounded-lg">
+            <div key={order.id} className="bg-gray-800 rounded-lg p-4 mt-4 cursor-pointer transform transition duration-300 hover:scale-105">
               <p className="text-lg font-medium">Commande #{order.id}</p>
               <p className="text-sm text-gray-600">Date: {new Date(order.createdAt).toLocaleString()}</p>
               <p className="text-sm text-gray-600">Montant total: ${order.total.toFixed(2)}</p>
