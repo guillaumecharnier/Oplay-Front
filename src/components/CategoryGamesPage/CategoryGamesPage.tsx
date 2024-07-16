@@ -83,7 +83,7 @@ const CategoryGamesPage: React.FC<{ gameData: Game[] }> = ({ gameData }) => {
                     <span className="text-lg font-bold text-gray-900">{game.price}€</span>
                     <button
                       onClick={() => addToCart(game.id)}
-                      className="bg-blue-500 text-white px-5 py-2 rounded-lg text-base hover:bg-blue-600 transition duration-300"
+                      className="bg-blue-500 text-white px-5 py-2 rounded-lg text-base hover:bg-blue-600 transition duration-300 hover:scale-105"
                     >
                       Ajouter au Panier
                     </button>

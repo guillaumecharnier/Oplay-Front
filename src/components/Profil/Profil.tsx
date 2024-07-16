@@ -47,7 +47,7 @@ function Profil() {
         {/* Affichage des jeux associés */}
         <div className="mt-8">
           <h3 className="text-2xl font-semibold">Mes Jeux</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-4 mt-4"> {/* Ajustez le nombre de colonnes ici selon vos préférences */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-4"> {/* Ajustez le nombre de colonnes ici selon vos préférences */}
             {user.userGameKeys.map((userGameKey) => (
               <Link key={userGameKey.id} to={`/jeu/${userGameKey.game.id}`}>
                 <div className="bg-gray-800 rounded-lg p-4 cursor-pointer transform transition duration-300 hover:scale-105">

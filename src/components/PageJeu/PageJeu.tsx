@@ -88,7 +88,7 @@ function PageJeu({ gameData }: PageJeuProps) {
               <span className="text-3xl md:text-4xl font-bold text-gray-900">{game.price}€</span>
               <button 
                 onClick={() => addToCart(gameId)}
-                className="bg-blue-500 text-white px-5 py-3 rounded-lg text-lg md:text-xl hover:bg-blue-600 transition duration-300 mt-4 md:mt-0"
+                className="bg-blue-500 text-white px-5 py-3 rounded-lg text-lg md:text-xl hover:bg-blue-600 transition duration-300 mt-4 md:mt-0 hover:scale-105"
               >
                 Ajouter au Panier
               </button>
