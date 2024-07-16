@@ -1,8 +1,9 @@
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
-// import { useTheme } from '../Theme/ThemeContext';
+import Notification from '../Notification/Notification';
 
 interface Game {
   id: number;
@@ -21,44 +22,42 @@ interface PageJeuProps {
 function PageJeu({ gameData }: PageJeuProps) {
   const { token } = useAuth();
   const { addToCartContext } = useCart();
-  // const { theme } = useTheme();
-
   const { id } = useParams<{ id: string }>();
   const game = gameData.find((game) => game.id === parseInt(id));
 
-  if (!game) return <p>Jeu non trouvé</p>;
-  // loading ? 
+  const [showNotification, setShowNotification] = useState(false);
 
-  const gameId = game.id;
-  console.log('jeu', gameId);
+  if (!game) return <p>Jeu non trouvé</p>;
 
   const addToCart = async (gameId: number) => {
     try {
       await axios.post(
         'http://localhost:8080/api/order/add',
-        {'game_id': gameId},
+        { 'game_id': gameId },
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, 
+            'Authorization': `Bearer ${token}`,
           },
         }
       );
-      console.log('envoyé');
-      addToCartContext(game);
+
+      addToCartContext(game); // Ajout du jeu au panier contexte
+
+      setShowNotification(true); // Afficher la notification
+
+      // Cacher la notification après quelques secondes
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000); // 3 secondes, ajustez selon vos besoins
     } catch (error) {
-      console.error(
-        'Erreur lors de l\'ajout du jeu au panier:',
-        error.response ? error.response.data : error.message
-      );
-      console.log('raté');
+      console.error('Erreur lors de l\'ajout du jeu au panier:', error);
     }
   };
 
   return (
     <div>
-      {/* ${theme} */}
-      <div className={`min-h-screen flex flex-col items-center justify-center py-12 px-6 `}>
+      <div className="min-h-screen flex flex-col items-center justify-center py-12 px-6">
         <div className="max-w-4xl w-full bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
           <img
             src={game.picture}
@@ -87,7 +86,7 @@ function PageJeu({ gameData }: PageJeuProps) {
             <div className="flex flex-col md:flex-row items-center justify-between mt-8">
               <span className="text-3xl md:text-4xl font-bold text-gray-900">{game.price}€</span>
               <button 
-                onClick={() => addToCart(gameId)}
+                onClick={() => addToCart(game.id)}
                 className="bg-blue-500 text-white px-5 py-3 rounded-lg text-lg md:text-xl hover:bg-blue-600 transition duration-300 mt-4 md:mt-0 hover:scale-105"
               >
                 Ajouter au Panier
@@ -96,10 +95,16 @@ function PageJeu({ gameData }: PageJeuProps) {
           </div>
         </div>
       </div>
+
+      {/* Afficher la notification si showNotification est true */}
+      {showNotification && (
+        <Notification
+          message={`"${game.name}" a été ajouté au panier`}
+          onClose={() => setShowNotification(false)}
+        />
+      )}
     </div>
   );
 }
 
 export default PageJeu;
-
-

@@ -81,12 +81,6 @@ const CategoryGamesPage: React.FC<{ gameData: Game[] }> = ({ gameData }) => {
                   <p className="text-gray-700 text-base mb-4 leading-snug">{game.description.length > 150 ? `${game.description.slice(0, 150)}...` : game.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold text-gray-900">{game.price}€</span>
-                    <button
-                      onClick={() => addToCart(game.id)}
-                      className="bg-blue-500 text-white px-5 py-2 rounded-lg text-base hover:bg-blue-600 transition duration-300 hover:scale-105"
-                    >
-                      Ajouter au Panier
-                    </button>
                   </div>
                 </div>
               </div>
