@@ -1,6 +1,8 @@
+// App.tsx
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useAuth } from "../../context/AuthContext";
+import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 import { CategoryData, GameData, TagData } from '../../assets/type';
 import { ThemeProvider } from '../../context/ThemeContext';
 import HomePage from '../HomePage/HomePage';
@@ -15,7 +17,6 @@ import Parametre from '../Parametre/Parametre';
 import Panier from '../Panier/Panier';
 import LastAdditions from '../HomePage/LastAdditions';
 import NextRelease from '../HomePage/NextRelease';
-import axios from 'axios';
 import PageJeu from '../PageJeu/PageJeu';
 import JeuxPersonnalise from '../Page/jeuxPersonnalise';
 import ModalProfil from '../ModalProfil/ModalProfil';
@@ -25,6 +26,8 @@ import TestCategory from '../TestPersonnalise/TestCategory';
 import TestTag from '../TestPersonnalise/TestTag';
 import SearchResults from '../SearchResults/SearchResults';
 import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage';
+import Notification from '../Notification/Notification';
+
 
 function App() {
   const [gameData, setGameData] = useState<GameData[]>([]);
@@ -32,6 +35,7 @@ function App() {
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [isModal, setModal] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [notificationMessage, setNotificationMessage] = useState('');
 
   const { token } = useAuth();
   const location = useLocation();
@@ -89,6 +93,27 @@ function App() {
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
+  const addToCart = async (gameId: number) => {
+    try {
+      await axios.post(
+        'http://localhost:8080/api/order/add',
+        { 'game_id': gameId },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+      setNotificationMessage('Jeu ajouté au panier !'); // Définit le message de la notification
+    } catch (error) {
+      console.error(
+        'Erreur lors de l\'ajout du jeu au panier:',
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+
   return (
     <div>
       {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Header gameData={gameData} isModal={isModal} openModal={openModal} closeModal={closeModal} />}
@@ -110,10 +135,14 @@ function App() {
         <Route path="/test-personnalite" element={<TestTheme />} />
         <Route path="/test-personnalite/Categories" element={<TestCategory />} />
         <Route path="/test-personnalite/Tags" element={<TestTag tagData={tagData} />} />
-        <Route path="/categorie/:id" element={<CategoryGamesPage gameData={gameData} />} /> {/* Ajout de la route pour CategoryGamesPage */}
+        <Route path="/categorie/:id" element={<CategoryGamesPage gameData={gameData} />} />
       </Routes>
       {location.pathname !== '/connexion' && location.pathname !== '/inscription' && <Footer />}
+
       {isModal && <ModalProfil closeModal={closeModal} />}
+      {notificationMessage && <Notification message={notificationMessage} onClose={function (): void {
+        throw new Error('Function not implemented.');
+      } } />} {/* Affichage de la notification */}
     </div>
   );
 }

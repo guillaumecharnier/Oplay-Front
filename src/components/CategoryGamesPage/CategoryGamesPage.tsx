@@ -1,6 +1,7 @@
+// CategoryGamesPage.tsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 
@@ -70,20 +71,24 @@ const CategoryGamesPage: React.FC<{ gameData: Game[] }> = ({ gameData }) => {
         {chunkGames(games, 4).map((row, index) => (
           <div key={index} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {row.map((game) => (
-              <div key={game.id} className="flex flex-col bg-white shadow-xl rounded-lg overflow-hidden mb-8">
-                <img
-                  src={game.picture}
-                  alt={game.name}
-                  className="w-full h-64 object-cover"
-                />
+              <div key={game.id} className="group relative bg-white shadow-xl rounded-lg overflow-hidden mb-8">
+                <Link to={`/jeu/${game.id}`} className="block hover:opacity-80 transition-opacity duration-300">
+                  <img
+                    src={game.picture}
+                    alt={game.name}
+                    className="w-full h-64 object-cover"
+                  />
+                </Link>
                 <div className="p-4">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-2">{game.name}</h2>
+                  <Link to={`/jeu/${game.id}`} className="block hover:text-blue-500 cursor-pointer">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-500">{game.name}</h2>
+                  </Link>
                   <p className="text-gray-700 text-base mb-4 leading-snug">{game.description.length > 150 ? `${game.description.slice(0, 150)}...` : game.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold text-gray-900">{game.price}€</span>
                     <button
                       onClick={() => addToCart(game.id)}
-                      className="bg-blue-500 text-white px-5 py-2 rounded-lg text-base hover:bg-blue-600 transition duration-300"
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition duration-300"
                     >
                       Ajouter au Panier
                     </button>
