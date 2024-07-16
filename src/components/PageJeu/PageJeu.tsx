@@ -13,6 +13,8 @@ interface Game {
   editor: string;
   picture: string;
   price: number;
+  hasCategory: { id: number; name: string }[]; 
+  hasTag: { id: number; name: string }[]; 
 }
 
 interface PageJeuProps {
@@ -55,6 +57,16 @@ function PageJeu({ gameData }: PageJeuProps) {
     }
   };
 
+  // Fonction pour formater la date
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
+  };
+
   return (
     <div>
       <div className="min-h-screen flex flex-col items-center justify-center py-12 px-6">
@@ -71,16 +83,16 @@ function PageJeu({ gameData }: PageJeuProps) {
                 {game.description}
               </p>
               <p className="text-gray-700 text-lg md:text-xl mb-6">
-                <strong>Date de sortie:</strong> {game.releaseDate}
+                <strong>Date de sortie :</strong> {formatDate(game.releaseDate)}
               </p>
               <p className="text-gray-700 text-lg md:text-xl mb-6">
-                <strong>Genre:</strong> Action / Aventure 
+                <strong>Genres :</strong> {game.hasCategory.map(category => category.name).join(', ')}
               </p>
               <p className="text-gray-700 text-lg md:text-xl mb-6">
-                <strong>Développeur:</strong> {game.editor}
+                <strong>Tags :</strong> {game.hasTag.map(tag => tag.name).join(', ')}
               </p>
               <p className="text-gray-700 text-lg md:text-xl mb-6">
-                <strong>Plateformes:</strong> PC, Xbox 360, PlayStation 3 
+                <strong>Editeurs :</strong> {game.editor}
               </p>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-between mt-8">
