@@ -4,18 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 import axios from 'axios';
+import { useUser } from '../../context/UserContext';
 
 const TestTag = ({ tagData }) => {
-    const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
-    const [selectedTags, setSelectedTags] = useState([]); // État pour les catégories sélectionnées
-    const navigate = useNavigate(); // Hook pour la navigation
-    const { token } = useAuth();
+  const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
+  const { triggerFetchUserData } = useUser(); // Utilisation de la nouvelle fonction
+  const { token } = useAuth();
+  const [selectedTags, setSelectedTags] = useState([]); // État pour les catégories sélectionnées
+  const navigate = useNavigate(); // Hook pour la navigation
 
     // Fonction pour gérer la soumission du formulaire
   const handleSubmit = async () => {
     if (selectedTags.length > 0) {
       // Logique pour gérer la soumission de la catégorie sélectionnée
       await postTagData(selectedTags);
+      triggerFetchUserData();
       navigate(`/`); 
     } else {
       alert('Veuillez sélectionner une sous-catégorie.');

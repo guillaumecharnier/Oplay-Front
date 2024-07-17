@@ -23,6 +23,7 @@ export interface CategoryData {
 }
 
 export interface GameData {
+    hasCategory: any;
     createdAt: string;
     description: string;
     editor: string;
@@ -32,3 +33,16 @@ export interface GameData {
     price: number;
     releaseDate: string;
 }
+
+export interface Game {
+    id: number;
+    name: string;
+    description: string;
+    editor: string;
+    price: number;
+    picture: string;
+    createdAt: string;
+    releaseDate: string;
+    hasCategory: Category[];
+    hasTag: Tag[];
+  }

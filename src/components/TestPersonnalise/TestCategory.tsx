@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-
 import axios from 'axios';
 
 const TestCategory = () => {
   const { theme, categoryData } = useTheme();
-  const { user } = useUser();
+  const { user, setUser, userCategory, triggerFetchUserData } = useUser(); // Utilisation de la nouvelle fonction
   const { token } = useAuth();
-
   const [selectedCategories, setSelectedCategories] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (selectedCategories.length > 0) {
-   
       await postCategoryData(selectedCategories);
-
+      triggerFetchUserData(); // Déclencher la récupération des données utilisateur
+    
       navigate(`/test-personnalite/Tags`);
     } else {
       alert('Veuillez sélectionner une catégorie.');
     }
   };
 
-  // Fonction pour gérer la sélection d'une catégorie
   const handleCategoryChange = (categoryName) => {
     if (selectedCategories.includes(categoryName)) {
       setSelectedCategories(selectedCategories.filter(categ => categ !== categoryName));
@@ -34,7 +31,6 @@ const TestCategory = () => {
     }
   };
 
-  
   const postCategoryData = async (categoryIds) => {
     try {
       const response = await axios.post('http://localhost:8080/api/user/categories', {

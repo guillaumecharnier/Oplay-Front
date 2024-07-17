@@ -39,7 +39,6 @@ export const ThemeProvider = ({ children }) => {
           }
         });
         setTheme(response.data.chooseTheme.id);
-        console.log(response.data.chooseTheme.id);
       } catch (error) {
         console.error('Error fetching user theme:', error);
         setTheme(1); 

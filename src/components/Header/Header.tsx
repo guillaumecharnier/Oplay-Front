@@ -77,7 +77,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             />
           </Link>
           <Link to="/">
-            <h1 className="text-2xl text-white font-bold hover:text-blue-500 transition-colors duration-300">O'Play</h1>
+            <h1 className="text-2xl text-white font-bold">O'Play</h1>
           </Link>
         </div>
 

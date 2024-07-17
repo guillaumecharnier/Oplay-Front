@@ -27,6 +27,7 @@ import TestTag from '../TestPersonnalise/TestTag';
 import SearchResults from '../SearchResults/SearchResults';
 import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage';
 import Notification from '../Notification/Notification';
+import CustomSelection from '../HomePage/CustomSelection';
 
 
 function App() {
@@ -45,10 +46,6 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = (newTheme: string) => {
-    console.log(`Theme changed to: ${newTheme}`);
-    setTheme(newTheme);
-  };
 
   const fetchGameData = async () => {
     try {
@@ -73,46 +70,13 @@ function App() {
     }
   };
 
-  const fetchCategoryData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/category', {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      setCategoryData(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
   useEffect(() => {
     fetchTagData();
-    fetchCategoryData();
     fetchGameData();
   }, []);
 
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
-
-  const addToCart = async (gameId: number) => {
-    try {
-      await axios.post(
-        'http://localhost:8080/api/order/add',
-        { 'game_id': gameId },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-        }
-      );
-      setNotificationMessage('Jeu ajouté au panier !'); // Définit le message de la notification
-    } catch (error) {
-      console.error(
-        'Erreur lors de l\'ajout du jeu au panier:',
-        error.response ? error.response.data : error.message
-      );
-    }
-  };
 
   return (
     <div>
@@ -125,10 +89,11 @@ function App() {
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
+        <Route path="/selection-perso" element={<CustomSelection />} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={gameData} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
-        <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} />
+        {/* <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} /> */}
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
         <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />
