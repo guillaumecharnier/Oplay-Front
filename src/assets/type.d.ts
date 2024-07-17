@@ -46,3 +46,9 @@ export interface Game {
     hasCategory: Category[];
     hasTag: Tag[];
   }
+
+export interface JwtPayload {
+    roles: string[];
+    username: string;
+    id: number;
+}

@@ -2,44 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { UserData } from '../../assets/type';
-import  { jwtDecode, JwtPayload } from "jwt-decode";
+import { JwtPayload, jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 const Connexion: React.FC = () => {
-  const { token, login, setToken } = useAuth();
+  const { login, setToken } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [userPrivate, setUserPrivate] = useState<UserData | null>(null);
   const navigate = useNavigate();
-
-  const fetchTokenPublique = async () => {
-    try {
-      const response = await axios.post('http://localhost:8080/api/login_check', {
-        username: 'admin@oplay.fr',
-        password: 'admin'
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-
-      const newToken = response.data.token;
-      console.log(newToken);
-      localStorage.setItem('jwtTokenPublique', newToken);
-
-      // Décodez le token pour obtenir les informations utilisateur
-      const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
-      setUserData(decodedToken);
-      console.log(decodedToken);
-    } catch (error) {
-      console.error('Error fetching token:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTokenPublique();
-  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,42 +19,44 @@ const Connexion: React.FC = () => {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
+    if (!email || !password) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+
     try {
-      const response = await fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
+      const response = await axios.post('http://localhost:8080/api/login_check', {
+        username: email,
+        password: password
       });
 
-      if (response.ok) {
-        const result = await response.json();
-
-        const newTokenPrivate = result.data.token;
-
-        console.log(newTokenPrivate);
-        setToken(newTokenPrivate);
-        localStorage.setItem('jwtTokenPrivate', newTokenPrivate);
+      if (response.status === 200) {
+        const newToken = response.data.token;
+        setToken(newToken);
+        localStorage.setItem('jwtToken', newToken);
 
         // Décodez le token pour obtenir les informations utilisateur
-        const decodedTokenPrivate = jwtDecode<JwtPayload & UserData>(newTokenPrivate);
-        setUserPrivate(decodedTokenPrivate);
-        console.log(decodedTokenPrivate);
+        const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
+        setUserData(decodedToken);
 
-        login(newTokenPrivate, true);
+        // Utilisez newToken directement ici
+        login(newToken, true);
         navigate('/');
       } else {
-        throw new Error("Login failed");
+        setError("Échec de la connexion. Veuillez réessayer.");
       }
     } catch (error) {
-      console.error("Erreur lors de la connexion :", error);
+      console.error('Error fetching token:', error);
       setError("Erreur lors de la connexion. Veuillez réessayer plus tard.");
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      console.log('User Data:', userData);
+      console.log(userData.roles);
+    }
+  }, []);
 
   return (
     <div className="bg-blue-custom-200 text-white min-h-screen flex flex-col items-center py-28">
@@ -118,7 +90,7 @@ const Connexion: React.FC = () => {
         <Link to="">Mot de passe oublié ?</Link>
       </div>
     </div>
-  );
+  )
 }
 
 export default Connexion;

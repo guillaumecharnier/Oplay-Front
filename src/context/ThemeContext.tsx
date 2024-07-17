@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { CategoryData, TagData } from '../assets/type';
+import { CategoryData } from '../assets/type';
 import { useAuth } from "../context/AuthContext";
 const ThemeContext = createContext(undefined);
 
@@ -17,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
         const response = await axios.get('http://localhost:8080/api/category', {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
           }
         });
         setCategoryData(response.data);
@@ -65,7 +65,6 @@ export const ThemeProvider = ({ children }) => {
       console.error('Error posting data:', error);
     }
   };
-// console.log(theme);
 
   return (
     <ThemeContext.Provider value={{ theme, categoryData, postThemeData }}>

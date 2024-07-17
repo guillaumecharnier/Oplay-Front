@@ -10,7 +10,7 @@ console.log(filteredGames);
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
       
       {/* Image de couverture */}
-      <div className="relative w-full mb-12 flex justify-center mb-20">
+      <div className="relative w-full flex justify-center mb-20">
         <img
           src="src/assets/images/re8.jpg"
           alt="Custom Selection"

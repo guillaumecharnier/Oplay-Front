@@ -28,7 +28,8 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   // gamedata est undefined
 
   if (!userCategory || !userTag) {
-    return <div>Loading...</div>;
+    console.log('loading');
+    // return <div>Loading...</div>;
   }
 
   // Filtrer les jeux en fonction des catégories et des tags sélectionnés par l'utilisateur
