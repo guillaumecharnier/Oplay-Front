@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 const TestTheme = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const { postThemeData, categoryData } = useTheme();
+  const navigate = useNavigate();
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategoryId(categoryId);
@@ -12,6 +14,7 @@ const TestTheme = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     postThemeData(selectedCategoryId);
+    navigate(`/test-personnalite/Categories`);
   };
 
   return (
