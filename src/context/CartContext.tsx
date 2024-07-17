@@ -26,10 +26,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => [...prevItems, game]);
   };
 
-  // const removeToCartContext = (game: Game) => {
-  //   removecartItems((prevItems) => [...prevItems, game]);
-  // };
-
   return (
     <CartContext.Provider value={{ cartItems, addToCartContext, setCartItems }}>
       {children}
