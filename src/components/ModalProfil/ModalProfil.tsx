@@ -62,13 +62,13 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
         >
           Profil
         </Link>}
-            <Link
+            {/* <Link à voir pour plus tard 
               to="/parametre"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
               onClick={closeModal}
             >
               Paramètres
-            </Link>
+            </Link> */}
             <Link
               to="/test-personnalite"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
