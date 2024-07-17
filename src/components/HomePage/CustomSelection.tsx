@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getThemeClass } from '../../Utils/themeUtils';
 import { useTheme } from '../../context/ThemeContext';
@@ -17,17 +17,13 @@ interface CustomSelectionProps {
   onCategorySelect: (category: string) => void;
 }
 
-// Fonction utilitaire pour limiter à 6 jeux
-// const getLimitedGames = (gameData: Game[]): Game[] => {
-//   return gameData.slice(0, 6); // Limite à 6 jeux
-// }
-
 const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   const { theme } = useTheme();
   const themeClass = getThemeClass(theme);
+  const { setFilteredGames } = useUser();
 
   const { user, userCategory, userTag } = useUser();
-  console.log('usercategory',userCategory, 'usertag',userTag);
+  // console.log('usercategory',userCategory, 'usertag',userTag);
   // console.log(gameData);
   // gamedata est undefined
 
@@ -47,10 +43,18 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
     const matchesTag = userTag.some((userTag) =>
       gameTagIds.includes(userTag.id)
     );
-
+  
     return matchesCategory || matchesTag;
-  });
+  }).slice(0, 6);
 
+  useEffect
+  setFilteredGames
+
+  useEffect(() => {
+    if (filteredGames) {
+      setFilteredGames(filteredGames);
+    }
+  }, []);
 
   return (
     <div className={`pt-6 ${themeClass} w-full max-w-7xl px-4 pb-16 mx-auto`}>

@@ -9,6 +9,7 @@ interface UserContextType {
   userCategory: any;
   UserTag: any;
   triggerFetchUserData: () => void;
+  setFilteredGames: React.Dispatch<React.SetStateAction<GameData[]>>
 }
 
 const UserContext = createContext<UserContextType>({
@@ -17,6 +18,8 @@ const UserContext = createContext<UserContextType>({
   userCategory: null,
   UserTag: null,
   triggerFetchUserData: () => {},
+  setFilteredGames: () => {},
+
 });
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -26,7 +29,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
   const [fetchTrigger, setFetchTrigger] = useState<boolean>(false);
   const [gameData, setGameData] = useState<GameData[]>([]);
-  
+  const [filteredGames, setFilteredGames] = useState<GameData[]>([]);
+
   const fetchGameData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/api/game', {
@@ -98,7 +102,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   return (
-    <UserContext.Provider value={{ user, setUser, userCategory, userTag, triggerFetchUserData: () => setFetchTrigger(true) }}>
+    <UserContext.Provider value={{ user, setUser, userCategory, userTag, triggerFetchUserData: () => setFetchTrigger(true), setFilteredGames }}>
       {children}
     </UserContext.Provider>
   );
