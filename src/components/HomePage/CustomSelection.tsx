@@ -12,7 +12,7 @@ interface CustomSelectionProps {
 const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   const { theme } = useTheme();
   const themeClass = getThemeClass(theme);
-  const { setFilteredGames, userCategory, userTag } = useUser();
+  const { user, setFilteredGames, userCategory, userTag } = useUser();
 
   useEffect(() => {
     if (!userCategory || !userTag) {
@@ -46,7 +46,11 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
     const storedFilteredGames = localStorage.getItem('filteredGames');
     const parsedFilteredGames = storedFilteredGames ? JSON.parse(storedFilteredGames) : [];
     return parsedFilteredGames.slice(0, 6);
-  }, []);
+  }, [user]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className={`pt-6 ${themeClass} w-full max-w-7xl px-4 pb-16 mx-auto`}>

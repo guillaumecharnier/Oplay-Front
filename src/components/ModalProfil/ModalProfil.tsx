@@ -69,13 +69,19 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
             >
               Paramètres
             </Link> */}
+            {isLog ? (
             <Link
               to="/test-personnalite"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
               onClick={closeModal}
             >
               Test personnalisé
-            </Link>
+        </Link> ) : <Link
+          to="/profil"
+          className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+          onClick={closeModal}
+        >
+        </Link>}
             {isAdmin && (
               <Link
                 to="http://localhost:8080"

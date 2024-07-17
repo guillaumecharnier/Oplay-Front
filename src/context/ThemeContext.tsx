@@ -21,7 +21,7 @@ export const ThemeProvider = ({ children }) => {
           }
         });
         setCategoryData(response.data);
-        // console.log(token);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching category data:', error);
       }

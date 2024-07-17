@@ -26,6 +26,8 @@ import TestTag from '../TestPersonnalise/TestTag';
 import SearchResults from '../SearchResults/SearchResults';
 import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage';
 import Notification from '../Notification/Notification';
+import DernierAjout from '../Page/dernierAjout';
+import DerniereSortie from '../Page/derniereSortie';
 
 
 function App() {
@@ -87,8 +89,8 @@ function App() {
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
         <Route path="/selection-perso" element={<JeuxPersonnalise />} />
-        <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
-        <Route path="/derniere-ajout" element={<LastAdditions gameData={gameData} />} />
+        <Route path="/derniere-sortie" element={<DerniereSortie gameData={gameData} />} />
+        <Route path="/derniere-ajout" element={<DernierAjout gameData={gameData} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
         {/* <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} /> */}
         <Route path="/confirmation" element={<Confirmation />} />
