@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { UserData } from '../../assets/type';
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import axios from "axios";
+// import { fetchUserData } from "../../context/UserContext";
 
 const Connexion: React.FC = () => {
   const { login, setToken } = useAuth();
@@ -38,7 +39,7 @@ const Connexion: React.FC = () => {
         // Décodez le token pour obtenir les informations utilisateur
         const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
         setUserData(decodedToken);
-
+        // await fetchUserData();
         // Utilisez newToken directement ici
         login(newToken, true);
         navigate('/');
@@ -47,7 +48,7 @@ const Connexion: React.FC = () => {
       }
     } catch (error) {
       console.error('Error fetching token:', error);
-      setError("Erreur lors de la connexion. Veuillez réessayer plus tard.");
+      setError("Erreur lors de la connexion.");
     }
   };
 
@@ -56,7 +57,7 @@ const Connexion: React.FC = () => {
       console.log('User Data:', userData);
       console.log(userData.roles);
     }
-  }, []);
+  }, [userData]);
 
   return (
     <div className="bg-blue-custom-200 text-white min-h-screen flex flex-col items-center py-28">

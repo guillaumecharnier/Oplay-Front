@@ -1,15 +1,14 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { GameData } from '../assets/type';
-
 import axios from 'axios';
+import { UserData, GameData } from '../assets/type';
 
 interface UserContextType {
-  user: null;
-  setUser: React.Dispatch<React.SetStateAction<null>>;
+  user: UserData | null;
+  setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
   userCategory: any;
   userTag: any;
   triggerFetchUserData: () => void;
-  setFilteredGames: React.Dispatch<React.SetStateAction<GameData[]>>
+  setFilteredGames: React.Dispatch<React.SetStateAction<GameData[]>>;
   filteredGames: GameData[];
 }
 
@@ -21,11 +20,10 @@ const UserContext = createContext<UserContextType>({
   triggerFetchUserData: () => {},
   setFilteredGames: () => {},
   filteredGames: [],
-
 });
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<null>(null);
+  const [user, setUser] = useState<UserData | null>(null);
   const [userCategory, setUserCategory] = useState<any>(null);
   const [userTag, setUserTag] = useState<any>(null);
   const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
@@ -39,9 +37,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         headers: { 'Content-Type': 'application/json' },
       });
       setGameData(response.data);
-      // console.log(response.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching game data:', error);
     }
   };
 
@@ -57,6 +54,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(response.data);
       setUserCategory(response.data.selectedCategory);
       setUserTag(response.data.preferedTag);
+      console.log('User data fetched successfully:', response.data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
@@ -69,39 +67,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       fetchUserData();
       fetchGameData();
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     if (fetchTrigger) {
       fetchUserData();
       setFetchTrigger(false);
     }
-  }, [fetchTrigger]);
-
-// simple test log
-  useEffect(() => {
-    if (userCategory) {
-      console.log(userCategory);
-    }
-  }, [user]);
-
-// simple test log
-  useEffect(() => {
-    if (userTag) {``
-      console.log(userTag);
-    }
-  }, [user]);
-
-  // useEffect(() => {
-  //   if (gameData) {
-  //     const games = gameData.map((game) => {
-  //       console.log(game);
-  //     });
-  //   }
-  // }, [gameData]);
-
-  //userCategory recupere les categories favorite du joueur maintenant il faut chercher dans la liste des jeux qui ont ce tag/categories
-
+  }, [fetchTrigger, token]); // Ajoutez token ici pour déclencher fetchUserData lorsqu'il change
 
   return (
     <UserContext.Provider value={{ user, setUser, userCategory, userTag, triggerFetchUserData: () => setFetchTrigger(true), setFilteredGames, filteredGames }}>
@@ -111,7 +84,3 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 };
 
 export const useUser = (): UserContextType => useContext(UserContext);
-
-
-
-

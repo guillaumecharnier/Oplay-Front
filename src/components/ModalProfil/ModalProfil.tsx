@@ -47,21 +47,23 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
             className="w-24 h-24 border-white mb-4"
           />
           <div className="flex flex-col space-y-4 text-xl">
-          {!isLog ? (
-            <Link
-              to="/connexion"
-              className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
-              onClick={closeModal}
-            >
-              Profil
-            </Link>
-          ) :   <Link
-          to="/profil"
-          className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
-          onClick={closeModal}
-        >
-          Profil
-        </Link>}
+
+          {isLog ? (
+          <Link
+            to="/profil"
+            className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+            onClick={closeModal} >
+            Profil
+          </Link> ) :
+          <Link
+            to="/connexion"
+            className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+            onClick={closeModal}
+            // peut etre faire appel a profildetail sinon la mise a jour ne fonctionne pas ? 
+          >
+            Profil
+
+          </Link> }
             {/* <Link à voir pour plus tard 
               to="/parametre"
               className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
@@ -76,12 +78,13 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
               onClick={closeModal}
             >
               Test personnalisé
-        </Link> ) : <Link
-          to="/profil"
-          className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
-          onClick={closeModal}
-        >
-        </Link>}
+            </Link> ) : <Link
+              to="/profil"
+              className="hover:bg-blue-500 px-4 py-2 rounded-lg hover:text-white transition-colors duration-300"
+              onClick={closeModal}
+            >
+            </Link>}
+
             {isAdmin && (
               <Link
                 to="http://localhost:8080"

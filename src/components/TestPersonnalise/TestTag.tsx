@@ -46,7 +46,7 @@ const TestTag = ({ tagData }) => {
             'Authorization': `Bearer ${token}`
           }
         });
-        console.log('tag Response:', response.data);
+        // console.log('tag Response:', response.data);
       } catch (error) {
         console.error('Error posting data:', error);
       }

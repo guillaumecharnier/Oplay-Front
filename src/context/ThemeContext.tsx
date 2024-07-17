@@ -8,6 +8,8 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(null);
+  const { isLog } = useAuth();
+
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const { token } = useAuth();
 
@@ -21,7 +23,7 @@ export const ThemeProvider = ({ children }) => {
           }
         });
         setCategoryData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error('Error fetching category data:', error);
       }
@@ -42,12 +44,14 @@ export const ThemeProvider = ({ children }) => {
         setTheme(response.data.chooseTheme.id);
       } catch (error) {
         console.error('Error fetching user theme:', error);
-        setTheme(1); 
-      }
-    };
+        // Traitez l'erreur ici (par exemple, si 401, déconnectez l'utilisateur)
+      } 
+    };setTheme(1);
 
-    fetchUserTheme();
-  }, [token]);
+    if (isLog && token) {
+      fetchUserTheme();
+    }
+  }, [isLog, token]);
 
   const postThemeData = async (themeId) => {
     try {
@@ -59,7 +63,7 @@ export const ThemeProvider = ({ children }) => {
           'Authorization': `Bearer ${token}`
         }
       });
-      console.log('User Response:', response.data);
+      // console.log('User Response:', response.data);
       setTheme(themeId);
     } catch (error) {
       console.error('Error posting data:', error);

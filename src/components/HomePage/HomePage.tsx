@@ -2,6 +2,7 @@ import React from 'react';
 import { useTheme } from '../../context/ThemeContext'; // Assurez-vous d'importer useTheme depuis votre contexte ThemeContext
 import { GameData } from '../../assets/type';
 import { getThemeClass } from '../../Utils/themeUtils';
+import { useAuth } from "../../context/AuthContext";
 import CustomSelection from './CustomSelection';
 import LastAdditions from './LastAdditions';
 import Categories from './Categories';
@@ -14,6 +15,8 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ gameData }) => {
   const { theme } = useTheme(); 
+  const { isLog } = useAuth(); 
+
   const themeClass = getThemeClass(theme);
 
   return (
@@ -33,9 +36,10 @@ const HomePage: React.FC<HomePageProps> = ({ gameData }) => {
       </div>
 
       {/* Section CustomSelection */}
+      {isLog ? (
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
         <CustomSelection gameData={gameData} />
-      </div>
+      </div> ): ''}
 
       {/* Section LastAdditions */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">

@@ -16,11 +16,6 @@ const DerniereSortie: React.FC<DerniereSortieProps> = ({ gameData }) => {
     <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
       {/* Image de couverture */}
       <div className="relative w-full mb-12 flex justify-center">
-        <img
-          src="/src/assets/images/Last-Release.jpeg"
-          alt="Dernière Sortie"
-          className="w-full max-h-80 object-cover shadow-lg"
-        />
         <div className="absolute top-4 md:left-6 lg:left-8">
           <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
             Dernières Sorties - Découvrez Les Nouveautés!

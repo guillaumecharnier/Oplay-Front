@@ -16,7 +16,6 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
 
   useEffect(() => {
     if (!userCategory || !userTag) {
-      console.log('loading');
       return;
     }
 
