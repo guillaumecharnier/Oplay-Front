@@ -36,7 +36,7 @@ const HomePage: React.FC<HomePageProps> = ({ gameData }) => {
 
       {/* Section CustomSelection */}
       <div className="w-full max-w-screen-lg mb-16 md:mb-24 lg:mb-28 xl:mb-32">
-        <CustomSelection gameData={gameData} />
+        {/* <CustomSelection gameData={gameData} /> */}
       </div>
 
       {/* Section LastAdditions */}

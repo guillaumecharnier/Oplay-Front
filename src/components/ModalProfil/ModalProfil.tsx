@@ -34,22 +34,32 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
     console.log('isLog updated:', isLog);
   }, [isLog]);
 
-  // useEffect(() => {
-  //   if (window.FB) {
-  //     window.FB.XFBML.parse();
-  //   } else {
-  //     console.log('Button BackOffice not loaded');
-  //   }
-  // }, []);
-
+  
   useEffect(() => {
-    // Assurez-vous que window.FB et window.FB.XFBML sont définis avant d'appeler parse()
-    if (window.FB && window.FB.XFBML) {
-      window.FB.XFBML.parse();
+    // Function to handle the BackOffice login event
+    const handleFBLogin = (response) => {
+      if (window.FB && window.FB.XFBML) {
+        window.FB.XFBML.parse();
+      } else {
+        console.log('Button BackOffice not loaded');
+      }
+    };
+  
+    // Subscribe to the Facebook login event
+    if (window.FB) {
+      window.FB.Event.subscribe('auth.login', handleFBLogin);
     } else {
       console.log('Button BackOffice not loaded');
     }
+  
+    // Clean up the event subscription on component unmount
+    return () => {
+      if (window.FB) {
+        window.FB.Event.unsubscribe('auth.login', handleFBLogin);
+      }
+    };
   }, []);
+  
 
 
   useEffect(() => {

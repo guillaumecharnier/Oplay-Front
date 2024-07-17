@@ -3,6 +3,8 @@ import { useTheme } from '../../context/ThemeContext';
 import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { getThemeClass } from '../../Utils/themeUtils';
+
 import axios from 'axios';
 
 const TestCategory = () => {
@@ -11,6 +13,8 @@ const TestCategory = () => {
   const { token } = useAuth();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const navigate = useNavigate();
+  const themeClass = getThemeClass(theme);
+
 
   const handleSubmit = async () => {
     if (selectedCategories.length > 0) {
@@ -48,7 +52,7 @@ const TestCategory = () => {
   };
 
   return (
-    <div className={`min-h-screen bg-${theme}-bg flex flex-col items-center justify-center p-8`}>
+    <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center p-8`}>
       <h1 className="text-3xl font-bold mb-8">Test Personnalisé</h1>
       <p className='text-2xl py-7'>Choisis tes catégories !</p>
       <div className="grid grid-cols-2 gap-6">

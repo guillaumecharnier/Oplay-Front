@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { getThemeClass } from '../../Utils/themeUtils';
 import { useTheme } from '../../context/ThemeContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -9,6 +10,7 @@ function Panier() {
   const { token } = useAuth();
   const { cartItems, setCartItems } = useCart();
   const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
   const [quantities, setQuantities] = useState<{ [key: number]: number }>(
     cartItems.reduce((acc, game) => {
       acc[game.id] = 1; // Initialiser toutes les quantités à 1
@@ -125,7 +127,7 @@ function Panier() {
   };
 
   return (
-    <div className={`min-h-screen ${theme} min-h-screen py-10 px-4 md:px-8`}>
+    <div className={`min-h-screen ${themeClass} min-h-screen py-10 px-4 md:px-8`}>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* En-tête du panier */}
         <div className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 py-5 px-6 flex flex-col md:flex-row md:items-center md:justify-between text-white">

@@ -38,7 +38,7 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
           <span className="font-semibold hover:text-blue-300">Sélection personnalisée</span>
         </h2>
       </Link>
-      {/* <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
         {userCategory.map((game) => (
           <Link
             key={game.id}
@@ -55,7 +55,7 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
             </h3>
           </Link>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }

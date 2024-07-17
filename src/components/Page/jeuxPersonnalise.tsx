@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getThemeClass } from '../../Utils/themeUtils';
+import { useTheme } from '../../context/ThemeContext';
 
 function JeuxPersonnalise() {
+  const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
+
   return (
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+    <div className={`${themeClass} min-h-screen flex flex-col items-center justify-start overflow-x-hidden`}>
       
       {/* Image de couverture */}
-      <div className="relative w-full mb-12 flex justify-center mb-20">
+      <div className="relative w-full mb-12 flex justify-center">
         <img
-          src="src/assets/images/re8.jpg"
+          src="src/assets/images/Last-Of-Us.jpeg"
           alt="Custom Selection"
           className="w-full max-h-80 object-cover shadow-lg"
         />

@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import Notification from '../Notification/Notification';
+import { useTheme } from '../../context/ThemeContext';
+import { getThemeClass } from '../../Utils/themeUtils';
 
 interface Game {
   id: number;
@@ -21,6 +23,8 @@ interface PageJeuProps {
 
 function PageJeu({ gameData }: PageJeuProps) {
   const { token } = useAuth();
+  const { theme } = useTheme(); 
+  const themeClass = getThemeClass(theme);
   const { addToCartContext } = useCart();
   const { id } = useParams<{ id: string }>();
   const game = gameData.find((game) => game.id === parseInt(id));
@@ -57,7 +61,7 @@ function PageJeu({ gameData }: PageJeuProps) {
 
   return (
     <div>
-      <div className="min-h-screen flex flex-col items-center justify-center py-12 px-6">
+      <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center py-12 px-6`}>
         <div className="max-w-4xl w-full bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
           <img
             src={game.picture}
