@@ -4,7 +4,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { CategoryData, GameData, TagData } from '../../assets/type';
-import { ThemeProvider } from '../../context/ThemeContext';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -27,7 +26,6 @@ import TestTag from '../TestPersonnalise/TestTag';
 import SearchResults from '../SearchResults/SearchResults';
 import CategoryGamesPage from '../CategoryGamesPage/CategoryGamesPage';
 import Notification from '../Notification/Notification';
-import CustomSelection from '../HomePage/CustomSelection';
 
 
 function App() {
@@ -89,7 +87,7 @@ function App() {
         <Route path="/profil/edit" element={<Edit />} />
         <Route path="/parametre" element={<Parametre />} />
         <Route path="/panier" element={<Panier />} />
-        <Route path="/selection-perso" element={<CustomSelection />} />
+        <Route path="/selection-perso" element={<JeuxPersonnalise />} />
         <Route path="/derniere-sortie" element={<NextRelease gameData={[]} />} />
         <Route path="/derniere-ajout" element={<LastAdditions gameData={gameData} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />

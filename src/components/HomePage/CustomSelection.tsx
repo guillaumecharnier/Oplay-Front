@@ -24,12 +24,33 @@ interface CustomSelectionProps {
 
 const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   const { theme } = useTheme();
-  const { user, userCategory, userTag } = useUser();
-  console.log(userCategory, userTag);
-  console.log(gameData);
-  // gamedata est undefined
-  // faire notre filtre ici pour faire un map sur ce filtre
   const themeClass = getThemeClass(theme);
+
+  const { user, userCategory, userTag } = useUser();
+  console.log('usercategory',userCategory, 'usertag',userTag);
+  // console.log(gameData);
+  // gamedata est undefined
+
+  if (!userCategory || !userTag) {
+    return <div>Loading...</div>;
+  }
+
+  // Filtrer les jeux en fonction des catégories et des tags sélectionnés par l'utilisateur
+  const filteredGames = gameData.filter((game) => {
+    const gameCategoryIds = game.hasCategory.map((cat) => cat.id);
+    const gameTagIds = game.hasTag.map((tag) => tag.id);
+
+    const matchesCategory = userCategory.some((userCat) =>
+      gameCategoryIds.includes(userCat.id)
+    );
+
+    const matchesTag = userTag.some((userTag) =>
+      gameTagIds.includes(userTag.id)
+    );
+
+    return matchesCategory || matchesTag;
+  });
+
 
   return (
     <div className={`pt-6 ${themeClass} w-full max-w-7xl px-4 pb-16 mx-auto`}>
@@ -38,8 +59,8 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
           <span className="font-semibold hover:text-blue-300">Sélection personnalisée</span>
         </h2>
       </Link>
-      {/* <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
-        {userCategory.map((game) => (
+      <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
+        {filteredGames.map((game) => (
           <Link
             key={game.id}
             to={`/jeu/${game.id}`}
@@ -55,9 +76,9 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
             </h3>
           </Link>
         ))}
-      </div> */}
+      </div>
     </div>
   );
-}
+};
 
 export default CustomSelection;
