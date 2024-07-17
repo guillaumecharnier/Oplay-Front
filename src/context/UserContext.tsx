@@ -7,18 +7,20 @@ interface UserContextType {
   user: null;
   setUser: React.Dispatch<React.SetStateAction<null>>;
   userCategory: any;
-  UserTag: any;
+  userTag: any;
   triggerFetchUserData: () => void;
   setFilteredGames: React.Dispatch<React.SetStateAction<GameData[]>>
+  filteredGames: GameData[];
 }
 
 const UserContext = createContext<UserContextType>({
   user: null,
   setUser: () => {},
   userCategory: null,
-  UserTag: null,
+  userTag: null,
   triggerFetchUserData: () => {},
   setFilteredGames: () => {},
+  filteredGames: [],
 
 });
 
@@ -102,7 +104,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   return (
-    <UserContext.Provider value={{ user, setUser, userCategory, userTag, triggerFetchUserData: () => setFetchTrigger(true), setFilteredGames }}>
+    <UserContext.Provider value={{ user, setUser, userCategory, userTag, triggerFetchUserData: () => setFetchTrigger(true), setFilteredGames, filteredGames }}>
       {children}
     </UserContext.Provider>
   );

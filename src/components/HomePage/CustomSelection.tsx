@@ -1,60 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getThemeClass } from '../../Utils/themeUtils';
 import { useTheme } from '../../context/ThemeContext';
 import { useUser } from '../../context/UserContext';
-
-interface Game {
-  id: number;
-  name: string;
-  price: number;
-  picture: string;
-  categories: string[];
-}
+import { GameData } from '../../assets/type';
 
 interface CustomSelectionProps {
-  filteredGames: Game[];
-  onCategorySelect: (category: string) => void;
+  gameData: GameData[];
 }
 
 const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   const { theme } = useTheme();
   const themeClass = getThemeClass(theme);
-  const { setFilteredGames } = useUser();
-
-  const { user, userCategory, userTag } = useUser();
-  // console.log('usercategory',userCategory, 'usertag',userTag);
-  // console.log(gameData);
-  // gamedata est undefined
-
-  if (!userCategory || !userTag) {
-    console.log('loading');
-    // return <div>Loading...</div>;
-  }
-
-  // Filtrer les jeux en fonction des catégories et des tags sélectionnés par l'utilisateur
-  const filteredGames = gameData.filter((game) => {
-    const gameCategoryIds = game.hasCategory.map((cat) => cat.id);
-    const gameTagIds = game.hasTag.map((tag) => tag.id);
-
-    const matchesCategory = userCategory.some((userCat) =>
-      gameCategoryIds.includes(userCat.id)
-    );
-
-    const matchesTag = userTag.some((userTag) =>
-      gameTagIds.includes(userTag.id)
-    );
-  
-    return matchesCategory || matchesTag;
-  }).slice(0, 6);
-
-  useEffect
-  setFilteredGames
+  const { setFilteredGames, userCategory, userTag } = useUser();
 
   useEffect(() => {
-    if (filteredGames) {
-      setFilteredGames(filteredGames);
+    if (!userCategory || !userTag) {
+      console.log('loading');
+      return;
     }
+
+    const allFilteredGames = gameData.filter((game) => {
+      const gameCategoryIds = game.hasCategory?.map((cat) => cat.id) || [];
+      const gameTagIds = game.hasTag?.map((tag) => tag.id) || [];
+
+      const matchesCategory = userCategory.some((userCat) =>
+        gameCategoryIds.includes(userCat.id)
+      );
+
+      const matchesTag = userTag.some((userTag) =>
+        gameTagIds.includes(userTag.id)
+      );
+
+      return matchesCategory || matchesTag;
+    });
+
+    if (allFilteredGames.length > 0) {
+      setFilteredGames(allFilteredGames);
+      localStorage.setItem('filteredGames', JSON.stringify(allFilteredGames));
+    }
+  }, [gameData, userCategory, userTag, setFilteredGames]);
+
+  // Limiter les jeux affichés à 6
+  const displayedGames = useMemo(() => {
+    const storedFilteredGames = localStorage.getItem('filteredGames');
+    const parsedFilteredGames = storedFilteredGames ? JSON.parse(storedFilteredGames) : [];
+    return parsedFilteredGames.slice(0, 6);
   }, []);
 
   return (
@@ -65,7 +56,7 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
         </h2>
       </Link>
       <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">
-        {filteredGames.map((game) => (
+        {displayedGames.map((game) => (
           <Link
             key={game.id}
             to={`/jeu/${game.id}`}

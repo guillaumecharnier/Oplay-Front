@@ -23,6 +23,7 @@ export interface CategoryData {
 }
 
 export interface GameData {
+    hasTag: any;
     hasCategory: any;
     createdAt: string;
     description: string;

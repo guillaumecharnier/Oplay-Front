@@ -36,7 +36,6 @@ function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [notificationMessage, setNotificationMessage] = useState('');
 
-  const { token } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
