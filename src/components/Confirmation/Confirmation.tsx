@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getThemeClass } from '../../Utils/themeUtils';
+import { useTheme } from '../../context/ThemeContext';
 
 const Confirmation: React.FC = () => {
+  const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
+
   return (
-    <div className="bg-blue-custom-200 font-bold text-white min-h-screen flex flex-col items-center py-28">
+    <div className={`${themeClass}  bg-blue-custom-200 font-bold text-white min-h-screen flex flex-col items-center py-28`}>
      <h2 className="pb-10">Merci D'avoir passé votre commande, vos jeux sont desormais disponible !</h2>
      <Link
         to="/"
