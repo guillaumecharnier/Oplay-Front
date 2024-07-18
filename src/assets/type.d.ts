@@ -5,24 +5,56 @@ export interface UserData {
     id: number;
     lastname: string;
     nickname: string;
-    picture: string;
+    picture?: string;
     preferedTagId: number[];
     roles: string[];
     selectedCategoryId: number[];
-}
-
-export interface TagData {
+    orders: OrderData[];
+    userGameKeys: UserGameKey[];
+  }
+  
+  export interface OrderData {
+    createdAt: string;
+    id: number;
+    total: number;
+    gameOrders: GameOrder[];
+  }
+  
+  export interface UserGameKey {
+    id: number;
+    game: {
+      id: number;
+      name: string;
+      picture: string;
+      price: number;
+    };
+    gameKey: string;
+  }
+  
+  export interface GameOrder {
+    id: number;
+    game: {
+      id: number;
+      name: string;
+      picture: string;
+      price: number;
+    };
+    quantity: number;
+  }
+  
+  export interface TagData {
     id: string;
     name: string;
-}
-
-export interface CategoryData {
+  }
+  
+  export interface CategoryData {
     id: string;
     name: string;
     picture: string;
-}
-
-export interface GameData {
+  }
+  
+  export interface GameData {
+    hasTag: any;
     hasCategory: any;
     createdAt: string;
     description: string;
@@ -32,9 +64,9 @@ export interface GameData {
     picture: string;
     price: number;
     releaseDate: string;
-}
-
-export interface Game {
+  }
+  
+  export interface Game {
     id: number;
     name: string;
     description: string;
@@ -45,4 +77,10 @@ export interface Game {
     releaseDate: string;
     hasCategory: Category[];
     hasTag: Tag[];
+  }
+  
+  export interface JwtPayload {
+    roles: string[];
+    username: string;
+    id: number;
   }

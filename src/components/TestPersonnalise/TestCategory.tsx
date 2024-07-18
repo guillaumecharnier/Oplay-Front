@@ -45,7 +45,7 @@ const TestCategory = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      console.log('category Response:', response.data);
+      // console.log('category Response:', response.data);
     } catch (error) {
       console.error('Error posting data:', error);
     }
@@ -66,7 +66,7 @@ const TestCategory = () => {
             />
             <div className={`category-card relative w-[300px] h-[200px] ${selectedCategories.includes(category.id) ? 'border-pink-500' : ''}`} onClick={() => handleCategoryChange(category.id)}>
               <img
-                src="src/assets/images/CategoriesPictures.jpg"
+                src={category.picture}
                 alt={category.name}
                 className="rounded-lg w-full h-full object-cover"
               />

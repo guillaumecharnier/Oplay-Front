@@ -1,5 +1,4 @@
-import axios from 'axios';
-import  { jwtDecode, JwtPayload } from 'jwt-decode';
+import  {jwtDecode, JwtPayload } from 'jwt-decode';
 import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
 // Interface pour le contexte d'authentification
@@ -37,7 +36,7 @@ interface AuthProviderProps {
 // Composant fournissant le contexte d'authentification
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [token, setToken] = useState<string>(() => localStorage.getItem('jwtToken') || '');
-    const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'true');
+    const [isLog, setIsLog] = useState<boolean>(() => localStorage.getItem('isLog') === 'false');
     const [roles, setRoles] = useState<string[] | null>(null);
 
     // Effet de chargement initial pour récupérer le token du localStorage
@@ -63,17 +62,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // Fonction de login pour mettre à jour le token et l'état de connexion
     const login = (newToken: string, logged: boolean) => {
         localStorage.setItem('jwtToken', newToken);
+        localStorage.setItem('isLog', 'true');
         setToken(newToken);
-
-        localStorage.setItem('isLog', logged.toString());
         setIsLog(logged);
+
+        // Décoder le token et extraire les rôles
+        try {
+            const decodedToken = jwtDecode<MyJwtPayload>(newToken);
+            const userRoles = decodedToken.roles;
+            setRoles(userRoles);
+        } catch (error) {
+            console.error('Error decoding token:', error);
+        }
     };
 
     // Fonction de logout pour effacer le token et réinitialiser l'état de connexion
     const logout = () => {
         localStorage.removeItem('jwtToken');
+        // localStorage.removeItem('filteredGames');
+        localStorage.setItem('isLog', 'false');
         setToken('');
-        localStorage.removeItem('isLog');
         setIsLog(false);
         setRoles(null);
     };

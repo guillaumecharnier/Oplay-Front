@@ -2,15 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { useTheme } from '../../context/ThemeContext';
+import { UserData, GameOrder, UserGameKey } from '../../assets/type';
 import { getThemeClass } from '../../Utils/themeUtils';
 
 function Profil() {
   const { theme } = useTheme();
   const { user } = useUser();
-  const themeClass = getThemeClass(theme);
 
+  const themeClass = getThemeClass(theme);
+    // console.log(user);  
   if (!user) {
-    return <div>Loading...</div>; // Affiche un indicateur de chargement si les données de l'utilisateur ne sont pas encore disponibles
+    return;
   }
 
   return (
@@ -29,7 +31,7 @@ function Profil() {
         <div className="flex items-center space-x-6">
           <div className="relative">
             <img
-              src={user.picture} // Utilisation de l'image de profil de l'utilisateur
+              src={(user as UserData).picture || "/placeholder-image.jpg"}
               className="w-32 h-32 rounded-full border-4 border-gray-700"
               alt="Photo de profil"
             />
@@ -37,11 +39,11 @@ function Profil() {
           </div>
           <div>
             <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-pink-500 to-red-500">
-              {user.nickname}
+              {(user as UserData).nickname}
             </h2>
-            <p className="text-lg text-gray-200">{user.email}</p>
-            {user.firstname && user.lastname && (
-              <p className="text-lg text-gray-200">{user.firstname} {user.lastname}</p>
+            <p className="text-lg text-gray-200">{(user as UserData).email}</p>
+            {(user as UserData).firstname && (user as UserData).lastname && (
+              <p className="text-lg text-gray-200">{(user as UserData).firstname} {(user as UserData).lastname}</p>
             )}
           </div>
         </div>
@@ -49,41 +51,49 @@ function Profil() {
         {/* Affichage des jeux associés */}
         <div className="mt-8">
           <h3 className="text-2xl font-semibold">Mes Jeux</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-4"> {/* Ajustez le nombre de colonnes ici selon vos préférences */}
-            {user.userGameKeys.map((userGameKey) => (
-              <Link key={userGameKey.id} to={`/jeu/${userGameKey.game.id}`}>
-                <div className="bg-gray-800 rounded-lg p-4 cursor-pointer transform transition duration-300 hover:scale-105">
-                  <img src={userGameKey.game.picture} className="w-full h-40 object-cover rounded-lg mb-2" alt={userGameKey.game.name} />
-                  <p className="text-lg font-semibold">{userGameKey.game.name}</p>
-                  <p className="text-sm text-gray-400">Prix : {userGameKey.game.price.toFixed(2)} €</p>
-                  <p className="text-sm text-gray-400">Clé : {userGameKey.gameKey}</p>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-4">
+            {(user.userGameKeys && user.userGameKeys.length > 0) ? (
+              user.userGameKeys.map((userGameKey: UserGameKey) => (
+                <Link key={userGameKey.id} to={`/jeu/${userGameKey.game.id}`}>
+                  <div className="bg-gray-800 rounded-lg p-4 cursor-pointer transform transition duration-300 hover:scale-105">
+                    <img src={userGameKey.game.picture} className="w-full h-40 object-cover rounded-lg mb-2" alt={userGameKey.game.name} />
+                    <p className="text-lg font-semibold">{userGameKey.game.name}</p>
+                    <p className="text-sm text-gray-400">Prix : {userGameKey.game.price.toFixed(2)} €</p>
+                    <p className="text-sm text-gray-400">Clé : {userGameKey.gameKey}</p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p>Aucun jeu trouvé.</p>
+            )}
           </div>
         </div>
 
         {/* Affichage des commandes achetées */}
         <div className="mt-8">
           <h3 className="text-2xl font-semibold">Mes Commandes</h3>
-          {user.orders.map((order) => (
-            <div key={order.id} className="bg-gray-800 rounded-lg p-4 mt-4 cursor-pointer transform transition duration-300 hover:scale-105">
-              <p className="text-lg font-medium">Commande #{order.id}</p>
-              <p className="text-sm text-gray-600">Date: {new Date(order.createdAt).toLocaleString()}</p>
-              <p className="text-sm text-gray-600">Montant total: ${order.total.toFixed(2)}</p>
-              <ul className="mt-2">
-                {order.gameOrders.map((gameOrder) => (
-                  <li key={gameOrder.id} className="flex items-center justify-between">
-                    <img src={gameOrder.game.picture} className="w-12 h-12 object-cover rounded-lg" alt={gameOrder.game.name} />
-                    <div className="ml-4">
-                      <p className="text-base font-medium">{gameOrder.game.name}</p>
-                      <p className="text-sm text-gray-600">Quantité: {gameOrder.quantity}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {(user.orders && user.orders.length > 0) ? (
+            user.orders.map((order) => (
+              <div key={order.id} className="bg-gray-800 rounded-lg p-4 mt-4 cursor-pointer transform transition duration-300 hover:scale-105">
+                <p className="text-lg font-medium">Commande #{order.id}</p>
+                <p className="text-sm text-gray-600">Date: {new Date(order.createdAt).toLocaleString()}</p>
+                <p className="text-sm text-gray-600">Montant total: ${order.total.toFixed(2)}</p>
+                <ul className="mt-2">
+                  {order.gameOrders.map((gameOrder: GameOrder) => (
+                    <li key={gameOrder.id} className="flex items-center justify-between">
+                      <img src={gameOrder.game.picture} className="w-12 h-12 object-cover rounded-lg" alt={gameOrder.game.name} />
+                      <div className="ml-4">
+                        <p className="text-base font-medium">{gameOrder.game.name}</p>
+                        <p className="text-sm text-gray-600">Quantité: {gameOrder.quantity}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <p>Aucune commande trouvée.</p>
+          )}
         </div>
       </div>
     </div>

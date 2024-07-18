@@ -14,13 +14,13 @@ import { ThemeProvider } from './context/ThemeContext';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <AuthProvider>
-      <CartProvider>
-        <UserProvider>
+      <UserProvider> 
+        <CartProvider>
           <ThemeProvider>
             <App />
           </ThemeProvider>
-        </UserProvider>
-      </CartProvider>
+        </CartProvider>
+      </UserProvider>
     </AuthProvider>
   </BrowserRouter>
 );

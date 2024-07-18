@@ -2,71 +2,58 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { UserData } from '../../assets/type';
-import { JwtPayload, jwtDecode } from "jwt-decode";  // Corrigez ici l'importation
+import { JwtPayload, jwtDecode } from "jwt-decode";
 import axios from "axios";
+// import { fetchUserData } from "../../context/UserContext";
 
 const Connexion: React.FC = () => {
-  const { token, login, logout, setToken } = useAuth();
-  const [error, setError] = useState<string | null>(null)
+  const { login, setToken } = useAuth();
+  const [error, setError] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
-
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const form = event.target;
+    const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
 
-    const fetchToken = async () => {
-      try {
-        const response = await axios.post('http://localhost:8080/api/login_check', {
-          username: email,
-          password: password
-        });
+    if (!email || !password) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/login_check', {
+        username: email,
+        password: password
+      });
+
+      if (response.status === 200) {
         const newToken = response.data.token;
         setToken(newToken);
         localStorage.setItem('jwtToken', newToken);
 
         // Décodez le token pour obtenir les informations utilisateur
         const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
-        // console.log('Decoded Token:', decodedToken);
         setUserData(decodedToken);
-      } catch (error) {
-        console.error('Error fetching token:', error);
-      }
-    };
-
-    try {
-      const response = await fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        fetchToken();  // Appelez fetchToken ici pour obtenir et déchiffrer le token
-        login(token, true);
+        // await fetchUserData();
+        // Utilisez newToken directement ici
+        login(newToken, true);
         navigate('/');
+      } else {
+        setError("Échec de la connexion. Veuillez réessayer.");
       }
     } catch (error) {
-      console.error("Erreur lors de la connexion :", error);
-      setError("Erreur lors de la connexion. Veuillez réessayer plus tard.");
+      console.error('Error fetching token:', error);
+      setError("Erreur lors de la connexion.");
     }
   };
 
   useEffect(() => {
     if (userData) {
-
       console.log('User Data:', userData);
       console.log(userData.roles);
     }
@@ -93,6 +80,7 @@ const Connexion: React.FC = () => {
         <Link to=""><img src="/src/assets/images/facebook-nouveau.svg" alt="Facebook" /></Link>
       </div>
       <span className="font-bold">ou</span>
+      {error && <div className="text-red-500 mb-4">{error}</div>}
       <form className="flex flex-col items-center py-10" onSubmit={handleSubmit}>
         <input type="email" name="email" id="email" placeholder="Email" className="pl-4 rounded-full mb-10 w-80 text-black" />
         <input type="password" name="password" id="password" placeholder="Mot de passe" className="pl-4 rounded-full mb-10 w-80 text-black" />
@@ -103,7 +91,7 @@ const Connexion: React.FC = () => {
         <Link to="">Mot de passe oublié ?</Link>
       </div>
     </div>
-  );
+  )
 }
 
 export default Connexion;
