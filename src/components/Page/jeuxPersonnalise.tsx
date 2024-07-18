@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { Game } from '../../assets/type';
+import { getThemeClass } from '../../Utils/themeUtils';
+import { useTheme } from '../../context/ThemeContext';
 
 function JeuxPersonnalise() {
   const { filteredGames, setFilteredGames } = useUser();
   const [loadedFilteredGames, setLoadedFilteredGames] = useState<Game[]>([]);
+  const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
 
   useEffect(() => {
     const storedFilteredGames = localStorage.getItem('filteredGames');
@@ -17,7 +21,7 @@ function JeuxPersonnalise() {
   }, [setFilteredGames]);
 
   return (
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+    <div className={`${themeClass} bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden`}>
       <div className="w-full max-w-screen-lg px-4 mb-12 mx-auto">
         <div className="mt-6">
           <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 mb-24">
