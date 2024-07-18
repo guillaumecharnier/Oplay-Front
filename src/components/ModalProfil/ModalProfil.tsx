@@ -40,16 +40,12 @@ const ModalProfil: React.FC<ModalProfilProps> = ({ closeModal }) => {
     const handleFBLogin = (response) => {
       if (window.FB && window.FB.XFBML) {
         window.FB.XFBML.parse();
-      } else {
-        console.log('Button BackOffice not loaded');
       }
     };
   
     // Subscribe to the Facebook login event
     if (window.FB) {
       window.FB.Event.subscribe('auth.login', handleFBLogin);
-    } else {
-      console.log('Button BackOffice not loaded');
     }
   
     // Clean up the event subscription on component unmount

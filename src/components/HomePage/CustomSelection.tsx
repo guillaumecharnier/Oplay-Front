@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getThemeClass } from '../../Utils/themeUtils';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 import { useUser } from '../../context/UserContext';
 import { GameData } from '../../assets/type';
 
@@ -11,8 +12,10 @@ interface CustomSelectionProps {
 
 const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   const { theme } = useTheme();
+  const { isLog } = useAuth();
   const themeClass = getThemeClass(theme);
-  const { user, setFilteredGames, userCategory, userTag } = useUser();
+  const { user, filteredGames, setFilteredGames, userCategory, userTag } = useUser();
+  // console.log('custom', isLog);
 
   useEffect(() => {
     if (!userCategory || !userTag) {
@@ -34,18 +37,19 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
       return matchesCategory || matchesTag;
     });
 
+    console.log('Init filter games');
     if (allFilteredGames.length > 0) {
       setFilteredGames(allFilteredGames);
       localStorage.setItem('filteredGames', JSON.stringify(allFilteredGames));
     }
-  }, [gameData, userCategory, userTag, setFilteredGames]);
+  }, [gameData, userCategory, userTag, setFilteredGames, user]);
 
   // Limiter les jeux affichés à 6
   const displayedGames = useMemo(() => {
     const storedFilteredGames = localStorage.getItem('filteredGames');
     const parsedFilteredGames = storedFilteredGames ? JSON.parse(storedFilteredGames) : [];
     return parsedFilteredGames.slice(0, 6);
-  }, [user]);
+  }, [filteredGames]);
 
   if (!user) {
     return null;
