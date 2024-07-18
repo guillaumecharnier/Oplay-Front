@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // Fonction de logout pour effacer le token et réinitialiser l'état de connexion
     const logout = () => {
         localStorage.removeItem('jwtToken');
-        // localStorage.removeItem('filteredGames');
+        localStorage.removeItem('filteredGames');
         localStorage.setItem('isLog', 'false');
         setToken('');
         setIsLog(false);

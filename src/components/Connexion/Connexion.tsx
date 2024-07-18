@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/UserContext";
+
 import { UserData } from '../../assets/type';
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import axios from "axios";
-// import { fetchUserData } from "../../context/UserContext";
+//import { fetchUserData } from "../../context/UserContext";
 
 const Connexion: React.FC = () => {
   const { login, setToken } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const { fetchUserData } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -36,10 +39,9 @@ const Connexion: React.FC = () => {
         setToken(newToken);
         localStorage.setItem('jwtToken', newToken);
 
-        // Décodez le token pour obtenir les informations utilisateur
         const decodedToken = jwtDecode<JwtPayload & UserData>(newToken);
         setUserData(decodedToken);
-        // await fetchUserData();
+        await fetchUserData();
         // Utilisez newToken directement ici
         login(newToken, true);
         navigate('/');
@@ -55,7 +57,7 @@ const Connexion: React.FC = () => {
   useEffect(() => {
     if (userData) {
       console.log('User Data:', userData);
-      console.log(userData.roles);
+      // console.log(userData.roles);
     }
   }, [userData]);
 
