@@ -1,28 +1,23 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { GameData } from '../../assets/type'; // Assurez-vous que ce chemin est correct
+import { GameData } from '../../assets/type';
+import { getThemeClass } from '../../Utils/themeUtils';
+import { useTheme } from '../../context/ThemeContext';
 
 interface DerniereSortieProps {
   gameData: GameData[];
 }
 
 const DerniereSortie: React.FC<DerniereSortieProps> = ({ gameData }) => {
+  const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
   const sortedGames = useMemo(() => {
     return gameData
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
   }, [gameData]);
 
   return (
-    <div className="bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
-      {/* Image de couverture */}
-      <div className="relative w-full mb-12 flex justify-center">
-        <div className="absolute top-4 md:left-6 lg:left-8">
-          <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-            Dernières Sorties - Découvrez Les Nouveautés!
-          </p>
-        </div>
-      </div>
-
+    <div className={`${themeClass}  bg-blue-custom-200 min-h-screen flex flex-col items-center justify-start overflow-x-hidden`}>
       {/* Titre de la section */}
       <div className="w-full max-w-screen-lg px-4 mb-12 mx-auto">
         <div className="mt-6">
