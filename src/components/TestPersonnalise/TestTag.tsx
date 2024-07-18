@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { getThemeClass } from '../../Utils/themeUtils';
 
 import axios from 'axios';
 import { useUser } from '../../context/UserContext';
 
 const TestTag = ({ tagData }) => {
-  const { theme } = useTheme(); // Récupère le thème actuel à partir du contexte
-  const { triggerFetchUserData } = useUser(); // Utilisation de la nouvelle fonction
+  const { theme } = useTheme(); 
+  const { triggerFetchUserData } = useUser(); 
   const { token } = useAuth();
-  const [selectedTags, setSelectedTags] = useState([]); // État pour les catégories sélectionnées
-  const navigate = useNavigate(); // Hook pour la navigation
+  const [selectedTags, setSelectedTags] = useState([]); 
+  const navigate = useNavigate(); 
+  const themeClass = getThemeClass(theme);
 
-    // Fonction pour gérer la soumission du formulaire
+   
   const handleSubmit = async () => {
     if (selectedTags.length > 0) {
       // Logique pour gérer la soumission de la catégorie sélectionnée
@@ -53,7 +55,7 @@ const TestTag = ({ tagData }) => {
     };
 
     return (
-      <div className={`min-h-screen bg-${theme}-bg flex flex-col items-center justify-center p-8`}>
+      <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center p-8`}>
         <h1 className="text-3xl font-bold mb-8">Test Personnalisé</h1>
         <p className='text-2xl py-7'>Choisis tes catégories !</p>
         <div className="grid grid-cols-2 gap-6">

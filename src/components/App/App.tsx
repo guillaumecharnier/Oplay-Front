@@ -92,7 +92,6 @@ function App() {
         <Route path="/derniere-sortie" element={<DerniereSortie gameData={gameData} />} />
         <Route path="/derniere-ajout" element={<DernierAjout gameData={gameData} />} />
         <Route path="/jeu/:id" element={<PageJeu gameData={gameData} />} />
-        {/* <Route path="/jeux-personnalise" element={<JeuxPersonnalise />} /> */}
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/profil/" element={<Profil />} />
         <Route path="/search/:name" element={<SearchResults gameData={gameData} />} />

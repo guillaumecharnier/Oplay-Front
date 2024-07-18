@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+import { getThemeClass } from '../../Utils/themeUtils';
+
 
 const TestTheme = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const { postThemeData, categoryData } = useTheme();
   const navigate = useNavigate();
+  const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategoryId(categoryId);
@@ -18,7 +22,7 @@ const TestTheme = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
+    <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center p-8`}>
       <h1 className="text-3xl font-bold mb-8">Test Personnalisé</h1>
       <p className="text-2xl py-7">Choisis un thème !</p>
       

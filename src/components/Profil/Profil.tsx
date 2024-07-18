@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { useTheme } from '../../context/ThemeContext';
 import { UserData, GameOrder, UserGameKey } from '../../assets/type';
+import { getThemeClass } from '../../Utils/themeUtils';
 
 function Profil() {
   const { theme } = useTheme();
   const { user } = useUser();
+
+  const themeClass = getThemeClass(theme);
     // console.log(user);  
   if (!user) {
     return;
   }
 
   return (
-    <div className={`min-h-screen ${theme} text-white py-16 px-8 flex flex-col items-center`}>
+    <div className={`min-h-screen ${themeClass} text-white py-16 px-8 flex flex-col items-center`}>
       <div className="w-full max-w-3xl bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 rounded-lg shadow-2xl p-8 relative">
         {/* Boutons d'édition et de paramètres */}
         <div className="absolute top-4 right-4 flex space-x-4">

@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from '../../context/ThemeContext';
-import GandalfPDP from '../../assets/images/GandalfPDP.jpeg'; // Assurez-vous que le chemin est correct
+import GandalfPDP from '../../assets/images/GandalfPDP.jpeg';
+import { getThemeClass } from '../../Utils/themeUtils';
 
 function Edit() {
   const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
 
   return (
-    <div className={`min-h-screen ${theme} text-white py-16 px-8 flex flex-col items-center`}>
+    <div className={`min-h-screen ${themeClass} text-white py-16 px-8 flex flex-col items-center`}>
       <div className="w-full max-w-3xl bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 rounded-lg shadow-2xl p-8 relative">
         {/* Boutons d'édition et de paramètres */}
         <div className="absolute top-4 right-4 flex space-x-4">

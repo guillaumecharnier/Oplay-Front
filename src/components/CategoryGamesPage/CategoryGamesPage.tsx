@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { getThemeClass } from '../../Utils/themeUtils';
+import { useTheme } from '../../context/ThemeContext';
 
 interface Game {
   id: number;
@@ -27,6 +29,8 @@ const CategoryGamesPage: React.FC<{ gameData: Game[] }> = ({ gameData }) => {
   const navigate = useNavigate();
   const [games, setGames] = useState<Game[]>([]);
   const [categoryName, setCategoryName] = useState<string>('');
+  const { theme } = useTheme();
+  const themeClass = getThemeClass(theme);
 
   useEffect(() => {
     const fetchCategoryGames = async () => {
@@ -73,7 +77,7 @@ const CategoryGamesPage: React.FC<{ gameData: Game[] }> = ({ gameData }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-6">
+    <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center py-12 px-6`}>
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">
           Les jeux de la catégorie "{categoryName}"
