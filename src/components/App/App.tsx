@@ -48,7 +48,7 @@ function App() {
 
   const fetchGameData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/game', {
+      const response = await axios.get('http://localhost:8080/public/api/game', {
         headers: { 'Content-Type': 'application/json' },
       });
       setGameData(response.data);
@@ -60,7 +60,7 @@ function App() {
 
   const fetchTagData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/tag', {
+      const response = await axios.get('http://localhost:8080/public/api/tag', {
         headers: { 'Content-Type': 'application/json' },
       });
       setTagData(response.data);

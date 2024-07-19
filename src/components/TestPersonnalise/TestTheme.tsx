@@ -23,8 +23,8 @@ const TestTheme = () => {
 
   return (
     <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center p-8`}>
-      <h1 className="text-3xl font-bold mb-8">Test Personnalisé</h1>
-      <p className="text-2xl py-7">Choisis un thème !</p>
+      <h1 className="text-3xl text-white font-bold mb-8">Test Personnalisé</h1>
+      <p className="text-2xl text-white py-7">Choisis un thème !</p>
       
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
         {categoryData.map((category) => (
