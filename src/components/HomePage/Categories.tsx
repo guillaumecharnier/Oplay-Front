@@ -17,7 +17,7 @@ function Categories() {
     <div className={`pt-6 ${themeClass} w-full max-w-7xl px-4 mb-12 mx-auto`}>
       <Link to="#" className="block mb-16">
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 transition-transform transform hover:scale-105 hover:text-blue-300">
-          <span className="font-semibold hover:text-blue-300">Catégories</span>
+          <span className="font-semibold text-[2.5rem] hover:text-blue-300">Catégories</span>
         </h2>
       </Link>
       

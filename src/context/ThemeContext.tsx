@@ -16,7 +16,7 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/category', {
+        const response = await axios.get('http://localhost:8080/public/api/category', {
           headers: {
             'Content-Type': 'application/json',
             // 'Authorization': `Bearer ${token}`

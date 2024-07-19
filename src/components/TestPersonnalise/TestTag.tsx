@@ -56,8 +56,8 @@ const TestTag = ({ tagData }) => {
 
     return (
       <div className={`${themeClass} min-h-screen flex flex-col items-center justify-center p-8`}>
-        <h1 className="text-3xl font-bold mb-8">Test Personnalisé</h1>
-        <p className='text-2xl py-7'>Choisis tes catégories !</p>
+        <h1 className="text-3xl text-white font-bold mb-8">Test Personnalisé</h1>
+        <p className='text-2xl text-white py-7'>Choisis tes catégories !</p>
         <div className="grid grid-cols-2 gap-6">
           {tagData.map((tag) => (
             <label key={tag.name} className="flex items-center space-x-2 relative">

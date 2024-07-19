@@ -12,11 +12,9 @@ interface CustomSelectionProps {
 
 const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
   const { theme } = useTheme();
-  const { isLog } = useAuth();
   const themeClass = getThemeClass(theme);
   const { user, filteredGames, setFilteredGames, userCategory, userTag } = useUser();
-  // console.log('custom', isLog);
-
+// console.log(user);
   useEffect(() => {
     if (!userCategory || !userTag) {
       return;
@@ -59,7 +57,7 @@ const CustomSelection: React.FC<CustomSelectionProps> = ({ gameData }) => {
     <div className={`pt-6 ${themeClass} w-full max-w-7xl px-4 pb-16 mx-auto`}>
       <Link to="/selection-perso" className="block mb-16">
         <h2 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-blue-100 flex items-center justify-center space-x-2 transition-transform transform hover:scale-105 hover:text-blue-300">
-          <span className="font-semibold hover:text-blue-300">Sélection personnalisée</span>
+          <span className="font-semibold text-[2.5rem] hover:text-blue-300">Sélection personnalisée</span>
         </h2>
       </Link>
       <div className="grid grid-cols-1 gap-8 tablet:grid-cols-3">

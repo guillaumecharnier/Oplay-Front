@@ -35,10 +35,10 @@ const CategoryGamesPage: React.FC<{ gameData: Game[] }> = ({ gameData }) => {
   useEffect(() => {
     const fetchCategoryGames = async () => {
       try {
-        const categoryResponse = await axios.get<Category>(`http://localhost:8080/api/category/${id}`);
+        const categoryResponse = await axios.get<Category>(`http://localhost:8080/public/api/category/${id}`);
         setCategoryName(categoryResponse.data.name); // Mettre à jour l'état avec le nom de la catégorie
 
-        const gamesResponse = await axios.get<Game[]>(`http://localhost:8080/api/category/${id}/games`);
+        const gamesResponse = await axios.get<Game[]>(`http://localhost:8080/public/api/category/${id}/games`);
         setGames(gamesResponse.data); // Mettre à jour l'état avec les jeux récupérés depuis l'API
       } catch (error) {
         console.error('Error fetching category games:', error);
